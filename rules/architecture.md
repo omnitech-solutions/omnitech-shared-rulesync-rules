@@ -350,8 +350,16 @@ async function processOrder(orderId: string) {
 ## Related Documentation
 
 - `.rulesync/rules/stacks/graphql/overview.md` - GraphQL-specific patterns
+- `.rulesync/rules/stacks/graphql/schema.md` - GraphQL schema design
+- `.rulesync/rules/stacks/graphql/resolvers.md` - GraphQL execution boundaries
+- `.rulesync/rules/stacks/graphql/error-handling.md` - GraphQL error semantics
 - `.rulesync/rules/stacks/react/overview.md` - React architecture patterns
 - `.rulesync/rules/stacks/vue/overview.md` - Vue.js architecture patterns
+- `.rulesync/rules/stacks/vue/state.md` - Vue state boundaries
+- `.rulesync/rules/stacks/vue/routing.md` - Vue route boundaries
 - `.rulesync/rules/stacks/rails/overview.md` - Rails architecture patterns
 - `.rulesync/rules/stacks/laravel/overview.md` - Laravel architecture patterns
 - `.rulesync/rules/stacks/nodejs/overview.md` - Node.js architecture patterns
+- `.rulesync/rules/stacks/nodejs/runtime.md` - Node runtime model
+- `.rulesync/rules/stacks/nodejs/http-api.md` - HTTP boundary patterns
+- `.rulesync/rules/stacks/nodejs/data-access.md` - Persistence boundaries

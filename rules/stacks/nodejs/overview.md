@@ -2,7 +2,8 @@
 targets:
   - '*'
 root: false
-description: Node.js best practices and patterns
+description: Node.js core principles and architecture
+summary: Runtime-aware design, boundaries, and reliability expectations
 stack: nodejs
 globs:
   - '**/*.js'
@@ -10,103 +11,57 @@ globs:
   - '**/server.js'
   - '**/app.js'
 cursor:
-  description: Node.js best practices and patterns
+  description: Node.js core principles and architecture
   globs:
     - '**/*.js'
     - '**/*.mjs'
 ---
 
-# Node.js Rules
+# Node.js Overview Rules
 
-## Node.js Best Practices
+## Core Principles
 
-- **Async/Await:** Use async/await instead of callbacks
-- **Error Handling:** Always handle errors in async operations
-- **Environment Variables:** Use environment variables for configuration
-- **Logging:** Use structured logging
-- **Process Management:** Use a process manager appropriate to the deployment
-- **Security:** Keep dependencies updated, use security scanning
-- **Performance:** Use clustering for CPU-intensive tasks
-- **Middleware:** Use middleware for cross-cutting concerns
-- **Validation:** Validate all inputs
-- **Rate Limiting:** Implement rate limiting
-- **Graceful Shutdown:** Handle SIGTERM/SIGINT and drain requests
-- **Event Loop Health:** Avoid blocking the event loop; offload CPU-heavy work
+- **Async-First:** Design flows around non-blocking I/O and explicit async
+  boundaries.
+- **Small Modules:** Keep modules focused; expose minimal, stable public APIs.
+- **Explicit Dependencies:** Pass dependencies explicitly to improve testability
+  and reduce hidden coupling.
+- **Clear Ownership:** Separate HTTP concerns, domain logic, and infrastructure
+  adapters.
+- **Operational Awareness:** Assume services need observability, graceful
+  shutdown, and predictable failure modes.
 
 ---
 
-## Async/Await
+## Architecture Boundaries
 
-```javascript
-// ✅ GOOD: Async/await
-async function fetchUser(id) {
-  try {
-    const user = await db.users.findById(id);
-    return user;
-  } catch (error) {
-    logger.error('Failed to fetch user', { id, error });
-    throw error;
-  }
-}
-
-// ❌ BAD: Callbacks
-function fetchUser(id, callback) {
-  db.users.findById(id, (error, user) => {
-    if (error) {
-      callback(error);
-    } else {
-      callback(null, user);
-    }
-  });
-}
-```
+- Keep request parsing, business rules, and persistence concerns isolated.
+- Treat adapters (DB, queues, external APIs) as replaceable infrastructure.
+- Centralize cross-cutting concerns (auth, validation, logging) in middleware or
+  shared services.
+- Avoid leaking transport or framework types into domain layers.
 
 ---
 
-## Error Handling
+## Configuration & Environment
 
-```javascript
-// ✅ GOOD: Proper error handling
-async function processRequest(req, res) {
-  try {
-    const result = await processData(req.body);
-    res.json(result);
-  } catch (error) {
-    logger.error('Request processing failed', { error });
-    res.status(500).json({ error: 'Internal server error' });
-  }
-}
-```
+- Prefer configuration by environment variables or injected config objects.
+- Fail fast on missing or invalid configuration.
+- Keep secrets out of code and logs.
 
 ---
 
-## Middleware
+## Related Rules
 
-```javascript
-// Express middleware
-function loggerMiddleware(req, res, next) {
-  logger.info('Request', {
-    method: req.method,
-    path: req.path,
-    ip: req.ip,
-  });
-  next();
-}
-
-app.use(loggerMiddleware);
-```
-
----
-
-## Operational Concerns
-
-- Surface health checks and readiness probes
-- Use timeouts and circuit breakers for external calls
-- Close DB/queue connections on shutdown
-
----
-
-## Related Documentation
-
-- [Node.js Best Practices](https://github.com/goldbergyoni/nodebestpractices)
-- `.rulesync/rules/architecture.md` - Architecture patterns
+- `.rulesync/rules/architecture.md`
+- `.rulesync/rules/code-quality.md`
+- `.rulesync/rules/performance.md`
+- `.rulesync/rules/security.md`
+- `.rulesync/rules/stacks/nodejs/runtime.md`
+- `.rulesync/rules/stacks/nodejs/http-api.md`
+- `.rulesync/rules/stacks/nodejs/data-access.md`
+- `.rulesync/rules/stacks/nodejs/jobs.md`
+- `.rulesync/rules/stacks/nodejs/operations.md`
+- `.rulesync/rules/stacks/nodejs/testing.md`
+- `.rulesync/rules/stacks/nodejs/performance.md`
+- `.rulesync/rules/stacks/nodejs/security.md`

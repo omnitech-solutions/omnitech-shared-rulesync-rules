@@ -91,3 +91,4 @@ export function UserCard({
 - `.rulesync/rules/stacks/react/accessibility.md`
 - `.rulesync/rules/ui-ux.md`
 - `.rulesync/rules/stacks/typescript/overview.md`
+- `.rulesync/rules/stacks/typescript/types.md`

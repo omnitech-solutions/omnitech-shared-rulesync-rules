@@ -89,20 +89,84 @@ for the task at hand to keep context focused.
 
 ## Node.js
 
+**Core**
+
 - `rules/stacks/nodejs/overview.md`
+- `rules/stacks/nodejs/runtime.md`
+- `rules/stacks/nodejs/http-api.md`
+- `rules/stacks/nodejs/data-access.md`
+- `rules/stacks/nodejs/jobs.md`
+- `rules/stacks/nodejs/operations.md`
+
+**Quality & Safety**
+
+- `rules/stacks/nodejs/testing.md`
+- `rules/stacks/nodejs/performance.md`
+- `rules/stacks/nodejs/security.md`
 
 ## Vue
 
+**Core**
+
 - `rules/stacks/vue/overview.md`
+- `rules/stacks/vue/components.md`
+- `rules/stacks/vue/composables.md`
+- `rules/stacks/vue/state.md`
+- `rules/stacks/vue/routing.md`
+- `rules/stacks/vue/data-fetching.md`
+- `rules/stacks/vue/forms.md`
+
+**Quality & UX**
+
+- `rules/stacks/vue/testing.md`
+- `rules/stacks/vue/performance.md`
+- `rules/stacks/vue/accessibility.md`
 
 ## GraphQL
 
+**Core**
+
 - `rules/stacks/graphql/overview.md`
+- `rules/stacks/graphql/schema.md`
+- `rules/stacks/graphql/resolvers.md`
+- `rules/stacks/graphql/operations.md`
+- `rules/stacks/graphql/error-handling.md`
+- `rules/stacks/graphql/governance.md`
+
+**Quality & Safety**
+
+- `rules/stacks/graphql/testing.md`
+- `rules/stacks/graphql/performance.md`
+- `rules/stacks/graphql/security.md`
 
 ## Tailwind
 
+**Core**
+
 - `rules/stacks/tailwind/overview.md`
+- `rules/stacks/tailwind/components.md`
+- `rules/stacks/tailwind/layout.md`
+- `rules/stacks/tailwind/tokens.md`
+- `rules/stacks/tailwind/forms.md`
+- `rules/stacks/tailwind/motion.md`
+
+**Quality & UX**
+
+- `rules/stacks/tailwind/performance.md`
+- `rules/stacks/tailwind/accessibility.md`
 
 ## TypeScript
 
+**Core**
+
 - `rules/stacks/typescript/overview.md`
+- `rules/stacks/typescript/types.md`
+- `rules/stacks/typescript/api-boundaries.md`
+- `rules/stacks/typescript/runtime-validation.md`
+- `rules/stacks/typescript/error-handling.md`
+- `rules/stacks/typescript/configuration.md`
+
+**Quality**
+
+- `rules/stacks/typescript/testing.md`
+- `rules/stacks/typescript/performance.md`

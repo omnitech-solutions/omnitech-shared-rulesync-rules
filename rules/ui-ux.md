@@ -140,4 +140,10 @@ function UserList() {
 
 - `.rulesync/rules/stacks/react/overview.md` - React patterns
 - `.rulesync/rules/stacks/vue/overview.md` - Vue.js patterns
-- `.rulesync/rules/stacks/tailwind/overview.md` - Tailwind CSS patterns
+- `.rulesync/rules/stacks/vue/forms.md` - Vue form guidance
+- `.rulesync/rules/stacks/vue/accessibility.md` - Vue accessibility guidance
+- `.rulesync/rules/stacks/tailwind/overview.md` - Utility-first CSS patterns
+- `.rulesync/rules/stacks/tailwind/forms.md` - Utility-first form patterns
+- `.rulesync/rules/stacks/tailwind/motion.md` - Utility-first motion patterns
+- `.rulesync/rules/stacks/tailwind/accessibility.md` - Utility-first
+  accessibility

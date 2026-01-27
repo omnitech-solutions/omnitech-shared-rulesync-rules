@@ -2,7 +2,8 @@
 targets:
   - '*'
 root: false
-description: Tailwind CSS best practices and patterns
+description: Utility-first CSS principles and consistency
+summary: Composition, tokens, and design system alignment
 stack: tailwind
 globs:
   - '**/*.tsx'
@@ -10,103 +11,42 @@ globs:
   - '**/*.vue'
   - '**/*.css'
 cursor:
-  description: Tailwind CSS best practices and patterns
+  description: Utility-first CSS principles and consistency
   globs:
     - '**/*.tsx'
     - '**/*.jsx'
     - '**/*.vue'
 ---
 
-# Tailwind CSS Rules
+# Utility-First CSS Overview Rules
 
-## Tailwind Best Practices
+## Core Principles
 
-- **Utility-First:** Use utility classes instead of custom CSS
-- **Component Extraction:** Extract repeated patterns into components
-- **Responsive Design:** Use responsive prefixes (sm:, md:, lg:, xl:)
-- **Dark Mode:** Use dark: prefix for dark mode styles
-- **Custom Colors:** Define custom colors in tailwind.config.js
-- **Consistent Spacing:** Use Tailwind spacing scale
-- **No Arbitrary Values:** Avoid arbitrary values when possible
-- **Performance:** Remove unused styles via the build pipeline
-- **Accessibility:** Ensure proper contrast and focus states
-- **Design Tokens:** Centralize brand colors and spacing in config
-- **Consistency:** Prefer shared components over one-off class stacks
+- **Utilities Over One-Off CSS:** Prefer shared utility classes to avoid
+  duplicate bespoke styles.
+- **Composition First:** Build interfaces by composing small, reusable class
+  patterns.
+- **Token Consistency:** Keep spacing, color, and typography aligned to design
+  tokens.
+- **Readable Class Stacks:** Keep class lists short and intention-revealing.
 
 ---
 
-## Utility Classes
+## System Boundaries
 
-### Spacing
-
-```tsx
-// ✅ GOOD: Use Tailwind spacing scale
-<div className="p-4 m-2">
-  <h1 className="mb-4">Title</h1>
-</div>
-
-// ❌ BAD: Arbitrary values
-<div className="p-[13px] m-[7px]">
-  <h1 className="mb-[15px]">Title</h1>
-</div>
-```
-
-### Colors
-
-```tsx
-// ✅ GOOD: Use Tailwind color palette
-<button className="bg-blue-500 hover:bg-blue-600 text-white">
-  Click me
-</button>
-
-// ✅ GOOD: Custom colors from config
-<button className="bg-brand-primary hover:bg-brand-primary-dark">
-  Click me
-</button>
-```
+- Centralize visual decisions in tokens and shared primitives.
+- Avoid mixing utility classes with ad-hoc custom CSS without a clear reason.
+- Treat component classes as part of the component API.
 
 ---
 
-## Responsive Design
+## Related Rules
 
-```tsx
-// ✅ GOOD: Mobile-first responsive design
-<div
-  className="
-  w-full
-  md:w-1/2
-  lg:w-1/3
-  xl:w-1/4
-"
->
-  Content
-</div>
-```
-
----
-
-## Component Patterns
-
-### Extract Repeated Patterns
-
-```tsx
-// ✅ GOOD: Extract to component
-function Card({ children }: { children: React.ReactNode }) {
-  return <div className="bg-white rounded-lg shadow-md p-6">{children}</div>;
-}
-```
-
----
-
-## Design Consistency
-
-- Use shared component primitives for repeated UI patterns
-- Keep class stacks readable; split complex UIs into subcomponents
-- Avoid mixing custom CSS with utility classes without a clear reason
-
----
-
-## Related Documentation
-
-- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
-- `.rulesync/rules/ui-ux.md` - UI/UX patterns
+- `.rulesync/rules/ui-ux.md`
+- `.rulesync/rules/stacks/tailwind/components.md`
+- `.rulesync/rules/stacks/tailwind/layout.md`
+- `.rulesync/rules/stacks/tailwind/tokens.md`
+- `.rulesync/rules/stacks/tailwind/forms.md`
+- `.rulesync/rules/stacks/tailwind/motion.md`
+- `.rulesync/rules/stacks/tailwind/performance.md`
+- `.rulesync/rules/stacks/tailwind/accessibility.md`

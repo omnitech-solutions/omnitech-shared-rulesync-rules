@@ -2,151 +2,46 @@
 targets:
   - '*'
 root: false
-description: TypeScript best practices and patterns
+description: TypeScript core principles and patterns
+summary: Type safety, API boundaries, and runtime validation
 stack: typescript
 globs:
   - '**/*.ts'
   - '**/*.tsx'
 cursor:
-  description: TypeScript best practices and patterns
+  description: TypeScript core principles and patterns
   globs:
     - '**/*.ts'
     - '**/*.tsx'
 ---
 
-# TypeScript Rules
+# TypeScript Overview Rules
 
-## TypeScript Best Practices
+## Core Principles
 
-- **Strict Mode:** Prefer strict TypeScript configuration
-- **No Any Types:** Avoid `any`, use `unknown` and type guards instead
-- **Type Inference:** Leverage TypeScript's type inference where appropriate
-- **Type Definitions:** Define interfaces and types for all data structures
-- **Utility Types:** Use built-in utility types (Pick, Omit, Partial, etc.)
-- **Type Guards:** Use type guards for runtime type checking
-- **Generic Types:** Use generics for reusable, type-safe code
-- **Discriminated Unions:** Use discriminated unions for complex state
-- **Type Exports:** Export types and interfaces for reuse
-- **Runtime Validation:** Validate untrusted inputs at runtime
-- **Readonly by Default:** Prefer `readonly` for data that should not mutate
+- **Type Safety First:** Prefer precise types over broad or implicit shapes.
+- **Explicit Boundaries:** Define clear public interfaces between modules.
+- **Runtime Alignment:** Validate untrusted data at runtime; types alone are not
+  enough.
+- **Maintainability:** Keep types readable and avoid unnecessary complexity.
 
 ---
 
-## Type Safety
+## Design Expectations
 
-### Avoid Any
-
-```typescript
-// ❌ BAD: Using any
-function processData(data: any): any {
-  return data.value;
-}
-
-// ✅ GOOD: Proper typing
-function processData<T extends { value: unknown }>(data: T): T['value'] {
-  return data.value;
-}
-```
-
-### Use Unknown for Untrusted Data
-
-```typescript
-// ✅ GOOD: Use unknown and type guards
-function processUserInput(input: unknown): User {
-  if (isUser(input)) {
-    return input;
-  }
-  throw new Error('Invalid user data');
-}
-
-function isUser(value: unknown): value is User {
-  return (
-    typeof value === 'object' &&
-    value !== null &&
-    'id' in value &&
-    'email' in value
-  );
-}
-```
+- Model domain concepts explicitly with types and interfaces.
+- Keep type changes backward-compatible for public APIs.
+- Avoid leaking infrastructure types into domain models.
 
 ---
 
-## Type Definitions
+## Related Rules
 
-### Interfaces vs Types
-
-```typescript
-// ✅ GOOD: Use interfaces for objects
-interface User {
-  id: string;
-  email: string;
-  name: string;
-}
-
-// ✅ GOOD: Use types for unions, intersections, primitives
-type Status = 'active' | 'inactive' | 'pending';
-type UserWithStatus = User & { status: Status };
-```
-
-### Utility Types
-
-```typescript
-// Pick specific properties
-type UserSummary = Pick<User, 'id' | 'name'>;
-
-// Omit properties
-type CreateUserInput = Omit<User, 'id' | 'createdAt'>;
-
-// Make properties optional
-type PartialUser = Partial<User>;
-
-// Make properties required
-type RequiredUser = Required<User>;
-```
-
----
-
-## Generics
-
-```typescript
-// ✅ GOOD: Generic function
-function getById<T extends { id: string }>(
-  items: T[],
-  id: string,
-): T | undefined {
-  return items.find(item => item.id === id);
-}
-
-// Usage
-const user = getById(users, '123');
-const post = getById(posts, '456');
-```
-
----
-
-## Runtime Validation
-
-```typescript
-// ✅ GOOD: Validate external data at the boundary
-function parseUser(input: unknown): User {
-  if (!isUser(input)) {
-    throw new Error('Invalid user payload');
-  }
-  return input;
-}
-```
-
----
-
-## Public API Types
-
-- Export explicit types for module boundaries
-- Avoid `as` casting to silence errors; fix the type instead
-- Prefer narrow, intention-revealing types
-
----
-
-## Related Documentation
-
-- [TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/intro.html)
-- `.rulesync/rules/code-quality.md` - Code quality standards
+- `.rulesync/rules/code-quality.md`
+- `.rulesync/rules/stacks/typescript/types.md`
+- `.rulesync/rules/stacks/typescript/api-boundaries.md`
+- `.rulesync/rules/stacks/typescript/runtime-validation.md`
+- `.rulesync/rules/stacks/typescript/error-handling.md`
+- `.rulesync/rules/stacks/typescript/configuration.md`
+- `.rulesync/rules/stacks/typescript/testing.md`
+- `.rulesync/rules/stacks/typescript/performance.md`
