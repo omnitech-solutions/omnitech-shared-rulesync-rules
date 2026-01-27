@@ -68,7 +68,8 @@ Example `sync-rules` script in `package.json`:
 
 - **rules/** - Coding standards and best practices. Shared, cross-stack rules
   live at the root; stack-specific rules live under `rules/stacks/` (React, Vue,
-  Rails, Laravel, PHP, etc.) plus DDD-specific reference guides
+  Rails, Laravel, PHP, etc.). See `rules/stacks/README.md` for a stack index and
+  task-focused subsets. DDD-specific reference guides live at the root
   (`ddd-architecture.md`, `ddd-code-quality.md`, `ddd-testing.md`)
 - **commands/** - Slash commands for AI agents (brief, spec, code, test, review,
   etc.)
