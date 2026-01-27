@@ -9,37 +9,47 @@ globs:
   - '**/*.graphql'
   - '**/*.gql'
   - '**/schema.*'
+  - '**/*.ts'
+  - '**/*.tsx'
+  - '**/*.js'
+  - '**/*.jsx'
+  - '**/*graphql*.*'
 cursor:
   description: GraphQL schema governance guidance
   globs:
     - '**/*.graphql'
     - '**/*.gql'
+    - '**/schema.*'
+    - '**/*.ts'
+    - '**/*.tsx'
 ---
 
 # GraphQL Governance Rules
 
 ## Change Management
 
-- Review schema changes for backward compatibility.
-- Use deprecation with clear migration guidance.
-- Avoid changing field meaning or semantics.
-
----
+- **Breaking Change Detection:** MUST detect breaking changes via schema checks
+  against a representative operation set.
+- **Breaking Changes:** MUST require explicit approval and a documented
+  migration plan for any breaking change.
+- **Deprecation Policy:** MUST maintain deprecated fields for at least one
+  release cycle (or agreed timeframe) before removal.
+- **Semantics:** MUST avoid changing field meaning or semantics.
 
 ## Ownership
 
-- Assign ownership for schema sections and critical fields.
-- Require documentation updates for new fields and types.
-- Keep schema descriptions current and intentional.
-
----
+- **Assignment:** SHOULD assign ownership for schema sections and critical
+  fields.
+- **Metadata:** SHOULD attach ownership metadata so changes route to the right
+  reviewers.
+- **Documentation:** MUST require documentation updates for new fields and
+  types.
 
 ## Quality Gates
 
-- Validate schema changes against representative operations.
-- Prevent breaking changes from reaching production.
-
----
+- **Validation:** MUST validate schema changes against representative
+  operations.
+- **Production Guard:** MUST prevent breaking changes from reaching production.
 
 ## Related Rules
 

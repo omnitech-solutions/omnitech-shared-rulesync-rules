@@ -10,37 +10,49 @@ globs:
   - '**/*.gql'
   - '**/test/**'
   - '**/__tests__/**'
+  - '**/*.ts'
+  - '**/*.tsx'
+  - '**/*.js'
+  - '**/*.jsx'
 cursor:
   description: GraphQL testing guidance
   globs:
     - '**/*.graphql'
     - '**/*.gql'
+    - '**/test/**'
+    - '**/__tests__/**'
+    - '**/*.ts'
+    - '**/*.tsx'
 ---
 
 # GraphQL Testing Rules
 
 ## Schema Tests
 
-- Validate schema changes for breaking changes and documentation quality.
-- Ensure deprecations are intentional and communicated.
-- Keep schema snapshots stable and review deltas carefully.
-
----
+- **Breaking Changes:** MUST validate schema changes for breaking changes and
+  documentation quality.
+- **Deprecations:** Ensure deprecations are intentional and communicated.
+- **Snapshots:** Keep schema snapshots stable and review deltas carefully.
 
 ## Resolver Tests
 
-- Test resolver logic with mocked data sources.
-- Verify authorization and error paths explicitly.
-- Ensure pagination, filtering, and sorting behave correctly.
-
----
+- **Mocking:** Test resolver logic with mocked data sources.
+- **AuthZ:** MUST verify authorization for both direct and nested field access.
+- **Error Paths:** Verify error paths explicitly.
+- **Behavior:** Ensure pagination, filtering, and sorting behave correctly.
 
 ## Contract Coverage
 
-- Use representative queries to catch regressions in response shape.
-- Keep client-facing examples aligned with current schema.
+- **Representative Set:** MUST maintain a small set of representative operations
+  as contract tests.
+- **Golden Queries:** MUST use these "golden queries" to validate schema changes
+  and ensure no breaking changes for critical paths.
+- **Alignment:** Keep client-facing examples aligned with current schema.
 
----
+## Invariant Testing
+
+- **Pagination:** SHOULD test pagination invariants (stable order, cursor
+  validity across inserts/deletes).
 
 ## Related Rules
 

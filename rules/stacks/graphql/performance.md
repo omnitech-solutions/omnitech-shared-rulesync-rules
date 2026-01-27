@@ -9,37 +9,51 @@ globs:
   - '**/*.graphql'
   - '**/*.gql'
   - '**/resolvers/**'
+  - '**/*.ts'
+  - '**/*.tsx'
+  - '**/*.js'
+  - '**/*.jsx'
+  - '**/*resolver*.*'
+  - '**/*graphql*.*'
 cursor:
   description: GraphQL performance guidance
   globs:
     - '**/*.graphql'
     - '**/*.gql'
+    - '**/resolvers/**'
+    - '**/*.ts'
+    - '**/*.tsx'
 ---
 
 # GraphQL Performance Rules
 
 ## Query Cost Management
 
-- Enforce query depth or cost limits to protect resources.
-- Reject or throttle expensive queries early.
-- Document cost-heavy fields and their intended usage.
-
----
+- **Edge Enforcement:** MUST enforce query cost/complexity at the edge
+  (reject/throttle expensive queries early).
+- **Resource Protection:** MUST enforce query depth or cost limits to protect
+  resources.
+- **Documentation:** MUST document any "expensive" fields (e.g., full-text
+  search, deep aggregations) and provide alternatives (summary vs detail split).
 
 ## Caching & Batching
 
-- Batch resolver data access across fields and requests.
-- Cache stable, frequently accessed data with clear invalidation rules.
-- Avoid caching personalized data without strict scoping.
-
----
+- **Batching:** MUST batch resolver data access across fields and requests.
+- **Caching:** Cache stable, frequently accessed data with clear invalidation
+  rules.
+- **Scope:** MUST avoid caching personalized data without strict scoping.
 
 ## Data Shaping
 
-- Keep list fields lightweight; provide detail fields separately.
-- Avoid nested traversal that causes multi-hop fan-out.
+- **Lightweight Lists:** Keep list fields lightweight; provide detail fields
+  separately.
+- **Fan-Out:** Avoid nested traversal that causes multi-hop fan-out.
 
----
+## Production Security
+
+- **Persisted Operations:** SHOULD consider persisted operations/allowlists for
+  production clients to reduce abuse and improve caching.
+- **Introspection:** SHOULD gate introspection/playground in production.
 
 ## Related Rules
 
