@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "omnitech-shared-mcp": {
+      "command": "tsx",
+      "args": ["./mcp-server/omnitech-shared-mcp/src/server.ts"],
+      "env": {
+        "RULESYNC_ROOT": "${workspaceFolder}"
+      }
+    }
+  }
+}

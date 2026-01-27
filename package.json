@@ -1,0 +1,32 @@
+{
+  "name": "@omnitech/shared-rulesync-rules",
+  "version": "0.1.0",
+  "description": "Shared rules for rulesync across Omnitech Solutions repositories",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/omnitech-solutions/omnitech-shared-rulesync-rules.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "scripts": {
+    "setup-mcp": "tsx scripts/setup-mcp.ts",
+    "setup-mcp:help": "tsx scripts/setup-mcp.ts --help",
+    "postinstall": "echo '✅ MCP setup script available via: pnpm setup-mcp'"
+  },
+  "files": [
+    "rules",
+    "commands",
+    "subagents",
+    "templates",
+    "mcp.json",
+    "scripts",
+    "mcp-server"
+  ],
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.0"
+  }
+}

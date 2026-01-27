@@ -1,0 +1,14 @@
+# Source files (only include dist in package)
+src/
+tsconfig.json
+*.ts
+!dist/**/*.js
+!dist/**/*.d.ts
+
+# Development files
+.gitignore
+.npmignore
+README.md
+
+# Dependencies (will be installed by consumer)
+node_modules/
