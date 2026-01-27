@@ -2,36 +2,68 @@
 targets:
   - '*'
 root: false
-description: PHP core standards and conventions
-summary: PHP principles, strict types, and structure
+description: PHP core architecture and application contract
+summary: Non-negotiable PHP standards, rule strength, and system-wide guarantees
 stack: php
 globs:
   - '**/*.php'
   - '**/composer.json'
-cursor:
-  description: PHP core standards and conventions
-  globs:
-    - '**/*.php'
 ---
 
 # PHP Overview Rules
 
-## Core Principles
+> **Authority Notice**
+>
+> This ruleset is governed by: `.rulesync/rules/stacks/php/non-negotiables.md`
+>
+> In the event of conflict, the non-negotiables take precedence.
 
-- Use `declare(strict_types=1);` in new files.
-- Prefer explicit types and return values.
-- Keep classes small and single‑purpose.
-- Favor composition over inheritance.
-- Use Composer autoloading and namespaces consistently.
-- Keep framework concerns out of domain logic where possible.
+This document defines the **baseline architectural contract** for PHP
+applications. All other PHP rules **specialize or elaborate** on these
+guarantees.
 
 ---
 
-## Related Rules
+## Rule Strength
 
+- **MUST** — Required. Violations block merge or release.
+- **SHOULD** — Expected default. Deviations require justification.
+- **MAY** — Optional guidance.
+
+---
+
+## Core Contract
+
+- **PHP as a Systems Language (MUST)**  
+  PHP is a general-purpose systems language, not a scripting layer.
+
+- **Explicit Boundaries (MUST)**  
+  Transport → Application → Domain → Infrastructure.
+
+- **Replaceability (MUST)**  
+  Domain and application logic must not depend on frameworks or global state.
+
+- **Predictable Behavior (MUST)**  
+  Types, errors, persistence, and side effects must be explicit and testable.
+
+---
+
+## Evolution & Quality
+
+- **Additive Change (MUST)**  
+  Public APIs evolve via additive change and deprecation only.
+
+- **Consistency (MUST)**  
+  Typing, error handling, and structure must be consistent across the codebase.
+
+---
+
+## Related Rules (Authoritative Index)
+
+- `.rulesync/rules/stacks/php/non-negotiables.md`
 - `.rulesync/rules/stacks/php/types.md`
 - `.rulesync/rules/stacks/php/errors.md`
 - `.rulesync/rules/stacks/php/structure.md`
 - `.rulesync/rules/stacks/php/data-access.md`
-- `.rulesync/rules/stacks/php/testing.md`
 - `.rulesync/rules/stacks/php/performance.md`
+- `.rulesync/rules/stacks/php/testing.md`

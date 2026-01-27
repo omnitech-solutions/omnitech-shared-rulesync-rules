@@ -1,25 +1,19 @@
----
-targets:
-  - '*'
-root: false
-description: PHP testing practices
-summary: PHPUnit focus and deterministic tests
-stack: php
-globs:
-  - '**/tests/**'
-  - '**/*Test.php'
-  - '**/*.php'
-cursor:
-  description: PHP testing practices
-  globs:
-    - '**/tests/**'
----
-
 # PHP Testing Rules
 
-## Test Focus
+## Test Scope
 
-- Test pure domain logic without frameworks.
-- Use integration tests for persistence boundaries.
-- Use deterministic fixtures and builders.
-- Keep tests isolated and order‑independent.
+- **MUST** test domain logic without frameworks.
+- **MUST** use integration tests for IO and persistence boundaries.
+
+---
+
+## Determinism
+
+- **MUST** keep tests deterministic and order-independent.
+- **MUST** isolate shared state between tests.
+
+---
+
+## Failure Paths
+
+- **MUST** test error conditions and invariant violations.

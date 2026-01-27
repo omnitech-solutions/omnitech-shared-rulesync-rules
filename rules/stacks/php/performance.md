@@ -1,33 +1,14 @@
----
-targets:
-  - '*'
-root: false
-description: PHP performance considerations
-summary: Memory, generators, and IO boundaries
-stack: php
-globs:
-  - '**/*.php'
-cursor:
-  description: PHP performance considerations
-  globs:
-    - '**/*.php'
----
-
 # PHP Performance Rules
 
-## Performance Principles
+## Memory & IO
 
-- Stream large datasets with generators.
-- Avoid unnecessary object allocations in hot paths.
-- Cache expensive computations at appropriate boundaries.
-- Prefer early returns to reduce branching and nesting.
+- **MUST** stream large datasets.
+- **MUST** avoid loading unbounded collections into memory.
+- **SHOULD** use generators for incremental processing.
 
-```php
-/** @return \Generator<object> */
-function streamUsers(): \Generator
-{
-    foreach (User::cursor() as $user) {
-        yield $user;
-    }
-}
-```
+---
+
+## Hot Paths
+
+- **MUST** minimize allocations in hot paths.
+- **SHOULD** cache expensive computations at safe boundaries.

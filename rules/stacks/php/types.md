@@ -1,52 +1,22 @@
----
-targets:
-  - '*'
-root: false
-description: PHP typing and language features
-summary: Types, enums, union types, and value objects
-stack: php
-globs:
-  - '**/*.php'
-cursor:
-  description: PHP typing and language features
-  globs:
-    - '**/*.php'
----
-
 # PHP Type Rules
 
 ## Type Safety
 
-- Prefer scalar and return types for all methods.
-- Avoid `mixed` except at boundaries.
-- Use value objects for domain concepts.
-- Use `readonly` properties when mutation is not required.
+- **MUST** declare parameter and return types on all methods.
+- **MUST** use `readonly` properties where mutation is not required.
+- **MUST NOT** use `mixed` except at explicit boundaries.
+- **SHOULD** use value objects for domain concepts.
 
 ---
 
-## Enums & Match
+## Enums & Exhaustiveness
 
-- Use enums for fixed domain concepts.
-- Prefer `match` for exhaustive value handling.
-
-```php
-enum Status: string { case Draft = 'draft'; case Active = 'active'; }
-
-$label = match ($status) {
-    Status::Draft => 'Draft',
-    Status::Active => 'Active',
-};
-```
+- **MUST** use enums for fixed domain sets.
+- **MUST** handle enums exhaustively using `match`.
 
 ---
 
-## Arrays
+## Collections
 
-- Prefer typed collections to raw arrays.
-- Use array shapes when arrays are unavoidable.
-- Add PHPDoc generics for collections where helpful.
-
-```php
-/** @param array{item_id: string, quantity: int} $item */
-function addItem(array $item): void {}
-```
+- **MUST NOT** pass raw arrays across boundaries.
+- **SHOULD** use typed collections or documented array shapes.

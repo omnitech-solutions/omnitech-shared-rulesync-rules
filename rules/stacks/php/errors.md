@@ -1,40 +1,21 @@
----
-targets:
-  - '*'
-root: false
-description: PHP error handling conventions
-summary: Exceptions, domain errors, and boundaries
-stack: php
-globs:
-  - '**/*.php'
-cursor:
-  description: PHP error handling conventions
-  globs:
-    - '**/*.php'
----
-
 # PHP Error Handling Rules
 
 ## Exceptions
 
-- Use specific exception types for domain errors.
-- Provide actionable messages and context.
-- Avoid swallowing exceptions without logging/handling.
-- Avoid sentinel return values (`false`, `null`) for error cases.
-
-```php
-final class OfferingNotFound extends DomainException
-{
-    public static function withExternalId(string $id): self
-    {
-        return new self("Offering not found: {$id}");
-    }
-}
-```
+- **MUST** use domain-specific exception types.
+- **MUST** include actionable context in exception messages.
+- **MUST NOT** swallow exceptions silently.
 
 ---
 
 ## Boundaries
 
-- Translate technical exceptions into domain errors at boundaries.
-- Keep domain code free of framework exceptions.
+- **MUST** translate technical exceptions at system boundaries.
+- **MUST NOT** leak framework or persistence exceptions into domain code.
+
+---
+
+## Control Flow
+
+- **MUST NOT** use exceptions for normal control flow.
+- **MUST** fail fast on invariant violations.
