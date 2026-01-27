@@ -26,6 +26,9 @@ cursor:
 - **HTTPS Only:** Use HTTPS for all communications
 - **Rate Limiting:** Implement rate limiting to prevent abuse
 - **Error Messages:** Don't leak sensitive information in error messages
+- **Least Privilege:** Grant only the minimum permissions required
+- **Auditability:** Log security-relevant events with appropriate redaction
+- **Dependency Hygiene:** Track vulnerabilities and update regularly
 
 ---
 

@@ -26,6 +26,7 @@ cursor:
 - **Background Jobs:** Use queues for heavy processing
 - **Connection Pooling:** Use connection pools for database connections
 - **Monitoring:** Track performance metrics and set up alerts
+- **Avoid Premature Optimization:** Measure before changing behavior
 
 ---
 
@@ -110,6 +111,7 @@ import _ from 'lodash'; // ❌ BAD: Import entire library
 
 - Set SLOs per endpoint class (read vs write, user-facing vs batch)
 - Monitor p95/p99 latencies and regressions
+- Budget for client-side rendering and network conditions
 
 ### Pagination
 
@@ -129,6 +131,14 @@ async function getUsers(cursor?: string, limit = 20) {
   };
 }
 ```
+
+---
+
+## Performance Verification
+
+- Benchmark critical paths before and after changes
+- Use realistic data volumes and production-like conditions
+- Track regressions with automated performance checks
 
 ---
 

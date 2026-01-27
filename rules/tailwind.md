@@ -27,8 +27,10 @@ cursor:
 - **Custom Colors:** Define custom colors in tailwind.config.js
 - **Consistent Spacing:** Use Tailwind spacing scale
 - **No Arbitrary Values:** Avoid arbitrary values when possible
-- **Performance:** Use PurgeCSS to remove unused styles
+- **Performance:** Remove unused styles via the build pipeline
 - **Accessibility:** Ensure proper contrast and focus states
+- **Design Tokens:** Centralize brand colors and spacing in config
+- **Consistency:** Prefer shared components over one-off class stacks
 
 ---
 
@@ -92,6 +94,14 @@ function Card({ children }: { children: React.ReactNode }) {
   return <div className="bg-white rounded-lg shadow-md p-6">{children}</div>;
 }
 ```
+
+---
+
+## Design Consistency
+
+- Use shared component primitives for repeated UI patterns
+- Keep class stacks readable; split complex UIs into subcomponents
+- Avoid mixing custom CSS with utility classes without a clear reason
 
 ---
 

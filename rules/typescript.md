@@ -26,6 +26,8 @@ cursor:
 - **Generic Types:** Use generics for reusable, type-safe code
 - **Discriminated Unions:** Use discriminated unions for complex state
 - **Type Exports:** Export types and interfaces for reuse
+- **Runtime Validation:** Validate untrusted inputs at runtime
+- **Readonly by Default:** Prefer `readonly` for data that should not mutate
 
 ---
 
@@ -118,6 +120,28 @@ function getById<T extends { id: string }>(
 const user = getById(users, '123');
 const post = getById(posts, '456');
 ```
+
+---
+
+## Runtime Validation
+
+```typescript
+// ✅ GOOD: Validate external data at the boundary
+function parseUser(input: unknown): User {
+  if (!isUser(input)) {
+    throw new Error('Invalid user payload');
+  }
+  return input;
+}
+```
+
+---
+
+## Public API Types
+
+- Export explicit types for module boundaries
+- Avoid `as` casting to silence errors; fix the type instead
+- Prefer narrow, intention-revealing types
 
 ---
 

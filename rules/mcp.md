@@ -26,6 +26,7 @@ cursor:
 - **Testing:** Test MCP servers independently before integration
 - **Versioning:** Version MCP server implementations
 - **Platform Compatibility:** Ensure MCP servers work across supported platforms
+- **Contract Stability:** Keep tool inputs/outputs backward compatible
 
 ---
 

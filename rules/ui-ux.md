@@ -29,6 +29,7 @@ cursor:
 - **Color Contrast:** Ensure sufficient contrast for readability
 - **Focus States:** Provide visible focus indicators
 - **Semantic HTML:** Use proper HTML elements for structure
+- **Progressive Disclosure:** Show complexity only when needed
 
 ---
 

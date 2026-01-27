@@ -30,6 +30,7 @@ cursor:
 - **Mock External Dependencies:** Isolate units under test
 - **Test Edge Cases:** Empty inputs, null values, boundary conditions
 - **Integration Tests:** Test interactions between components
+- **Quality Gates:** Treat tests as a merge gate for production changes
 
 ---
 
@@ -176,6 +177,14 @@ jest.mock('axios', () => ({
 ### Coverage Reports
 
 - Use your test runner’s coverage tooling and publish reports in CI
+
+---
+
+## Test Planning
+
+- Define test scope and critical requirements up front (aligned with specs)
+- Separate **what** must be validated from **how** it’s implemented
+- Include manual test steps for high-risk or UX-heavy changes
 
 ---
 

@@ -33,6 +33,8 @@ cursor:
 - **Observability:** Include logging, monitoring, and tracing in architectural
   decisions
 - **Documentation:** Document architectural decisions and patterns
+- **Decision Records:** Capture significant tradeoffs with lightweight ADRs
+- **Risk & Rollout:** Identify risks early and plan incremental rollout paths
 
 ---
 
@@ -257,6 +259,23 @@ render json: {
 - **Alerting:** Set up alerts for critical issues
 - **Dashboards:** Create dashboards for system health
 - **Distributed Tracing:** Use tracing for microservices (Jaeger, Zipkin)
+
+---
+
+## Decision Records (ADRs)
+
+- Record significant architectural decisions with context, options, decision,
+  and consequences
+- Keep ADRs short, versioned, and linked from relevant specs/docs
+- Revisit ADRs when assumptions change
+
+---
+
+## Risk & Rollout Planning
+
+- Identify technical risks and mitigations early in design
+- Plan incremental rollout paths and fallback strategies
+- Prefer reversible changes for high-impact systems
 
 ---
 

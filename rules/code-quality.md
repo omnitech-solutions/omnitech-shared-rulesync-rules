@@ -25,6 +25,7 @@ cursor:
 - **Documentation:** Document public APIs and complex logic
 - **Code Formatting:** Use the formatter configured for the repo
 - **Linting:** Use the repo’s static analysis tooling to catch issues early
+- **Code as Communication:** Favor clarity and intent over cleverness
 - **No Dead Code:** Remove unused code, don't comment it out
 
 ---

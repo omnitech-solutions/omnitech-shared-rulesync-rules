@@ -26,6 +26,8 @@ cursor:
 - **Link Related Docs:** Reference related files, functions, or external
   resources
 - **Test Documentation:** Verify that examples and instructions actually work
+- **Decision Records:** Capture architectural decisions with lightweight ADRs
+- **Operational Docs:** Provide runbooks, alerts, and troubleshooting notes
 
 ---
 
@@ -108,6 +110,22 @@ See [API.md](./docs/API.md) for detailed API documentation.
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md) for contribution guidelines.
 ```
+
+---
+
+## Decision Records (ADRs)
+
+- Record the context, options, decision, and consequences
+- Keep ADRs short, versioned, and linked from related specs or PRs
+- Update ADRs when assumptions or constraints change
+
+---
+
+## Operational Documentation
+
+- Provide runbooks for critical flows (deploy, rollback, incident response)
+- Document alerts, dashboards, and ownership/contacts
+- Include troubleshooting steps for common failures
 
 ---
 

@@ -29,6 +29,8 @@ cursor:
 - **Middleware:** Use middleware for cross-cutting concerns
 - **Validation:** Validate all inputs
 - **Rate Limiting:** Implement rate limiting
+- **Graceful Shutdown:** Handle SIGTERM/SIGINT and drain requests
+- **Event Loop Health:** Avoid blocking the event loop; offload CPU-heavy work
 
 ---
 
@@ -92,6 +94,14 @@ function loggerMiddleware(req, res, next) {
 
 app.use(loggerMiddleware);
 ```
+
+---
+
+## Operational Concerns
+
+- Surface health checks and readiness probes
+- Use timeouts and circuit breakers for external calls
+- Close DB/queue connections on shutdown
 
 ---
 
