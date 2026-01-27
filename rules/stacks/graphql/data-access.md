@@ -2,63 +2,55 @@
 targets:
   - '*'
 root: false
-description: GraphQL resolver data access patterns
-summary: Batching, loaders, and N+1 prevention
+description: GraphQL data access rules
+summary: Data fetching boundaries, batching, and consistency guarantees
 stack: graphql
 globs:
   - '**/resolvers/**'
+  - '**/services/**'
   - '**/*.graphql'
   - '**/*.gql'
-  - '**/*.ts'
-  - '**/*.tsx'
-  - '**/*.js'
-  - '**/*.jsx'
-  - '**/*resolver*.*'
-cursor:
-  description: GraphQL resolver data access patterns
-  globs:
-    - '**/resolvers/**'
-    - '**/*.graphql'
-    - '**/*.gql'
-    - '**/resolvers/**'
-    - '**/*.ts'
-    - '**/*.tsx'
 ---
 
 # GraphQL Data Access Rules
 
-## Batching
+## Access Boundaries
 
-- **Mandatory Batching:** MUST use a batching mechanism (e.g., DataLoader) for
-  all field resolvers that fetch related data.
-- **Per-Request:** Loaders MUST be instantiated per-request to ensure caching is
-  scoped to the current operation and user.
+- **MUST** access data through explicit services, repositories, or connectors.
+- **MUST NOT** embed persistence logic directly in resolvers.
+- **MUST** keep data access aligned to domain boundaries.
+- **SHOULD** expose data access via interfaces to allow mocking and testing.
 
-## Resolver Patterns
+---
 
-- **Thin Resolvers:** Resolvers SHOULD only coordinate fetching; business logic
-  belongs in domain services.
-- **DTOs:** Resolvers SHOULD return DTOs/Entities that match the schema shape or
-  are trivial to map.
+## Request Scoping
 
-## Performance
+- **MUST** scope all data loaders, caches, and batching mechanisms to a single
+  request.
+- **MUST NOT** share request-derived data across users or requests.
+- **MUST** treat request context as untrusted and ephemeral.
 
-- **Look-Ahead:** SHOULD use info/selectionSet to optimize data fetching (e.g.,
-  eager loading) when valid.
-- **N+1 Prevention:** MUST NOT trigger database queries inside a loop without
-  batching.
+---
 
-## Example (DataLoader)
+## Batching & Fan-out Control
 
-```typescript
-// Good: Grouping keys for batch fetch
-const userLoader = new DataLoader(async ids => {
-  const users = await userService.findByIds(ids);
-  return ids.map(id => users.find(u => u.id === id));
-});
-```
+- **MUST** batch access for list and nested field resolution.
+- **MUST NOT** perform per-item queries inside resolver loops.
+- **SHOULD** prefetch related data when fan-out is predictable.
+- **MUST** ensure batching does not bypass authorization checks.
+
+---
+
+## Consistency & Transactions
+
+- **MUST** define consistency expectations for multi-step reads or writes.
+- **SHOULD** prefer transactional boundaries inside services, not resolvers.
+- **MUST NOT** rely on resolver execution order for correctness.
+
+---
 
 ## Related Rules
 
 - `.rulesync/rules/stacks/graphql/resolvers.md`
 - `.rulesync/rules/stacks/graphql/performance.md`
+- `.rulesync/rules/stacks/graphql/security.md`

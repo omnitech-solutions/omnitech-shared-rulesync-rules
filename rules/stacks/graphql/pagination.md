@@ -2,64 +2,61 @@
 targets:
   - '*'
 root: false
-description: GraphQL pagination canonical contract
-summary: Relay connections, cursor rules, and pagination invariants
+description: GraphQL pagination rules
+summary: Cursor design, ordering guarantees, and list stability
 stack: graphql
 globs:
   - '**/*.graphql'
   - '**/*.gql'
   - '**/operations/**'
-  - '**/*.ts'
-  - '**/*.tsx'
-  - '**/*.js'
-  - '**/*.jsx'
-  - '**/*resolver*.*'
-cursor:
-  description: GraphQL pagination canonical contract
-  globs:
-    - '**/*.graphql'
-    - '**/*.gql'
-    - '**/operations/**'
-    - '**/*.ts'
-    - '**/*.tsx'
 ---
 
 # GraphQL Pagination Rules
 
-## Canonical Contract: Relay Connections
+## Pagination Requirement
 
-- **Standard:** MUST follow the Relay Connections specification for cursor-based
-  pagination.
-- **Unbounded Lists:** MUST avoid unbounded lists; ALL lists returning potential
-  collections MUST be paginated.
-- **Structure:**
-  - `edges`: List of `{ cursor, node }`.
-  - `pageInfo`: `{ hasNextPage, hasPreviousPage, startCursor, endCursor }`.
-  - `nodes`: (Optional) Helper list of nodes for convenience.
+- **MUST** paginate all unbounded lists.
+- **MUST NOT** expose full collections without limits.
+- **MUST** document default and maximum page sizes.
 
-## Arguments
+---
 
-- **Forward:** `first` (int), `after` (cursor).
-- **Backward:** `last` (int), `before` (cursor).
-- **Validation:** MUST validate that `first` and `last` are within reasonable
-  limits to prevent unbounded fetching.
+## Cursor Semantics
 
-## Cursor Stability
+- **MUST** use opaque cursors.
+- **MUST** tie cursors to a stable, documented sort order.
+- **MUST NOT** expose database identifiers directly as cursors.
+- **MUST** treat cursors as immutable once issued.
 
-- **Opaque:** Cursors MUST be opaque strings (base64 encoded) to clients.
-- **Tie-Breakers:** Cursors MUST include a unique tie-breaker (e.g., ID) along
-  with the sort field.
-- **Sort Order:** Cursors MUST be tied to the specific sort order of the query.
-  Changing sort order MUST invalidate the cursor.
+---
 
-## Invariants
+## Ordering Guarantees
 
-- **Exclusivity:** The `after` cursor item MUST NOT be included in the result
-  set.
-- **Consistency:** Pagination results MUST be consistent with the underlying
-  data source at the time of query.
+- **MUST** define deterministic ordering for paginated results.
+- **MUST** ensure pagination behaves correctly under inserts and deletes.
+- **SHOULD** prefer monotonic ordering keys where possible.
+
+---
+
+## Pagination Shape
+
+- **SHOULD** use a consistent connection-style shape across the schema.
+- **MUST** include pagination metadata indicating:
+  - presence of next/previous pages
+  - cursor boundaries
+
+---
+
+## Client Expectations
+
+- **MUST** guarantee cursor validity for at least one pagination window.
+- **MUST NOT** require clients to infer ordering rules.
+- **SHOULD** document any non-obvious pagination behavior.
+
+---
 
 ## Related Rules
 
 - `.rulesync/rules/stacks/graphql/operations.md`
-- `.rulesync/rules/stacks/graphql/performance.md`
+- `.rulesync/rules/stacks/graphql/schema.md`
+- `.rulesync/rules/stacks/graphql/testing.md`

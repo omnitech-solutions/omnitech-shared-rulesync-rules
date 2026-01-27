@@ -9,56 +9,39 @@ globs:
   - '**/*.graphql'
   - '**/*.gql'
   - '**/operations/**'
-  - '**/*.ts'
-  - '**/*.tsx'
-  - '**/*.js'
-  - '**/*.jsx'
-  - '**/*resolver*.*'
-  - '**/*graphql*.*'
-cursor:
-  description: GraphQL operations and client usage patterns
-  globs:
-    - '**/*.graphql'
-    - '**/*.gql'
-    - '**/operations/**'
-    - '**/*.ts'
-    - '**/*.tsx'
 ---
 
 # GraphQL Operations Rules
 
 ## Query Design
 
-- **Focused Queries:** MUST keep queries focused; avoid over-fetching nested
-  relationships by default.
-- **Selection Sets:** MUST favor explicit selection sets with clear field
-  purpose.
-- **Consistent Filtering:** MUST use consistent filtering and sorting
-  conventions across lists.
+- **MUST** keep queries focused and intentional.
+- **MUST NOT** expose deeply nested traversal by default.
+- **SHOULD** use consistent filtering and sorting conventions.
 
-## Pagination Contract
+---
 
-- **Consistent Contract:** Pagination MUST follow a consistent contract.
-- **Relay Connections:** SHOULD prefer Relay Connections (edges/nodes +
-  pageInfo) for cursor-based pagination.
-- **Required Arguments:** MUST define required args for list fields:
-  `first`/`after` (and optionally `last`/`before`).
-- **Stability:** MUST ensure cursors are tied to sort order and result
-  stability.
-- **Unbounded Lists:** MUST avoid returning unbounded lists.
+## Pagination
 
-## Mutations as Domain Actions
+- **MUST** use cursor-based pagination for unbounded datasets.
+- **MUST** provide stable, documented pagination metadata.
+- **MUST NOT** return unbounded lists.
+- **SHOULD** use a consistent connection-style shape across the schema.
+- **SHOULD** tie cursors to a stable, documented sort order.
 
-- **Idempotency:** Mutations MUST be idempotent when feasible (assume client
-  retries are reality).
-- **Return Data:** Mutations MUST return enough data to update clients without
-  extra round-trips.
-  - MUST return the mutated entity and any changed aggregates/derived fields the
-    client likely displays.
-- **Side Effects:** MUST keep side effects explicit and documented.
+---
+
+## Mutations
+
+- **MUST** model mutations as domain actions, not generic CRUD.
+- **MUST** return enough data for clients to update local state without extra
+  round-trips.
+- **MUST** make side effects explicit and documented.
+- **SHOULD** be idempotent when feasible.
+
+---
 
 ## Related Rules
 
-- `.rulesync/rules/stacks/graphql/overview.md`
 - `.rulesync/rules/stacks/graphql/schema.md`
-- `.rulesync/rules/stacks/graphql/pagination.md`
+- `.rulesync/rules/stacks/graphql/error-handling.md`

@@ -3,58 +3,39 @@ targets:
   - '*'
 root: false
 description: GraphQL testing guidance
-summary: Schema validation, resolver behavior, and contract tests
+summary: Contract testing, authorization coverage, and invariants
 stack: graphql
 globs:
   - '**/*.graphql'
   - '**/*.gql'
-  - '**/test/**'
-  - '**/__tests__/**'
-  - '**/*.ts'
-  - '**/*.tsx'
-  - '**/*.js'
-  - '**/*.jsx'
-cursor:
-  description: GraphQL testing guidance
-  globs:
-    - '**/*.graphql'
-    - '**/*.gql'
-    - '**/test/**'
-    - '**/__tests__/**'
-    - '**/*.ts'
-    - '**/*.tsx'
+  - '**/tests/**'
 ---
 
 # GraphQL Testing Rules
 
-## Schema Tests
+## Contract Testing
 
-- **Breaking Changes:** MUST validate schema changes for breaking changes and
-  documentation quality.
-- **Deprecations:** Ensure deprecations are intentional and communicated.
-- **Snapshots:** Keep schema snapshots stable and review deltas carefully.
+- **MUST** maintain a representative set of contract queries and mutations.
+- **MUST** detect breaking schema changes via tests.
+- **SHOULD** snapshot response shapes for critical operations.
 
-## Resolver Tests
+---
 
-- **Mocking:** Test resolver logic with mocked data sources.
-- **AuthZ:** MUST verify authorization for both direct and nested field access.
-- **Error Paths:** Verify error paths explicitly.
-- **Behavior:** Ensure pagination, filtering, and sorting behave correctly.
+## Authorization Testing
 
-## Contract Coverage
+- **MUST** test authorization at both top-level and nested fields.
+- **MUST** test unauthorized access paths.
 
-- **Representative Set:** MUST maintain a small set of representative operations
-  as contract tests.
-- **Golden Queries:** MUST use these "golden queries" to validate schema changes
-  and ensure no breaking changes for critical paths.
-- **Alignment:** Keep client-facing examples aligned with current schema.
+---
 
-## Invariant Testing
+## Pagination & Invariants
 
-- **Pagination:** SHOULD test pagination invariants (stable order, cursor
-  validity across inserts/deletes).
+- **MUST** test pagination stability and cursor validity.
+- **SHOULD** test behavior under inserts, deletes, and reordering.
+
+---
 
 ## Related Rules
 
-- `.rulesync/rules/testing.md`
-- `.rulesync/rules/stacks/graphql/overview.md`
+- `.rulesync/rules/stacks/graphql/governance.md`
+- `.rulesync/rules/stacks/graphql/security.md`

@@ -2,68 +2,78 @@
 targets:
   - '*'
 root: false
-description: GraphQL error codes registry
-summary: Allowed extensions.code values and usage
+description: GraphQL error code registry rules
+summary: Stable error codes and classification guarantees
 stack: graphql
 globs:
+  - '**/resolvers/**'
   - '**/*.graphql'
   - '**/*.gql'
-  - '**/resolvers/**'
-  - '**/*.ts'
-  - '**/*.tsx'
-  - '**/*.js'
-  - '**/*.jsx'
-  - '**/*resolver*.*'
-cursor:
-  description: GraphQL error codes registry
-  globs:
-    - '**/*.graphql'
-    - '**/*.gql'
-    - '**/resolvers/**'
-    - '**/*.ts'
-    - '**/*.tsx'
 ---
 
-# GraphQL Error Codes Registry
+# GraphQL Error Codes Rules
 
-## Standard Codes
+## Error Code Contract
 
-MUST use one of the following codes in `extensions.code`:
+- **MUST** expose a machine-readable error code for all non-success outcomes.
+- **MUST** treat error codes as part of the public API contract.
+- **MUST NOT** change or repurpose an existing error code.
+- **MUST NOT** encode semantic meaning in human-readable messages.
 
-- **BAD_USER_INPUT:** Client sent invalid input (validation errors, malformed
-  args).
-- **UNAUTHENTICATED:** User is not logged in or token is invalid.
-- **FORBIDDEN:** User is authenticated but lacks permission for this
-  resource/action.
-- **NOT_FOUND:** The requested resource does not exist.
-- **INTERNAL_SERVER_ERROR:** Unexpected system failure (bug, crash, downtime).
-- **THROTTLED:** Request rejected due to rate limiting or cost limits.
+---
 
-## Extensions
+## Error Code Categories
 
-Additional fields in `extensions` SHOULD be used for context:
+Error codes **MUST** fall into one of the following categories:
 
-- `argumentName`: Name of the invalid argument (for `BAD_USER_INPUT`).
-- `reason`: Machine-readable reason code (specific sub-error).
-- `retryable`: Boolean indicating if the client should retry.
+### Client / User Errors
 
-## Example
+- Validation failures
+- Invalid input
+- Unsupported operations
 
-```json
-{
-  "errors": [
-    {
-      "message": "Invalid email format",
-      "extensions": {
-        "code": "BAD_USER_INPUT",
-        "argumentName": "email",
-        "reason": "INVALID_FORMAT"
-      }
-    }
-  ]
-}
-```
+### Authorization Errors
+
+- Authentication required
+- Permission denied
+- Object-level access violations
+
+### Not Found Errors
+
+- Missing resources
+- Deleted or inaccessible entities
+
+### Conflict Errors
+
+- Version conflicts
+- State violations
+- Idempotency failures
+
+### System Errors
+
+- Dependency failures
+- Timeouts
+- Internal exceptions
+
+---
+
+## Stability Guarantees
+
+- **MUST** keep error codes stable across releases.
+- **MUST** document error codes and their meanings.
+- **SHOULD** include retryability or severity metadata where useful.
+
+---
+
+## Client Expectations
+
+- **MUST** support client logic based on error codes.
+- **MUST NOT** require clients to parse error messages.
+- **SHOULD** allow graceful degradation based on error class.
+
+---
 
 ## Related Rules
 
 - `.rulesync/rules/stacks/graphql/error-handling.md`
+- `.rulesync/rules/stacks/graphql/schema.md`

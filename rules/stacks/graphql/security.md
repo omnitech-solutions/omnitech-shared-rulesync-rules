@@ -9,52 +9,34 @@ globs:
   - '**/*.graphql'
   - '**/*.gql'
   - '**/resolvers/**'
-  - '**/*.ts'
-  - '**/*.tsx'
-  - '**/*.js'
-  - '**/*.jsx'
-  - '**/*resolver*.*'
-  - '**/*graphql*.*'
-cursor:
-  description: GraphQL security guidance
-  globs:
-    - '**/*.graphql'
-    - '**/*.gql'
-    - '**/resolvers/**'
-    - '**/*.ts'
-    - '**/*.tsx'
 ---
 
 # GraphQL Security Rules
 
 ## Authorization
 
-- **Boundary Enforcement:** MUST apply authorization at every entity access
-  boundary.
-- **No Inference:** MUST NOT infer authorization from parent object presence
-  (prevents "nested leakage").
-- **Object-Level Checks:** MUST treat IDs as capability-bearing and do
-  object-level auth checks (not just "user is logged in").
-- **Consistency:** Ensure nested fields respect the same access rules as parent
-  objects.
+- **MUST** enforce authorization at resolver boundaries.
+- **MUST** apply object-level authorization for ID-based access.
+- **MUST NOT** assume parent authorization applies to nested fields.
+
+---
 
 ## Input Safety
 
-- **Validation:** MUST validate inputs and enforce allowlists for enums and IDs.
-- **Abuse Prevention:** MUST guard against overly complex queries and abuse
-  patterns.
-- **Untrusted Data:** MUST treat file uploads and URLs as untrusted data.
+- **MUST** validate all inputs.
+- **MUST** guard against query complexity and abuse.
+- **SHOULD** treat file uploads and URLs as untrusted.
+
+---
 
 ## Exposure Control
 
-- **Public vs. Internal:** MUST be deliberate about which fields are public vs
-  internal.
-- **Introspection:** SHOULD gate introspection/playground in production.
-- **Error Messages:** MUST avoid leaking implementation details in error
-  messages.
+- **MUST** explicitly decide which fields are public vs internal.
+- **MUST NOT** expose implementation details in errors or descriptions.
+
+---
 
 ## Related Rules
 
 - `.rulesync/rules/security.md`
 - `.rulesync/rules/stacks/graphql/overview.md`
-- `.rulesync/rules/stacks/graphql/resolvers.md`
