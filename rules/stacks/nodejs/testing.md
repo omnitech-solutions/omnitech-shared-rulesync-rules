@@ -2,49 +2,31 @@
 targets:
   - '*'
 root: false
-description: Node.js testing guidance
-summary: Async correctness, boundaries, and deterministic tests
+description: Node.js testing practices
+summary: Async correctness and boundary testing
 stack: nodejs
 globs:
-  - '**/*.js'
-  - '**/*.mjs'
   - '**/test/**'
   - '**/__tests__/**'
-cursor:
-  description: Node.js testing guidance
-  globs:
-    - '**/*.js'
-    - '**/*.mjs'
 ---
 
 # Node.js Testing Rules
 
-## Test Boundaries
+## Test Scope
 
-- Separate unit tests (pure logic) from integration tests (I/O and adapters).
-- Mock external dependencies at the boundary, not deep inside business logic.
-- Validate error paths and timeouts explicitly.
+- **MUST** separate unit and integration tests.
+- **MUST** mock external systems at boundaries.
 
 ---
 
 ## Async Correctness
 
-- Ensure tests await all async work and fail on unhandled rejections.
-- Use deterministic clocks and controlled timers for time-based logic.
-- Keep concurrency tests bounded and repeatable.
+- **MUST** await all async work in tests.
+- **MUST** fail on unhandled rejections.
 
 ---
 
 ## Stability
 
-- Avoid shared mutable state across tests.
-- Reset fixtures between runs to keep tests order-independent.
-- Prefer small, focused tests over large end-to-end scenarios for unit scope.
-
----
-
-## Related Rules
-
-- `.rulesync/rules/testing.md`
-- `.rulesync/rules/stacks/nodejs/overview.md`
-- `.rulesync/rules/stacks/nodejs/runtime.md`
+- **MUST** keep tests deterministic.
+- **MUST** reset shared state between tests.

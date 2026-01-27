@@ -2,50 +2,31 @@
 targets:
   - '*'
 root: false
-description: Node.js operational readiness and lifecycle
-summary: Observability, configuration, and graceful shutdown
+description: Node.js operational readiness
+summary: Observability, lifecycle, and resilience
 stack: nodejs
 globs:
-  - '**/*.js'
-  - '**/*.mjs'
   - '**/server.js'
   - '**/app.js'
-cursor:
-  description: Node.js operational readiness and lifecycle
-  globs:
-    - '**/*.js'
-    - '**/*.mjs'
 ---
 
 # Node.js Operations Rules
 
 ## Observability
 
-- Emit structured logs with request or job identifiers.
-- Record latency, error rate, and throughput for key endpoints and jobs.
-- Add health checks and readiness signals that reflect real dependencies.
+- **MUST** emit structured logs.
+- **MUST** expose health and readiness endpoints.
 
 ---
 
-## Lifecycle & Shutdown
+## Lifecycle
 
-- Handle termination signals and stop accepting new work.
-- Drain in-flight requests and background tasks before exit.
-- Prefer idempotent shutdown steps to avoid partial cleanup failures.
+- **MUST** handle SIGTERM/SIGINT gracefully.
+- **MUST** drain in-flight work on shutdown.
 
 ---
 
 ## Resilience
 
-- Apply timeouts and retries with backoff for external calls.
-- Isolate failing dependencies with circuit breaker patterns when needed.
-- Avoid global retries that amplify load or error storms.
-
----
-
-## Related Rules
-
-- `.rulesync/rules/performance.md`
-- `.rulesync/rules/security.md`
-- `.rulesync/rules/stacks/nodejs/overview.md`
-- `.rulesync/rules/stacks/nodejs/runtime.md`
+- **MUST** apply timeouts and retries.
+- **MUST** bound concurrency.

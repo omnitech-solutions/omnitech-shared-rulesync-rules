@@ -2,49 +2,34 @@
 targets:
   - '*'
 root: false
-description: Node.js HTTP/API boundary rules
-summary: Request validation, error mapping, and response consistency
+description: Node.js HTTP and API boundary rules
+summary: Validation, error mapping, and response contracts
 stack: nodejs
 globs:
-  - '**/*.js'
-  - '**/*.mjs'
   - '**/routes/**'
   - '**/controllers/**'
-cursor:
-  description: Node.js HTTP/API boundary rules
-  globs:
-    - '**/*.js'
-    - '**/*.mjs'
+  - '**/*.js'
 ---
 
-# Node.js HTTP/API Rules
+# Node.js HTTP / API Rules
 
-## Request Boundaries
+## Boundary Responsibilities
 
-- Validate and normalize input at the API boundary.
-- Keep transport concerns separate from domain logic.
-- Prefer explicit status codes and response shapes.
+- **MUST** validate and normalize all external input at the boundary.
+- **MUST** map transport concerns to application commands.
+- **MUST NOT** leak request/response objects into domain logic.
 
 ---
 
-## Errors & Responses
+## Responses & Errors
 
-- Map domain errors to stable, documented error responses.
-- Avoid leaking internal stack traces or implementation details.
-- Ensure error responses are consistent across endpoints.
-
----
-
-## Idempotency & Safety
-
-- Make retriable operations idempotent where possible.
-- Avoid side effects in GET requests.
-- Document behavior for retries and partial failures.
+- **MUST** return stable, documented response shapes.
+- **MUST** map domain errors to explicit HTTP errors.
+- **MUST NOT** leak stack traces or internals.
 
 ---
 
-## Related Rules
+## Safety & Idempotency
 
-- `.rulesync/rules/security.md`
-- `.rulesync/rules/stacks/nodejs/overview.md`
-- `.rulesync/rules/stacks/nodejs/runtime.md`
+- **MUST NOT** perform side effects in GET requests.
+- **SHOULD** make retriable operations idempotent.

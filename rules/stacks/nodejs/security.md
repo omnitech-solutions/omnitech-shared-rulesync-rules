@@ -2,48 +2,30 @@
 targets:
   - '*'
 root: false
-description: Node.js security and dependency hygiene
-summary: Input safety, secrets, and supply-chain awareness
+description: Node.js security rules
+summary: Input safety, secrets, and dependencies
 stack: nodejs
 globs:
   - '**/*.js'
-  - '**/*.mjs'
-  - '**/server.js'
-  - '**/app.js'
-cursor:
-  description: Node.js security and dependency hygiene
-  globs:
-    - '**/*.js'
-    - '**/*.mjs'
 ---
 
 # Node.js Security Rules
 
-## Input & Output Safety
+## Input Safety
 
-- Validate and normalize all external inputs before use.
-- Encode output according to its context (HTML, JSON, logs, headers).
-- Treat file paths and URLs as untrusted data.
-
----
-
-## Secrets & Configuration
-
-- Keep secrets out of source control and runtime logs.
-- Fail fast if required secrets or keys are missing.
-- Scope credentials to the minimum permissions required.
+- **MUST** validate and sanitize all inputs.
+- **MUST** encode output appropriately.
 
 ---
 
-## Dependency Hygiene
+## Secrets
 
-- Keep dependencies current and remove unused packages.
-- Review transitive dependencies for high-risk changes.
-- Prefer maintained, well-audited libraries for security-sensitive tasks.
+- **MUST** keep secrets out of code and logs.
+- **MUST** fail fast on missing secrets.
 
 ---
 
-## Related Rules
+## Dependencies
 
-- `.rulesync/rules/security.md`
-- `.rulesync/rules/stacks/nodejs/overview.md`
+- **MUST** remove unused dependencies.
+- **SHOULD** monitor transitive risk.
