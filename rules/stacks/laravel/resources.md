@@ -3,35 +3,23 @@ targets:
   - '*'
 root: false
 description: Laravel API resources and response shaping
-summary: Resource classes, response DTOs
+summary: Stable, explicit HTTP response contracts
 stack: laravel
 globs:
   - '**/app/Http/Resources/**'
-  - '**/resources/**'
-cursor:
-  description: Laravel API resources and response shaping
-  globs:
-    - '**/app/Http/Resources/**'
 ---
 
 # Laravel Resources Rules
 
-## API Resources
+## Response Shaping
 
-- Use Resource classes to shape JSON responses.
-- Keep domain models out of HTTP responses.
-- Avoid leaking internal fields; map explicit output shape.
+- **MUST** use Resources or DTOs for JSON responses.
+- **MUST** define explicit output shapes.
+- **MUST NOT** leak internal fields or persistence concerns.
 
-```php
-final class UserResource extends JsonResource
-{
-    public function toArray($request): array
-    {
-        return [
-            'id' => $this->id,
-            'email' => $this->email,
-            'created_at' => $this->created_at,
-        ];
-    }
-}
-```
+---
+
+## Stability
+
+- **MUST** treat resource shapes as public contracts.
+- **MUST** evolve resources additively.

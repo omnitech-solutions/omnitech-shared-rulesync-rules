@@ -3,48 +3,31 @@ targets:
   - '*'
 root: false
 description: Laravel Eloquent model patterns
-summary: Model structure, casts, scopes, relationships
+summary: Persistence modeling and query discipline
 stack: laravel
 globs:
   - '**/app/Models/**'
-  - '**/app/**/Models/**'
-cursor:
-  description: Laravel Eloquent model patterns
-  globs:
-    - '**/app/Models/**'
 ---
 
 # Laravel Eloquent Rules
 
-## Model Structure
+## Model Scope
 
-- Keep models focused on persistence concerns.
-- Avoid business rules inside Eloquent models for DDD contexts.
-- Use casts and accessors for data normalization.
-- Use `$hidden`/`$visible` to control serialized output.
-
-```php
-final class User extends Model
-{
-    protected $fillable = ['name', 'email'];
-
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
-}
-```
+- **MUST** restrict models to persistence concerns.
+- **MUST NOT** encode business rules in models.
+- **SHOULD** use casts and accessors for normalization.
 
 ---
 
-## Scopes & Queries
+## Queries
 
-- Use query scopes for reusable filters.
-- Prefer `with()` for eager loading to prevent N+1.
-- Avoid `->all()` in high‑traffic paths; paginate or cursor where needed.
+- **MUST** avoid N+1 queries.
+- **MUST** paginate unbounded result sets.
+- **SHOULD** use query scopes for reuse.
 
-```php
-public function scopeActive($query)
-{
-    return $query->where('active', true);
-}
-```
+---
+
+## Serialization
+
+- **MUST** control serialization via resources.
+- **MUST NOT** expose models directly.

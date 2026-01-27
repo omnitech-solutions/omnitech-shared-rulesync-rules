@@ -3,27 +3,30 @@ targets:
   - '*'
 root: false
 description: Laravel routing conventions
-summary: RESTful routes, grouping, versioning
+summary: Route structure, versioning, and middleware discipline
 stack: laravel
 globs:
   - '**/routes/**'
-  - '**/routes/*.php'
-cursor:
-  description: Laravel routing conventions
-  globs:
-    - '**/routes/**'
 ---
 
 # Laravel Routing Rules
 
-## RESTful Routes
+## Route Structure
 
-- Use resource routes for standard CRUD.
-- Group by version or context via route groups.
-- Apply auth/role middleware at route group level.
+- **MUST** define routes explicitly.
+- **MUST** group routes by version or bounded context.
+- **MUST** apply auth and policy middleware at the route boundary.
 
-```php
-Route::prefix('api/v1')->group(function () {
-    Route::apiResource('users', UserController::class);
-});
-```
+---
+
+## REST Discipline
+
+- **SHOULD** use RESTful resource routes for CRUD.
+- **MUST NOT** overload routes with hidden behavior.
+
+---
+
+## Stability
+
+- **MUST** treat public routes as API contracts.
+- **MUST** version routes when making breaking changes.

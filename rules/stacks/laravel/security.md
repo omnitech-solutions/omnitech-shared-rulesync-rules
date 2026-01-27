@@ -3,37 +3,23 @@ targets:
   - '*'
 root: false
 description: Laravel security practices
-summary: Auth, policies, CSRF, validation
+summary: Authentication, authorization, and exposure control
 stack: laravel
 globs:
   - '**/app/Http/**'
-  - '**/config/**'
-  - '**/routes/**'
-cursor:
-  description: Laravel security practices
-  globs:
-    - '**/app/Http/**'
 ---
 
 # Laravel Security Rules
 
-## Authentication & Authorization
+## Authorization
 
-- Use guards/policies for authorization.
-- Apply auth middleware to protected routes.
-- Check ownership/tenant boundaries explicitly.
-
----
-
-## CSRF & Input
-
-- Use CSRF protection for state‑changing requests.
-- Validate and sanitize input at the boundary.
-- Use signed URLs for sensitive links when appropriate.
+- **MUST** enforce authorization explicitly.
+- **MUST** check ownership and tenancy.
+- **MUST NOT** rely on implicit access.
 
 ---
 
-## Sensitive Data
+## Input & Secrets
 
-- Avoid leaking secrets in logs or responses.
-- Use config/env for sensitive values.
+- **MUST** validate all input.
+- **MUST** keep secrets out of code and logs.
