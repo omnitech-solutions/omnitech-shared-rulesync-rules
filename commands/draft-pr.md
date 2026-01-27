@@ -3,21 +3,27 @@ targets:
   - '*'
 description: ''
 ---
+
 # DRAFT-PR Task
 
-**Persona:** Execute this task as the `@developer` subagent (Devin, Staff Engineer 💻).  
-Load the persona characteristics from `.rulesync/subagents/developer.md` before proceeding.
+**Persona:** Execute this task as the `@developer` subagent (Devin, Staff
+Engineer 💻).  
+Load the persona characteristics from `.rulesync/subagents/developer.md` before
+proceeding.
 
 **Required Context:** Review these rules before proceeding:
 
-- `.rulesync/rules/code-quality.md` - Quality standards for pre-commit verification
+- `.rulesync/rules/code-quality.md` - Quality standards for pre-commit
+  verification
 - `.rulesync/rules/documentation.md` - Documentation requirements for PRs
 
 ---
 
 ## Task Objective
 
-Commit code changes following conventional commits format, push to a feature branch, and create a well-structured draft pull request with a comprehensive description.
+Commit code changes following conventional commits format, push to a feature
+branch, and create a well-structured draft pull request with a comprehensive
+description.
 
 ---
 
@@ -26,24 +32,28 @@ Commit code changes following conventional commits format, push to a feature bra
 1. **Pre-commit verification:**
    - Check git status to see what files have changed
    - List all modified, added, and deleted files
-   - Ask: "I see the following changes. Should I proceed with creating a PR for these changes?"
+   - Ask: "I see the following changes. Should I proceed with creating a PR for
+     these changes?"
 
 2. **Run quality checks:**
 
    Follow quality gates from `.rulesync/rules/code-quality.md`:
 
    **For JavaScript/TypeScript:**
+
    ```bash
    pnpm lint
    pnpm typecheck
    ```
 
    **For Ruby on Rails:**
+
    ```bash
    bundle exec rubocop
    ```
 
    **For Laravel:**
+
    ```bash
    composer phpstan
    composer pint
@@ -83,7 +93,8 @@ Commit code changes following conventional commits format, push to a feature bra
 
 6. **Handle branch strategy:**
    - Check current branch: `git branch --show-current`
-   - If on `main` or `dev`, suggest creating feature branch: `<type>/<short-description>`
+   - If on `main` or `dev`, suggest creating feature branch:
+     `<type>/<short-description>`
    - Ask: "Would you like to create a feature branch?"
    - Create and checkout if approved
    - If already on feature branch, proceed with push
@@ -97,8 +108,10 @@ Commit code changes following conventional commits format, push to a feature bra
 8. **Generate PR description:**
 
    **IMPORTANT - TEMPLATE USAGE:**  
-   Before generating output, you MUST first read the template file at `.rulesync/templates/pr-description-template.md`.  
-   Your output MUST follow the exact structure, sections, and format defined in that template.  
+   Before generating output, you MUST first read the template file at
+   `.rulesync/templates/pr-description-template.md`.  
+   Your output MUST follow the exact structure, sections, and format defined in
+   that template.  
    Do not deviate from the template structure.
    - Use the template from `.rulesync/templates/pr-description-template.md`
    - Fill in all sections based on:
@@ -117,7 +130,8 @@ Commit code changes following conventional commits format, push to a feature bra
      - Target branch: usually `dev` (ask if unsure)
    - If GitHub MCP not available:
      - Provide PR description formatted for copy-paste
-     - Provide instructions: "Visit https://github.com/<org>/<repo>/compare/<base>...<branch>"
+     - Provide instructions: "Visit
+       https://github.com/<org>/<repo>/compare/<base>...<branch>"
 
 10. **Provide summary:**
     - Recap what was committed (commit hash, message)

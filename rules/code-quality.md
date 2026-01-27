@@ -10,13 +10,15 @@ cursor:
   globs:
     - '**/*'
 ---
+
 # Code Quality Rules
 
 ## Code Quality Standards
 
 - **Type Safety:** Use TypeScript, PHP type hints, and Ruby type annotations
 - **DRY Principle:** Don't Repeat Yourself - extract common patterns
-- **SOLID Principles:** Apply Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, Dependency Inversion
+- **SOLID Principles:** Apply Single Responsibility, Open/Closed, Liskov
+  Substitution, Interface Segregation, Dependency Inversion
 - **Meaningful Names:** Use descriptive variable, function, and class names
 - **Small Functions:** Keep functions focused and under 50 lines when possible
 - **Error Handling:** Always handle errors explicitly
@@ -160,16 +162,16 @@ function processUser(user: User): void {
   if (!emailRegex.test(user.email)) {
     throw new Error('Invalid email');
   }
-  
+
   // Save to database
   db.users.save(user);
-  
+
   // Send email
   emailService.send(user.email, 'Welcome!');
-  
+
   // Update analytics
   analytics.track('user_created', { userId: user.id });
-  
+
   // More logic...
 }
 ```

@@ -9,9 +9,10 @@ globs:
 cursor:
   description: TypeScript best practices and patterns
   globs:
-  - '**/*.ts'
-  - '**/*.tsx'
+    - '**/*.ts'
+    - '**/*.tsx'
 ---
+
 # TypeScript Rules
 
 ## TypeScript Best Practices
@@ -108,7 +109,7 @@ type RequiredUser = Required<User>;
 // ✅ GOOD: Generic function
 function getById<T extends { id: string }>(
   items: T[],
-  id: string
+  id: string,
 ): T | undefined {
   return items.find(item => item.id === id);
 }

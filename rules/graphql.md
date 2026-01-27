@@ -16,6 +16,7 @@ cursor:
     - '**/schema.*'
     - '**/resolvers/**'
 ---
+
 # GraphQL Rules
 
 ## GraphQL Best Practices
@@ -42,19 +43,29 @@ cursor:
 User represents a user in the system.
 """
 type User @key(fields: "id") {
-  """Unique identifier for the user."""
+  """
+  Unique identifier for the user.
+  """
   id: ID!
-  
-  """User's email address."""
+
+  """
+  User's email address.
+  """
   email: String!
-  
-  """User's full name."""
+
+  """
+  User's full name.
+  """
   name: String!
-  
-  """User's profile picture URL."""
+
+  """
+  User's profile picture URL.
+  """
   avatar: String
-  
-  """When the user was created."""
+
+  """
+  When the user was created.
+  """
   createdAt: DateTime!
 }
 
@@ -90,21 +101,31 @@ type Post {
 
 ```graphql
 input CreateUserInput {
-  """User's email address (must be unique)."""
+  """
+  User's email address (must be unique).
+  """
   email: String!
-  
-  """User's full name."""
+
+  """
+  User's full name.
+  """
   name: String!
-  
-  """Optional password for the user."""
+
+  """
+  Optional password for the user.
+  """
   password: String
 }
 
 input UpdateUserInput {
-  """User's full name."""
+  """
+  User's full name.
+  """
   name: String
-  
-  """User's profile picture URL."""
+
+  """
+  User's profile picture URL.
+  """
   avatar: String
 }
 ```
@@ -203,13 +224,19 @@ throw new GraphQLError('Invalid input', {
 
 ```graphql
 type Error {
-  """Error code for programmatic handling."""
+  """
+  Error code for programmatic handling.
+  """
   code: String!
-  
-  """Human-readable error message."""
+
+  """
+  Human-readable error message.
+  """
   message: String!
-  
-  """Additional error details."""
+
+  """
+  Additional error details.
+  """
   details: JSON
 }
 ```
@@ -250,32 +277,48 @@ const complexityRule = createComplexityLimitRule(1000, {
 
 ```graphql
 type PageInfo {
-  """Cursor for the next page."""
+  """
+  Cursor for the next page.
+  """
   endCursor: String
-  
-  """Whether there are more pages."""
+
+  """
+  Whether there are more pages.
+  """
   hasNextPage: Boolean!
-  
-  """Whether there are previous pages."""
+
+  """
+  Whether there are previous pages.
+  """
   hasPreviousPage: Boolean!
-  
-  """Cursor for the previous page."""
+
+  """
+  Cursor for the previous page.
+  """
   startCursor: String
 }
 
 type UserConnection {
-  """List of users."""
+  """
+  List of users.
+  """
   edges: [UserEdge!]!
-  
-  """Pagination information."""
+
+  """
+  Pagination information.
+  """
   pageInfo: PageInfo!
 }
 
 type UserEdge {
-  """User node."""
+  """
+  User node.
+  """
   node: User!
-  
-  """Cursor for this user."""
+
+  """
+  Cursor for this user.
+  """
   cursor: String!
 }
 ```
@@ -289,18 +332,18 @@ const resolvers: Resolvers = {
       const { first, after } = args;
       const limit = first || 20;
       const offset = after ? decodeCursor(after) : 0;
-      
+
       const users = await context.dataSources.users.findMany({
         limit: limit + 1, // Fetch one extra to check hasNextPage
         offset,
       });
-      
+
       const hasNextPage = users.length > limit;
       const edges = users.slice(0, limit).map(user => ({
         node: user,
         cursor: encodeCursor(user.id),
       }));
-      
+
       return {
         edges,
         pageInfo: {
@@ -323,10 +366,14 @@ const resolvers: Resolvers = {
 
 ```graphql
 type Subscription {
-  """Subscribe to user updates."""
+  """
+  Subscribe to user updates.
+  """
   userUpdated(userId: ID!): User!
-  
-  """Subscribe to new posts."""
+
+  """
+  Subscribe to new posts.
+  """
   postCreated: Post!
 }
 ```
@@ -405,9 +452,9 @@ describe('User resolvers', () => {
         },
       },
     });
-    
+
     const result = await resolvers.Query.user(null, { id: '1' }, context);
-    
+
     expect(result).toEqual({
       id: '1',
       email: 'test@example.com',
@@ -448,13 +495,13 @@ const resolvers: Resolvers = {
           extensions: { code: 'UNAUTHORIZED' },
         });
       }
-      
+
       if (context.user.id !== args.id && !context.user.isAdmin) {
         throw new GraphQLError('Forbidden', {
           extensions: { code: 'FORBIDDEN' },
         });
       }
-      
+
       return await context.dataSources.users.delete(args.id);
     },
   },
@@ -546,7 +593,7 @@ const resolvers: Resolvers = {
     },
   },
   Post: {
-    author: async (parent) => {
+    author: async parent => {
       return await db.users.findById(parent.authorId); // N queries!
     },
   },

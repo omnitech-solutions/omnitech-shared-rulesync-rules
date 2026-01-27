@@ -3,10 +3,13 @@ targets:
   - '*'
 description: ''
 ---
+
 # TEST Task
 
-**Persona:** Execute this task as the `@developer` subagent (Devin, Staff Engineer 💻).  
-Load the persona characteristics from `.rulesync/subagents/developer.md` before proceeding.
+**Persona:** Execute this task as the `@developer` subagent (Devin, Staff
+Engineer 💻).  
+Load the persona characteristics from `.rulesync/subagents/developer.md` before
+proceeding.
 
 **Required Context:** Review these rules before proceeding:
 
@@ -17,15 +20,19 @@ Load the persona characteristics from `.rulesync/subagents/developer.md` before 
 
 ## Task Objective
 
-Create comprehensive test coverage for a specified file, folder, or feature using the appropriate testing frameworks. Follow all patterns and standards from `.rulesync/rules/testing.md`.
+Create comprehensive test coverage for a specified file, folder, or feature
+using the appropriate testing frameworks. Follow all patterns and standards from
+`.rulesync/rules/testing.md`.
 
 ---
 
 ## Task Instructions
 
 1. **Initiate discovery:**
-   - Ask: "What would you like me to test? (provide a file path, folder path, or feature description)"
-   - Examine the target code to understand functionality, dependencies, and complexity
+   - Ask: "What would you like me to test? (provide a file path, folder path, or
+     feature description)"
+   - Examine the target code to understand functionality, dependencies, and
+     complexity
    - Identify the technology stack (React, Vue, Rails, Laravel, GraphQL, etc.)
 
 2. **Determine test scope:**
@@ -79,7 +86,8 @@ Create comprehensive test coverage for a specified file, folder, or feature usin
    - Aim for >90% coverage on critical paths
 
 5. **Verify tests pass:**
-   - Run tests: `pnpm test`, `npm test`, `bundle exec rspec`, `composer test`, etc.
+   - Run tests: `pnpm test`, `npm test`, `bundle exec rspec`, `composer test`,
+     etc.
    - If tests fail, debug and fix issues
    - Ensure no linter errors: `pnpm lint`, `bundle exec rubocop`, etc.
 
@@ -90,18 +98,21 @@ Create comprehensive test coverage for a specified file, folder, or feature usin
 
 7. **Provide summary:**
    - List all test files created or modified
-   - Summarize test coverage added (e.g., "12 unit tests covering all public methods")
+   - Summarize test coverage added (e.g., "12 unit tests covering all public
+     methods")
    - Highlight key test scenarios covered
    - Note any testing gaps or limitations
    - Show test results output
    - Provide run instructions
-   - Ask: "Would you like me to document this code (`/document`) or make any other improvements?"
+   - Ask: "Would you like me to document this code (`/document`) or make any
+     other improvements?"
 
 ---
 
 ## Notes
 
-- Reference `.rulesync/rules/testing.md` for all testing patterns and best practices
+- Reference `.rulesync/rules/testing.md` for all testing patterns and best
+  practices
 - Test behavior, not implementation
 - Use Arrange-Act-Assert pattern
 - Keep tests fast and focused

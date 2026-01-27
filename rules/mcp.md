@@ -11,6 +11,7 @@ cursor:
   globs:
     - '**/mcp.json'
 ---
+
 # MCP Rules
 
 ## MCP Best Practices
@@ -114,7 +115,7 @@ cursor:
       "command": "tsx",
       "args": ["./mcp-server/omnitech-shared-mcp/src/server.ts"],
       "env": {
-        "API_KEY": "${API_KEY}",  // ✅ GOOD: Reference from environment
+        "API_KEY": "${API_KEY}", // ✅ GOOD: Reference from environment
         "NODE_ENV": "development"
       }
     }
@@ -129,7 +130,7 @@ cursor:
       "command": "tsx",
       "args": ["./mcp-server/omnitech-shared-mcp/src/server.ts"],
       "env": {
-        "API_KEY": "sk-1234567890abcdef"  // ❌ BAD: Hardcoded secret
+        "API_KEY": "sk-1234567890abcdef" // ❌ BAD: Hardcoded secret
       }
     }
   }
@@ -170,7 +171,7 @@ export async function handleToolCall(tool: string, args: unknown) {
     args: sanitizeArgs(args), // Remove sensitive data
     timestamp: new Date().toISOString(),
   });
-  
+
   // Tool execution...
 }
 ```
@@ -204,7 +205,7 @@ export async function handleToolCall(tool: string, args: unknown) {
   "mcpServers": {
     "server": {
       "env": {
-        "API_KEY": "sk-1234567890"  // ❌ BAD
+        "API_KEY": "sk-1234567890" // ❌ BAD
       }
     }
   }
@@ -218,8 +219,8 @@ export async function handleToolCall(tool: string, args: unknown) {
 export function getUserData(userId: string) {
   return {
     userId,
-    password: user.password,  // Never expose passwords!
-    apiKey: user.apiKey,      // Never expose API keys!
+    password: user.password, // Never expose passwords!
+    apiKey: user.apiKey, // Never expose API keys!
   };
 }
 ```

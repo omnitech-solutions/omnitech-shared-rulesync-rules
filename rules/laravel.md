@@ -12,6 +12,7 @@ cursor:
   globs:
     - '**/*.php'
 ---
+
 # Laravel Rules
 
 ## Laravel Best Practices

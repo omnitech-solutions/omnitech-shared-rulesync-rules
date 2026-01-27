@@ -12,11 +12,13 @@ cursor:
     - '**/*.vue'
     - '**/components/**'
 ---
+
 # Vue.js Rules
 
 ## Vue.js Best Practices
 
-- **Composition API:** Use Composition API for new components (prefer over Options API)
+- **Composition API:** Use Composition API for new components (prefer over
+  Options API)
 - **TypeScript:** Use TypeScript with `<script setup lang="ts">`
 - **Component Composition:** Compose small, focused components
 - **Composables:** Extract reusable logic into composables
@@ -151,8 +153,8 @@ export const useUserStore = defineStore('user', {
   }),
 
   getters: {
-    isAuthenticated: (state) => state.currentUser !== null,
-    userCount: (state) => state.users.length,
+    isAuthenticated: state => state.currentUser !== null,
+    userCount: state => state.users.length,
   },
 
   actions: {
@@ -221,7 +223,7 @@ import { ref, onErrorCaptured } from 'vue';
 
 const error = ref<Error | null>(null);
 
-onErrorCaptured((err) => {
+onErrorCaptured(err => {
   error.value = err;
   return false; // Prevent error from propagating
 });
@@ -275,7 +277,7 @@ props.count++; // Error!
 const emit = defineEmits<{ update: [value: number] }>();
 const localCount = computed({
   get: () => props.count,
-  set: (value) => emit('update', value),
+  set: value => emit('update', value),
 });
 </script>
 ```

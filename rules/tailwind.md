@@ -15,6 +15,7 @@ cursor:
     - '**/*.jsx'
     - '**/*.vue'
 ---
+
 # Tailwind CSS Rules
 
 ## Tailwind Best Practices
@@ -67,12 +68,14 @@ cursor:
 
 ```tsx
 // ✅ GOOD: Mobile-first responsive design
-<div className="
+<div
+  className="
   w-full
   md:w-1/2
   lg:w-1/3
   xl:w-1/4
-">
+"
+>
   Content
 </div>
 ```
@@ -86,11 +89,7 @@ cursor:
 ```tsx
 // ✅ GOOD: Extract to component
 function Card({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="bg-white rounded-lg shadow-md p-6">
-      {children}
-    </div>
-  );
+  return <div className="bg-white rounded-lg shadow-md p-6">{children}</div>;
 }
 ```
 

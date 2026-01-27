@@ -12,6 +12,7 @@ cursor:
   globs:
     - '**/*.rb'
 ---
+
 # Ruby on Rails Rules
 
 ## Rails Best Practices
@@ -22,7 +23,8 @@ cursor:
 - **ActiveRecord:** Use ActiveRecord query methods, avoid raw SQL
 - **Service Objects:** Extract complex business logic into service objects
 - **Strong Parameters:** Always use strong parameters for mass assignment
-- **N+1 Queries:** Use `includes`, `preload`, or `eager_load` to prevent N+1 queries
+- **N+1 Queries:** Use `includes`, `preload`, or `eager_load` to prevent N+1
+  queries
 - **Testing:** Write tests using RSpec or Minitest
 - **Security:** Use `has_secure_password`, protect against CSRF, SQL injection
 - **Performance:** Use database indexes, caching, and background jobs
@@ -49,7 +51,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    
+
     if @user.save
       render json: @user, status: :created
     else
@@ -89,13 +91,13 @@ end
 class User < ApplicationRecord
   has_secure_password
   has_many :posts, dependent: :destroy
-  
+
   validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :name, presence: true, length: { minimum: 2 }
-  
+
   scope :active, -> { where(active: true) }
   scope :recent, -> { order(created_at: :desc) }
-  
+
   def full_name
     "#{first_name} #{last_name}".strip
   end
@@ -113,7 +115,7 @@ class UserCreationService
 
   def call
     user = User.new(@params)
-    
+
     if user.save
       send_welcome_email(user)
       create_default_settings(user)
@@ -186,9 +188,9 @@ Rails.application.routes.draw do
   resources :users do
     resources :posts, shallow: true
   end
-  
+
   resources :sessions, only: [:create, :destroy]
-  
+
   namespace :api do
     namespace :v1 do
       resources :users
@@ -206,7 +208,7 @@ resources :users do
     post :activate
     post :deactivate
   end
-  
+
   collection do
     get :search
   end

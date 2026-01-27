@@ -1,10 +1,12 @@
 # Omnitech Shared MCP Server
 
-Standalone MCP (Model Context Protocol) server for Rulesync configuration and tooling.
+Standalone MCP (Model Context Protocol) server for Rulesync configuration and
+tooling.
 
 ## Overview
 
-This MCP server provides tools for managing and accessing Rulesync configuration files, including rules, commands, subagents, and MCP configuration validation.
+This MCP server provides tools for managing and accessing Rulesync configuration
+files, including rules, commands, subagents, and MCP configuration validation.
 
 ## Installation
 
@@ -72,9 +74,11 @@ Or using tsx for development:
 List all available rule files.
 
 **Parameters:**
+
 - `category` (optional): Filter by category
 
 **Example:**
+
 ```json
 {
   "name": "list_rules",
@@ -89,9 +93,11 @@ List all available rule files.
 Read a specific rule file.
 
 **Parameters:**
+
 - `ruleName` (required): Name of the rule file (without .md extension)
 
 **Example:**
+
 ```json
 {
   "name": "read_rule",
@@ -110,6 +116,7 @@ List all available command files.
 Read a specific command file.
 
 **Parameters:**
+
 - `commandName` (required): Name of the command file (without .md extension)
 
 ### `list_subagents`
@@ -121,6 +128,7 @@ List all available subagent definitions.
 Read a specific subagent definition.
 
 **Parameters:**
+
 - `subagentName` (required): Name of the subagent (without .md extension)
 
 ### `validate_config`
@@ -128,11 +136,13 @@ Read a specific subagent definition.
 Validate the MCP configuration file.
 
 **Parameters:**
+
 - `configPath` (optional): Path to mcp.json file (defaults to mcp.json)
 
 ## Environment Variables
 
-- `RULESYNC_ROOT`: Root directory where `.rulesync` folder is located (defaults to `process.cwd()`)
+- `RULESYNC_ROOT`: Root directory where `.rulesync` folder is located (defaults
+  to `process.cwd()`)
 
 ## Development
 

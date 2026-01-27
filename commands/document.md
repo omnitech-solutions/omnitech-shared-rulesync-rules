@@ -3,10 +3,13 @@ targets:
   - '*'
 description: ''
 ---
+
 # DOCUMENT Task
 
-**Persona:** Execute this task as the `@developer` subagent (Devin, Staff Engineer 💻).  
-Load the persona characteristics from `.rulesync/subagents/developer.md` before proceeding.
+**Persona:** Execute this task as the `@developer` subagent (Devin, Staff
+Engineer 💻).  
+Load the persona characteristics from `.rulesync/subagents/developer.md` before
+proceeding.
 
 **Required Context:** Review these rules before proceeding:
 
@@ -17,15 +20,20 @@ Load the persona characteristics from `.rulesync/subagents/developer.md` before 
 
 ## Task Objective
 
-Create thorough, maintainable documentation for a specified file, folder, or feature. This includes inline code comments, JSDoc/PHPDoc function signatures, and/or complete README files. Follow all standards from `.rulesync/rules/documentation.md`.
+Create thorough, maintainable documentation for a specified file, folder, or
+feature. This includes inline code comments, JSDoc/PHPDoc function signatures,
+and/or complete README files. Follow all standards from
+`.rulesync/rules/documentation.md`.
 
 ---
 
 ## Task Instructions
 
 1. **Initiate discovery:**
-   - Ask: "What would you like me to document? (provide a file path, folder path, or feature description)"
-   - Examine the target code to understand purpose, functionality, and relationships
+   - Ask: "What would you like me to document? (provide a file path, folder
+     path, or feature description)"
+   - Examine the target code to understand purpose, functionality, and
+     relationships
    - Identify the technology stack
 
 2. **Determine documentation type:**
@@ -50,15 +58,21 @@ Create thorough, maintainable documentation for a specified file, folder, or fea
 4. **Write documentation following standards:**
 
    Apply all documentation patterns from `.rulesync/rules/documentation.md`:
-   - **Inline Comments:** Explain "why" not "what", comment edge cases and assumptions
-   - **JSDoc Comments (JavaScript/TypeScript):** Add to all exported functions with `@param`, `@returns`, `@throws`, `@example` tags
-   - **PHPDoc Comments (PHP/Laravel):** Add to all public methods with `@param`, `@return`, `@throws`, `@example` tags
+   - **Inline Comments:** Explain "why" not "what", comment edge cases and
+     assumptions
+   - **JSDoc Comments (JavaScript/TypeScript):** Add to all exported functions
+     with `@param`, `@returns`, `@throws`, `@example` tags
+   - **PHPDoc Comments (PHP/Laravel):** Add to all public methods with `@param`,
+     `@return`, `@throws`, `@example` tags
    - **Ruby Comments:** Add YARD documentation for public methods
-   - **README Files:** Use the template from `.rulesync/templates/readme-template.md`
+   - **README Files:** Use the template from
+     `.rulesync/templates/readme-template.md`
 
    **IMPORTANT - TEMPLATE USAGE (for README files):**  
-   Before generating a README, you MUST first read the template file at `.rulesync/templates/readme-template.md`.  
-   Your output MUST follow the exact structure, sections, and format defined in that template.  
+   Before generating a README, you MUST first read the template file at
+   `.rulesync/templates/readme-template.md`.  
+   Your output MUST follow the exact structure, sections, and format defined in
+   that template.  
    Do not deviate from the template structure.
 
    Ensure:
@@ -79,14 +93,16 @@ Create thorough, maintainable documentation for a specified file, folder, or fea
    - Highlight any gaps or areas that need further documentation
    - Note any related README files that should be updated
    - Provide recommendations for improving code clarity
-   - Ask: "Would you like me to test this code (`/test`) or make any other improvements?"
+   - Ask: "Would you like me to test this code (`/test`) or make any other
+     improvements?"
 
 ---
 
 ## Notes
 
 - Reference `.rulesync/rules/documentation.md` for all documentation patterns
-- For README files, use the template from `.rulesync/templates/readme-template.md`
+- For README files, use the template from
+  `.rulesync/templates/readme-template.md`
 - Document the "why" more than the "what"
 - Keep documentation current with code changes
 - Use examples to show, not just tell

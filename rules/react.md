@@ -14,16 +14,19 @@ cursor:
     - '**/*.jsx'
   - '**/components/**'
 ---
+
 # React Rules
 
 ## React Best Practices
 
-- **Functional Components:** Use functional components with hooks, avoid class components
+- **Functional Components:** Use functional components with hooks, avoid class
+  components
 - **Component Composition:** Compose small, focused components
 - **Custom Hooks:** Extract reusable logic into custom hooks
 - **Type Safety:** Use TypeScript for all components
 - **Performance:** Use React.memo, useMemo, useCallback appropriately
-- **State Management:** Use React Query for server state, Context/useState for client state
+- **State Management:** Use React Query for server state, Context/useState for
+  client state
 - **Error Boundaries:** Implement error boundaries for error handling
 - **Accessibility:** Ensure WCAG 2.1 AA compliance
 - **Testing:** Write tests for components using React Testing Library
@@ -216,7 +219,7 @@ const ThemeContext = createContext<{
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
-  
+
   const toggleTheme = useCallback(() => {
     setTheme(prev => prev === 'light' ? 'dark' : 'light');
   }, []);
@@ -277,7 +280,7 @@ describe('UserCard', () => {
   it('renders user information', () => {
     const user = { id: '1', name: 'John Doe', email: 'john@example.com' };
     render(<UserCard user={user} />);
-    
+
     expect(screen.getByText('John Doe')).toBeInTheDocument();
     expect(screen.getByText('john@example.com')).toBeInTheDocument();
   });

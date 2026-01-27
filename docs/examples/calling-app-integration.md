@@ -31,9 +31,12 @@ export async function setupMCP(options: {
 
   // Build command with arguments
   const args: string[] = [];
-  if (options.openaiApiKey) args.push(`--openai_api_key=${options.openaiApiKey}`);
-  if (options.anthropicApiKey) args.push(`--anthropic_api_key=${options.anthropicApiKey}`);
-  if (options.googleApiKey) args.push(`--google_api_key=${options.googleApiKey}`);
+  if (options.openaiApiKey)
+    args.push(`--openai_api_key=${options.openaiApiKey}`);
+  if (options.anthropicApiKey)
+    args.push(`--anthropic_api_key=${options.anthropicApiKey}`);
+  if (options.googleApiKey)
+    args.push(`--google_api_key=${options.googleApiKey}`);
   if (options.xaiApiKey) args.push(`--xai_api_key=${options.xaiApiKey}`);
 
   try {
@@ -67,11 +70,11 @@ import { setupMCP } from './setup-mcp';
 
 async function setupMCPWithSecrets() {
   const secretsManager = new SecretsManager();
-  
+
   // Fetch secrets from AWS Secrets Manager
   const openaiKey = await getSecret('openai-api-key');
   const anthropicKey = await getSecret('anthropic-api-key');
-  
+
   await setupMCP({
     openaiApiKey: openaiKey,
     anthropicApiKey: anthropicKey,
@@ -94,18 +97,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
+
       - uses: pnpm/action-setup@v4
         with:
           version: 10
-      
+
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      
+
       - name: Install dependencies
         run: pnpm install
-      
+
       - name: Setup MCP
         run: |
           pnpm setup-mcp \

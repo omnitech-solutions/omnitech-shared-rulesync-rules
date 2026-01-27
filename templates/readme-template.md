@@ -13,23 +13,17 @@
 
 ## Installation
 
-\`\`\`bash
-{Installation commands}
-\`\`\`
+\`\`\`bash {Installation commands} \`\`\`
 
 ## Usage
 
 ### Basic Usage
 
-\`\`\`{language}
-{Code example}
-\`\`\`
+\`\`\`{language} {Code example} \`\`\`
 
 ### Advanced Usage
 
-\`\`\`{language}
-{More complex example}
-\`\`\`
+\`\`\`{language} {More complex example} \`\`\`
 
 ## API Reference
 
@@ -38,27 +32,22 @@
 {Description}
 
 **Parameters:**
+
 - `{param}` ({type}): {Description}
 
 **Returns:** {Return type and description}
 
 **Example:**
 
-\`\`\`{language}
-{Example code}
-\`\`\`
+\`\`\`{language} {Example code} \`\`\`
 
 ## Development
 
-\`\`\`bash
-{Development commands}
-\`\`\`
+\`\`\`bash {Development commands} \`\`\`
 
 ## Testing
 
-\`\`\`bash
-{Testing commands}
-\`\`\`
+\`\`\`bash {Testing commands} \`\`\`
 
 ## Related Documentation
 

@@ -1,6 +1,7 @@
 # MCP Server Setup Guide
 
-This guide explains how to configure the MCP (Model Context Protocol) server for different AI platforms.
+This guide explains how to configure the MCP (Model Context Protocol) server for
+different AI platforms.
 
 ## Supported Platforms
 
@@ -13,7 +14,8 @@ This guide explains how to configure the MCP (Model Context Protocol) server for
 
 ## MCP Configuration
 
-The `mcp.json` file in this repository configures the MCP servers available to AI agents.
+The `mcp.json` file in this repository configures the MCP servers available to
+AI agents.
 
 ### Current Configuration
 
@@ -122,7 +124,8 @@ The `mcp.json` file in this repository configures the MCP servers available to A
 
 ### Windsurf
 
-Windsurf has native MCP support. Configuration is done through the Windsurf settings:
+Windsurf has native MCP support. Configuration is done through the Windsurf
+settings:
 
 1. **Open Windsurf Settings**
    - Click on Settings/Preferences
@@ -143,7 +146,8 @@ Windsurf has native MCP support. Configuration is done through the Windsurf sett
 ### Continue (VS Code Extension)
 
 1. **Install Continue Extension**
-   - Install from VS Code marketplace: [Continue](https://marketplace.visualstudio.com/items?itemName=Continue.continue)
+   - Install from VS Code marketplace:
+     [Continue](https://marketplace.visualstudio.com/items?itemName=Continue.continue)
 
 2. **Configure MCP in Continue**
    - Open Continue settings (`.continue/config.json`)
@@ -205,7 +209,8 @@ After configuration, verify the MCP server is working:
 
 3. **Common Issues**
    - **Server not starting**: Check that `npx` and `tsx` are available in PATH
-   - **Module not found**: Run `pnpm install` to ensure dependencies are installed
+   - **Module not found**: Run `pnpm install` to ensure dependencies are
+     installed
    - **Permission errors**: Ensure the command has execute permissions
    - **Port conflicts**: Check if the port is already in use
 
@@ -214,11 +219,13 @@ After configuration, verify the MCP server is working:
 ### MCP Server Not Loading
 
 1. **Check Node.js Version**
+
    ```bash
    node --version  # Should be 18+ for MCP support
    ```
 
 2. **Verify Dependencies**
+
    ```bash
    pnpm install
    ```
@@ -240,14 +247,17 @@ After configuration, verify the MCP server is working:
 ### Platform-Specific Issues
 
 #### Cursor
+
 - Check Cursor's MCP settings page for connection status
 - Review Cursor's logs: Help → Toggle Developer Tools → Console
 
 #### Windsurf
+
 - Check Windsurf's MCP server status in settings
 - Review server logs in the MCP configuration panel
 
 #### Continue
+
 - Check Continue's output panel for MCP errors
 - Review VS Code's developer console
 

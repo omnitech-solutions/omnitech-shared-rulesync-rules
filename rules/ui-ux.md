@@ -14,12 +14,14 @@ cursor:
     - '**/*.jsx'
     - '**/*.vue'
 ---
+
 # UI/UX Rules
 
 ## UI/UX Best Practices
 
 - **Accessibility First:** Ensure WCAG 2.1 AA compliance
-- **Responsive Design:** Test across mobile (320px+), tablet (768px+), and desktop (1024px+)
+- **Responsive Design:** Test across mobile (320px+), tablet (768px+), and
+  desktop (1024px+)
 - **Loading States:** Always show loading indicators for async operations
 - **Error States:** Provide clear, actionable error messages
 - **Consistent Design:** Use design system components and patterns
@@ -57,7 +59,7 @@ cursor:
 // ✅ GOOD: Keyboard accessible
 <button
   onClick={handleClick}
-  onKeyDown={(e) => {
+  onKeyDown={e => {
     if (e.key === 'Enter' || e.key === ' ') {
       handleClick();
     }
@@ -75,12 +77,14 @@ cursor:
 
 ```tsx
 // ✅ GOOD: Mobile-first with Tailwind
-<div className="
+<div
+  className="
   w-full
   md:w-1/2
   lg:w-1/3
   xl:w-1/4
-">
+"
+>
   Content
 </div>
 ```
@@ -93,11 +97,11 @@ cursor:
 // ✅ GOOD: Show loading state
 function UserList() {
   const { data, isLoading } = useQuery(['users'], fetchUsers);
-  
+
   if (isLoading) {
     return <div>Loading users...</div>;
   }
-  
+
   return (
     <div>
       {data.map(user => (
@@ -116,7 +120,7 @@ function UserList() {
 // ✅ GOOD: Clear error message
 function UserList() {
   const { data, error } = useQuery(['users'], fetchUsers);
-  
+
   if (error) {
     return (
       <div role="alert">
@@ -125,7 +129,7 @@ function UserList() {
       </div>
     );
   }
-  
+
   return <div>{/* ... */}</div>;
 }
 ```

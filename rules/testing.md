@@ -14,12 +14,14 @@ cursor:
     - '**/*.test.*'
     - '**/*.spec.*'
 ---
+
 # Testing Rules
 
 ## Testing Best Practices
 
 - **Test Behavior, Not Implementation:** Focus on what code does, not how
-- **Arrange-Act-Assert:** Structure tests clearly with setup, execution, verification
+- **Arrange-Act-Assert:** Structure tests clearly with setup, execution,
+  verification
 - **One Assertion Per Test:** Keep tests focused on a single behavior
 - **Descriptive Names:** Test names should read like specifications
 - **Test Isolation:** Each test should be independent and runnable alone
@@ -99,12 +101,8 @@ Test individual functions or methods in isolation.
 ```typescript
 describe('calculateTotal', () => {
   it('sums all item prices', () => {
-    const items = [
-      { price: 10 },
-      { price: 20 },
-      { price: 30 },
-    ];
-    
+    const items = [{ price: 10 }, { price: 20 }, { price: 30 }];
+
     expect(calculateTotal(items)).toBe(60);
   });
 });
@@ -138,7 +136,7 @@ describe('User Registration Flow', () => {
     await page.fill('[name="email"]', 'john@example.com');
     await page.fill('[name="password"]', 'password123');
     await page.click('button[type="submit"]');
-    
+
     await expect(page).toHaveURL('/dashboard');
   });
 });

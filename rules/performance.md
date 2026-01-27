@@ -10,12 +10,14 @@ cursor:
   globs:
     - '**/*'
 ---
+
 # Performance Rules
 
 ## Performance Best Practices
 
 - **Database Optimization:** Use indexes, optimize queries, prevent N+1 queries
-- **Caching Strategy:** Implement appropriate caching layers (application, CDN, database)
+- **Caching Strategy:** Implement appropriate caching layers (application, CDN,
+  database)
 - **Code Splitting:** Lazy load routes and components
 - **Bundle Size:** Monitor and optimize bundle sizes
 - **Image Optimization:** Use appropriate image formats and sizes
@@ -48,7 +50,7 @@ for (const user of users) {
 
 // ✅ GOOD: Eager loading
 const users = await User.findAll({
-  include: [{ model: Post }]
+  include: [{ model: Post }],
 });
 ```
 
@@ -66,11 +68,11 @@ const redis = new Redis();
 async function getUser(id: string) {
   const cacheKey = `user:${id}`;
   const cached = await redis.get(cacheKey);
-  
+
   if (cached) {
     return JSON.parse(cached);
   }
-  
+
   const user = await db.users.findById(id);
   await redis.setex(cacheKey, 3600, JSON.stringify(user));
   return user;
@@ -120,7 +122,7 @@ async function getUsers(cursor?: string, limit = 20) {
     cursor: cursor ? { id: cursor } : undefined,
     orderBy: { createdAt: 'desc' },
   });
-  
+
   const hasNextPage = users.length > limit;
   return {
     items: users.slice(0, limit),

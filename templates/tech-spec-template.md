@@ -98,8 +98,8 @@
 
 ## Risks and Mitigations
 
-| Risk | Impact | Likelihood | Mitigation |
-|------|--------|------------|------------|
+| Risk   | Impact   | Likelihood   | Mitigation   |
+| ------ | -------- | ------------ | ------------ |
 | {Risk} | {Impact} | {Likelihood} | {Mitigation} |
 
 ---

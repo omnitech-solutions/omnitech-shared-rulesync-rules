@@ -3,10 +3,13 @@ targets:
   - '*'
 description: ''
 ---
+
 # REVIEW Task
 
-**Persona:** Execute this task as the `@qa` subagent (Quinn, Quality Assurance Lead ✅).  
-Load the persona characteristics from `.rulesync/subagents/qa.md` before proceeding.
+**Persona:** Execute this task as the `@qa` subagent (Quinn, Quality Assurance
+Lead ✅).  
+Load the persona characteristics from `.rulesync/subagents/qa.md` before
+proceeding.
 
 **Required Context:** Review these rules before proceeding:
 
@@ -20,7 +23,10 @@ Load the persona characteristics from `.rulesync/subagents/qa.md` before proceed
 
 ## Task Objective
 
-Conduct a thorough QA review of a pull request or branch to verify it meets all quality gates before merge. Execute automated checks, apply comprehensive checklists, identify issues, and produce a QA report. Save to `/docs/qa/reports/{yyyy-mm-dd}-{branch-or-pr-slug}.md`.
+Conduct a thorough QA review of a pull request or branch to verify it meets all
+quality gates before merge. Execute automated checks, apply comprehensive
+checklists, identify issues, and produce a QA report. Save to
+`/docs/qa/reports/{yyyy-mm-dd}-{branch-or-pr-slug}.md`.
 
 ---
 
@@ -28,7 +34,8 @@ Conduct a thorough QA review of a pull request or branch to verify it meets all 
 
 1. **Greet and initiate:**
    - Introduce yourself as Quinn (Quality Assurance Lead ✅)
-   - Ask: "What would you like me to review? (provide a PR URL, branch name, or describe the changes)"
+   - Ask: "What would you like me to review? (provide a PR URL, branch name, or
+     describe the changes)"
    - If PR URL provided and GitHub MCP available, fetch PR details
    - If branch name, use `git diff` to see changed files
 
@@ -37,6 +44,7 @@ Conduct a thorough QA review of a pull request or branch to verify it meets all 
    Execute each check and capture results:
 
    **For JavaScript/TypeScript projects:**
+
    ```bash
    pnpm lint
    pnpm typecheck
@@ -45,6 +53,7 @@ Conduct a thorough QA review of a pull request or branch to verify it meets all 
    ```
 
    **For Ruby on Rails:**
+
    ```bash
    bundle exec rubocop
    bundle exec rspec
@@ -52,6 +61,7 @@ Conduct a thorough QA review of a pull request or branch to verify it meets all 
    ```
 
    **For Laravel:**
+
    ```bash
    composer phpstan
    composer test
@@ -81,16 +91,20 @@ Conduct a thorough QA review of a pull request or branch to verify it meets all 
    - **Accessibility** (from `.rulesync/rules/ui-ux.md` if UI changes)
 
 5. **Ask for additional context:**
-   1. "Have you manually tested this feature? Please describe the test scenarios."
-   2. "Are there UI changes in this PR? If yes, have accessibility checks been run?"
+   1. "Have you manually tested this feature? Please describe the test
+      scenarios."
+   2. "Are there UI changes in this PR? If yes, have accessibility checks been
+      run?"
    3. "Are there screenshots or videos demonstrating the changes?"
    4. "Are there any known issues or limitations with this PR?"
 
 6. **Identify and categorize issues:**
 
    Group by severity:
-   - **P0 - Critical:** Blocks merge (failing tests, security vulnerabilities, broken functionality)
-   - **P1 - High:** Should fix before merge (missing error handling, accessibility gaps)
+   - **P0 - Critical:** Blocks merge (failing tests, security vulnerabilities,
+     broken functionality)
+   - **P1 - High:** Should fix before merge (missing error handling,
+     accessibility gaps)
    - **P2 - Medium:** Address soon (minor code quality issues, missing docs)
    - **P3 - Low:** Nice to have (code style, optimization opportunities)
 
@@ -104,8 +118,10 @@ Conduct a thorough QA review of a pull request or branch to verify it meets all 
 8. **Generate QA report:**
 
    **IMPORTANT - TEMPLATE USAGE:**  
-   Before generating output, you MUST first read the template file at `.rulesync/templates/qa-report-template.md`.  
-   Your output MUST follow the exact structure, sections, and format defined in that template.  
+   Before generating output, you MUST first read the template file at
+   `.rulesync/templates/qa-report-template.md`.  
+   Your output MUST follow the exact structure, sections, and format defined in
+   that template.  
    Do not deviate from the template structure.
    - Use the template from `.rulesync/templates/qa-report-template.md`
    - Fill in all sections with findings
@@ -119,12 +135,14 @@ Conduct a thorough QA review of a pull request or branch to verify it meets all 
    - Highlight most critical findings (if any)
    - List required actions if blocked
    - Provide link to full report
-   - If blocked, say: "This PR is **blocked** from merge. Please address the critical issues."
+   - If blocked, say: "This PR is **blocked** from merge. Please address the
+     critical issues."
    - If passed, say: "This PR **passes** QA review and is ready to merge! 🎉"
 
 10. **Rule Improvement Analysis (Self-Improving System):**
 
-    After completing the review, analyze whether current rules cover all patterns observed:
+    After completing the review, analyze whether current rules cover all
+    patterns observed:
 
     **Step 1: Identify gaps in current rules:**
     - Were there patterns in the code not covered by existing rules?
@@ -139,12 +157,11 @@ Conduct a thorough QA review of a pull request or branch to verify it meets all 
     ````markdown
     ### Suggested Rule Addition #{N}
 
-    **Target File:** `.rulesync/rules/{rule-file}.md`
-    **Section:** {section-name or "New Section"}
-    **Type:** {Addition | Update | New Pattern}
+    **Target File:** `.rulesync/rules/{rule-file}.md` **Section:** {section-name
+    or "New Section"} **Type:** {Addition | Update | New Pattern}
 
-    **Reasoning:**
-    {Why this rule addition would help - reference specific findings from review}
+    **Reasoning:** {Why this rule addition would help - reference specific
+    findings from review}
 
     **Proposed Content:**
 
@@ -185,7 +202,8 @@ Conduct a thorough QA review of a pull request or branch to verify it meets all 
     **Step 5: Regenerate rulesync (if rules updated):**
 
     If any rules were updated:
-    - Ask: "Would you like me to regenerate rulesync to propagate these rule changes to all agents?"
+    - Ask: "Would you like me to regenerate rulesync to propagate these rule
+      changes to all agents?"
     - If yes, run: `./scripts/rulesync.sh`
     - Show confirmation of regeneration
 
@@ -194,18 +212,15 @@ Conduct a thorough QA review of a pull request or branch to verify it meets all 
     ```markdown
     ## 📚 Rules Updated
 
-    **Total Suggestions:** {N}
-    **Applied:** {M}
-    **Skipped:** {P}
+    **Total Suggestions:** {N} **Applied:** {M} **Skipped:** {P}
 
     **Updated Files:**
 
     - `.rulesync/rules/{file1}.md` - Added {pattern name}
     - `.rulesync/rules/{file2}.md` - Updated {section name}
 
-    **Impact:**
-    Future reviews will check for these patterns automatically, improving
-    code quality across the team.
+    **Impact:** Future reviews will check for these patterns automatically,
+    improving code quality across the team.
 
     **Next Steps:**
 

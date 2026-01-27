@@ -3,10 +3,13 @@ targets:
   - '*'
 description: ''
 ---
+
 # EXPLAIN Task
 
-**Persona:** Execute this task as the `@developer` subagent (Devin, Staff Engineer 💻).  
-Load the persona characteristics from `.rulesync/subagents/developer.md` before proceeding.
+**Persona:** Execute this task as the `@developer` subagent (Devin, Staff
+Engineer 💻).  
+Load the persona characteristics from `.rulesync/subagents/developer.md` before
+proceeding.
 
 **Required Context:** Review these rules before proceeding:
 
@@ -19,14 +22,17 @@ Load the persona characteristics from `.rulesync/subagents/developer.md` before 
 
 ## Task Objective
 
-Provide a clear, comprehensive explanation of how a file, folder, or feature works. Break down complex logic, explain architectural decisions, trace data flows, and optionally suggest improvements.
+Provide a clear, comprehensive explanation of how a file, folder, or feature
+works. Break down complex logic, explain architectural decisions, trace data
+flows, and optionally suggest improvements.
 
 ---
 
 ## Task Instructions
 
 1. **Initiate discovery:**
-   - Ask: "What would you like me to explain? (provide a file path, folder path, or feature description)"
+   - Ask: "What would you like me to explain? (provide a file path, folder path,
+     or feature description)"
    - Examine the target code and its context
    - Identify the technology stack
 
@@ -38,7 +44,8 @@ Provide a clear, comprehensive explanation of how a file, folder, or feature wor
       - `detailed` - Thorough walkthrough with examples
       - `deep-dive` - Comprehensive analysis with all details
    2. "Would you like me to suggest improvements or optimizations?"
-   3. "Are there specific aspects you want me to focus on? (e.g., data flow, error handling, performance, security)"
+   3. "Are there specific aspects you want me to focus on? (e.g., data flow,
+      error handling, performance, security)"
 
 3. **Analyze the code thoroughly:**
    - Read the target file(s)
@@ -48,7 +55,8 @@ Provide a clear, comprehensive explanation of how a file, folder, or feature wor
    - Note error handling and edge cases
    - Recognize architectural patterns (from `.rulesync/rules/architecture.md`)
    - Check related files for context (README, tests, types)
-   - Identify technology-specific patterns (GraphQL resolvers, React hooks, Vue composables, Rails controllers, Laravel services, etc.)
+   - Identify technology-specific patterns (GraphQL resolvers, React hooks, Vue
+     composables, Rails controllers, Laravel services, etc.)
 
 4. **Provide structured explanation:**
 
@@ -102,7 +110,8 @@ Provide a clear, comprehensive explanation of how a file, folder, or feature wor
    - Highlight most important takeaways
    - If suggestions provided, summarize top priorities
    - Offer to dive deeper into specific areas
-   - Ask: "Would you like me to explain any specific part in more detail, or help implement any suggested improvements?"
+   - Ask: "Would you like me to explain any specific part in more detail, or
+     help implement any suggested improvements?"
 
 ---
 

@@ -10,6 +10,7 @@ cursor:
   globs:
     - '**/*'
 ---
+
 # Documentation Rules
 
 ## Documentation Best Practices
@@ -22,7 +23,8 @@ cursor:
 - **Stay Current:** Remove outdated comments and documentation
 - **Be Specific:** Avoid vague terms
 - **Document Assumptions:** State implicit assumptions explicitly
-- **Link Related Docs:** Reference related files, functions, or external resources
+- **Link Related Docs:** Reference related files, functions, or external
+  resources
 - **Test Documentation:** Verify that examples and instructions actually work
 
 ---
@@ -44,7 +46,7 @@ const messageEvents = new EventEmitter();
 
 ### Function Documentation
 
-```typescript
+````typescript
 /**
  * Calculates the total price including tax.
  *
@@ -65,7 +67,7 @@ function calculateTotalWithTax(items: Item[], taxRate: number): number {
   const subtotal = items.reduce((sum, item) => sum + item.price, 0);
   return subtotal * (1 + taxRate);
 }
-```
+````
 
 ---
 
@@ -96,10 +98,7 @@ Brief description of the project.
 
 ### Installation
 
-\`\`\`bash
-npm install
-npm run dev
-\`\`\`
+\`\`\`bash npm install npm run dev \`\`\`
 
 ## API Documentation
 

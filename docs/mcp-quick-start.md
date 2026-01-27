@@ -1,6 +1,7 @@
 # MCP Quick Start Guide
 
-Quick setup instructions for getting the MCP server working with your AI platform.
+Quick setup instructions for getting the MCP server working with your AI
+platform.
 
 ## Supported Platforms
 
@@ -9,7 +10,7 @@ Quick setup instructions for getting the MCP server working with your AI platfor
 ✅ **Codex** (OpenAI) - Cursor, Continue  
 ✅ **Grok** (xAI) - Cursor  
 ✅ **Windsurf** - Native support  
-✅ **GPT** (OpenAI) - Cursor, Continue  
+✅ **GPT** (OpenAI) - Cursor, Continue
 
 ## 30-Second Setup
 
@@ -45,15 +46,18 @@ After configuration, test the MCP connection:
 ## Troubleshooting
 
 **Server not starting?**
+
 - Ensure Node.js 18+ is installed
 - Run `pnpm install` to install dependencies
 - Check that `npx` is available in PATH
 
 **API key errors?**
+
 - Verify API keys are set in environment variables
 - Check platform-specific documentation for key requirements
 
 **Still having issues?**
+
 - See [Full MCP Setup Guide](./mcp-setup.md) for detailed instructions
 - Check platform logs/console for error messages
 

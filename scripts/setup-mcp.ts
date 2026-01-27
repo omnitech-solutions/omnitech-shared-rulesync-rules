@@ -2,19 +2,14 @@
 
 /**
  * MCP Setup Script
- * 
+ *
  * Interactive CLI tool to configure MCP servers for different AI platforms.
  * Supports: Claude, Gemini, Codex, Grok, Windsurf, GPT
  */
 
 import * as fs from 'fs';
 import * as path from 'path';
-import { fileURLToPath } from 'url';
 import readline from 'readline';
-
-// Get directory for ES modules
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 interface PlatformConfig {
   name: string;
@@ -63,10 +58,20 @@ interface AIPlatform {
 }
 
 const AI_PLATFORMS: AIPlatform[] = [
-  { name: 'Claude (Anthropic)', id: 'claude', envVar: 'ANTHROPIC_API_KEY', description: 'Anthropic Claude' },
+  {
+    name: 'Claude (Anthropic)',
+    id: 'claude',
+    envVar: 'ANTHROPIC_API_KEY',
+    description: 'Anthropic Claude',
+  },
   { name: 'GPT (OpenAI)', id: 'gpt', envVar: 'OPENAI_API_KEY', description: 'OpenAI GPT' },
   { name: 'Codex (OpenAI)', id: 'codex', envVar: 'OPENAI_API_KEY', description: 'OpenAI Codex' },
-  { name: 'Gemini (Google)', id: 'gemini', envVar: 'GOOGLE_API_KEY', description: 'Google Gemini' },
+  {
+    name: 'Gemini (Google)',
+    id: 'gemini',
+    envVar: 'GOOGLE_API_KEY',
+    description: 'Google Gemini',
+  },
   { name: 'Grok (xAI)', id: 'grok', envVar: 'XAI_API_KEY', description: 'xAI Grok' },
 ];
 
@@ -92,7 +97,7 @@ class MCPSetup {
   }
 
   private question(query: string): Promise<string> {
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
       this.rl.question(query, resolve);
     });
   }
@@ -127,15 +132,15 @@ class MCPSetup {
     const answer = await this.question('\nEnter numbers (comma-separated): ');
     const indices = answer
       .split(',')
-      .map((n) => parseInt(n.trim(), 10) - 1)
-      .filter((n) => !isNaN(n) && n >= 0 && n < AI_PLATFORMS.length);
+      .map(n => parseInt(n.trim(), 10) - 1)
+      .filter(n => !isNaN(n) && n >= 0 && n < AI_PLATFORMS.length);
 
     if (indices.length === 0) {
       console.log('⚠️  No platforms selected. Using GPT as default.');
       return [AI_PLATFORMS[1]]; // Default to GPT
     }
 
-    return indices.map((i) => AI_PLATFORMS[i]);
+    return indices.map(i => AI_PLATFORMS[i]);
   }
 
   private async getEnvVar(envVar: string, defaultValue?: string): Promise<string> {
@@ -155,7 +160,7 @@ class MCPSetup {
     const prompt = defaultValue
       ? `Enter ${envVar} (press Enter for default: ${defaultValue}): `
       : `Enter ${envVar}: `;
-    
+
     const answer = await this.question(prompt);
     return answer.trim() || defaultValue || '';
   }
@@ -165,10 +170,10 @@ class MCPSetup {
     // Support both --VAR=value and --var=value formats
     const varName = envVar.toLowerCase().replace(/_/g, '-');
     const argIndex = args.findIndex(
-      (arg) => 
-        arg.startsWith(`--${envVar}=`) || 
+      arg =>
+        arg.startsWith(`--${envVar}=`) ||
         arg.startsWith(`--${envVar.toLowerCase()}=`) ||
-        arg.startsWith(`--${varName}=`)
+        arg.startsWith(`--${varName}=`),
     );
     if (argIndex !== -1) {
       return args[argIndex].split('=')[1];
@@ -181,7 +186,7 @@ class MCPSetup {
     const requiredVars = new Set<string>();
 
     // Collect required env vars from selected AI platforms
-    aiPlatforms.forEach((platform) => {
+    aiPlatforms.forEach(platform => {
       requiredVars.add(platform.envVar);
     });
 
@@ -200,9 +205,13 @@ class MCPSetup {
     // Ask about additional optional env vars
     const additional = await this.question('\nAdd additional environment variables? (y/n): ');
     if (additional.toLowerCase() === 'y') {
-      while (true) {
+      let continueAdding = true;
+      while (continueAdding) {
         const varName = await this.question('Variable name (or press Enter to finish): ');
-        if (!varName.trim()) break;
+        if (!varName.trim()) {
+          continueAdding = false;
+          break;
+        }
 
         const varValue = await this.question(`Value for ${varName}: `);
         if (varValue.trim()) {
@@ -268,9 +277,7 @@ class MCPSetup {
       return true;
     }
 
-    const answer = await this.question(
-      `⚠️  ${filePath} already exists. Overwrite? (y/n): `
-    );
+    const answer = await this.question(`⚠️  ${filePath} already exists. Overwrite? (y/n): `);
     return answer.toLowerCase() === 'y';
   }
 
@@ -285,7 +292,7 @@ class MCPSetup {
 
       // Select AI platforms
       const aiPlatforms = await this.selectAIPlatforms();
-      console.log(`\n✅ Selected AI platforms: ${aiPlatforms.map((p) => p.name).join(', ')}`);
+      console.log(`\n✅ Selected AI platforms: ${aiPlatforms.map(p => p.name).join(', ')}`);
 
       // Collect environment variables
       const envVars = await this.collectEnvVars(aiPlatforms);
@@ -320,7 +327,6 @@ class MCPSetup {
       console.log('   2. Restart your IDE/editor');
       console.log('   3. Verify MCP connection in your platform settings');
       console.log('\n📚 For more information, see: docs/mcp-setup.md\n');
-
     } catch (error) {
       console.error('❌ Error during setup:', error);
       process.exit(1);
@@ -331,12 +337,12 @@ class MCPSetup {
 }
 
 // Run if called directly (check if this is the main module)
-const isMainModule = process.argv[1]?.includes('setup-mcp') || 
-                     import.meta.url.includes('setup-mcp');
+const isMainModule =
+  process.argv[1]?.includes('setup-mcp') || import.meta.url.includes('setup-mcp');
 
 if (isMainModule) {
   const setup = new MCPSetup();
-  setup.run().catch((error) => {
+  setup.run().catch(error => {
     console.error('❌ Setup failed:', error);
     process.exit(1);
   });

@@ -144,23 +144,26 @@ chmod +x scripts/setup-mcp.ts
 When used as a dependency, the calling app can:
 
 1. **Install the package:**
+
    ```bash
    pnpm add @omnitech/shared-rulesync-rules
    ```
 
 2. **Run the setup script:**
+
    ```bash
    # Using pnpm
    pnpm exec setup-mcp
-   
+
    # Or using npx
    npx -p @omnitech/shared-rulesync-rules pnpm setup-mcp
-   
+
    # Or directly via tsx
    npx tsx node_modules/@omnitech/shared-rulesync-rules/scripts/setup-mcp.ts
    ```
 
 3. **Pass environment variables from calling app:**
+
    ```bash
    # From calling app's environment
    export OPENAI_API_KEY=$(get-api-key)
@@ -169,13 +172,14 @@ When used as a dependency, the calling app can:
    ```
 
 4. **Programmatic usage:**
+
    ```typescript
    import { execSync } from 'child_process';
-   
+
    // Set environment variables
    process.env.OPENAI_API_KEY = getOpenAIKey();
    process.env.ANTHROPIC_API_KEY = getAnthropicKey();
-   
+
    // Run setup
    execSync('pnpm exec setup-mcp', {
      cwd: process.cwd(),

@@ -10,19 +10,28 @@ cursor:
   globs:
     - '**/*'
 ---
+
 # Architecture Rules
 
 ## Architecture Best Practices
 
-- **Separation of Concerns:** Keep business logic, data access, and presentation layers separate
-- **DRY Principle:** Don't Repeat Yourself - extract common patterns into reusable modules
-- **SOLID Principles:** Apply Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, Dependency Inversion
-- **API-First Design:** Design APIs before implementation, use OpenAPI/Schema-first for GraphQL
-- **Type Safety:** Leverage TypeScript, PHP type hints, and Ruby type annotations where available
-- **Error Handling:** Implement consistent error handling patterns across all layers
-- **Security by Default:** Apply security best practices at the architecture level
+- **Separation of Concerns:** Keep business logic, data access, and presentation
+  layers separate
+- **DRY Principle:** Don't Repeat Yourself - extract common patterns into
+  reusable modules
+- **SOLID Principles:** Apply Single Responsibility, Open/Closed, Liskov
+  Substitution, Interface Segregation, Dependency Inversion
+- **API-First Design:** Design APIs before implementation, use
+  OpenAPI/Schema-first for GraphQL
+- **Type Safety:** Leverage TypeScript, PHP type hints, and Ruby type
+  annotations where available
+- **Error Handling:** Implement consistent error handling patterns across all
+  layers
+- **Security by Default:** Apply security best practices at the architecture
+  level
 - **Scalability:** Design for horizontal scaling and performance from the start
-- **Observability:** Include logging, monitoring, and tracing in architectural decisions
+- **Observability:** Include logging, monitoring, and tracing in architectural
+  decisions
 - **Documentation:** Document architectural decisions and patterns
 
 ---
@@ -59,10 +68,13 @@ extend type User @key(fields: "id") {
 
 ### Service Communication
 
-- **Gateway Pattern:** Use Apollo Gateway or similar to compose federated schemas
-- **Service Discovery:** Implement service registry for dynamic service discovery
+- **Gateway Pattern:** Use Apollo Gateway or similar to compose federated
+  schemas
+- **Service Discovery:** Implement service registry for dynamic service
+  discovery
 - **Error Propagation:** Handle errors from federated services gracefully
-- **Caching Strategy:** Implement appropriate caching at gateway and service levels
+- **Caching Strategy:** Implement appropriate caching at gateway and service
+  levels
 
 ---
 
@@ -94,11 +106,11 @@ project/
 
 ```typescript
 // ✅ GOOD: Workspace alias
-import { sharedUtil } from "@project/shared";
-import { Button } from "@project/ui";
+import { sharedUtil } from '@project/shared';
+import { Button } from '@project/ui';
 
 // ❌ BAD: Relative paths across packages
-import { util } from "../../../packages/shared";
+import { util } from '../../../packages/shared';
 ```
 
 ---
@@ -207,7 +219,8 @@ render json: {
 
 - **Encryption at Rest:** Encrypt sensitive data in databases
 - **Encryption in Transit:** Use TLS/SSL for all communications
-- **Secrets Management:** Use secret management services (AWS Secrets Manager, HashiCorp Vault)
+- **Secrets Management:** Use secret management services (AWS Secrets Manager,
+  HashiCorp Vault)
 - **Input Validation:** Validate and sanitize all inputs
 
 ---

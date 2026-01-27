@@ -10,6 +10,7 @@ cursor:
   globs:
     - '**/*'
 ---
+
 # Security Rules
 
 ## Security Best Practices
@@ -20,7 +21,8 @@ cursor:
 - **SQL Injection:** Use parameterized queries, never raw SQL with user input
 - **XSS Prevention:** Sanitize output, use Content Security Policy
 - **CSRF Protection:** Use CSRF tokens for state-changing operations
-- **Secrets Management:** Never commit secrets, use environment variables or secret managers
+- **Secrets Management:** Never commit secrets, use environment variables or
+  secret managers
 - **HTTPS Only:** Use HTTPS for all communications
 - **Rate Limiting:** Implement rate limiting to prevent abuse
 - **Error Messages:** Don't leak sensitive information in error messages
@@ -74,15 +76,10 @@ end
 
 ```typescript
 // ✅ GOOD: Parameterized query
-const user = await db.query(
-  'SELECT * FROM users WHERE id = ?',
-  [userId]
-);
+const user = await db.query('SELECT * FROM users WHERE id = ?', [userId]);
 
 // ❌ BAD: String concatenation
-const user = await db.query(
-  `SELECT * FROM users WHERE id = '${userId}'`
-);
+const user = await db.query(`SELECT * FROM users WHERE id = '${userId}'`);
 ```
 
 ### ORM Usage
@@ -105,11 +102,9 @@ const user = await db.query(`SELECT * FROM users WHERE id = '${userId}'`);
 import jwt from 'jsonwebtoken';
 
 // Generate token
-const token = jwt.sign(
-  { userId: user.id },
-  process.env.JWT_SECRET!,
-  { expiresIn: '24h' }
-);
+const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET!, {
+  expiresIn: '24h',
+});
 
 // Verify token
 const decoded = jwt.verify(token, process.env.JWT_SECRET!);
@@ -180,7 +175,7 @@ element.innerHTML = userInput;
 app.use((req, res, next) => {
   res.setHeader(
     'Content-Security-Policy',
-    "default-src 'self'; script-src 'self' 'unsafe-inline'"
+    "default-src 'self'; script-src 'self' 'unsafe-inline'",
   );
   next();
 });

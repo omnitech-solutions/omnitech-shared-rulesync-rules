@@ -3,10 +3,13 @@ targets:
   - '*'
 description: ''
 ---
+
 # AUDIT Task
 
-**Persona:** Execute this task as the `@architect` subagent (Archer, Principal Architect 🧠).  
-Load the persona characteristics from `.rulesync/subagents/architect.md` before proceeding.
+**Persona:** Execute this task as the `@architect` subagent (Archer, Principal
+Architect 🧠).  
+Load the persona characteristics from `.rulesync/subagents/architect.md` before
+proceeding.
 
 **Required Context:** Review these rules based on the audit domain selected:
 
@@ -22,7 +25,8 @@ Load the persona characteristics from `.rulesync/subagents/architect.md` before 
 
 ## Task Objective
 
-Analyze the codebase (or section of codebase) and output a comprehensive **Technical Audit** report. Save it to `/docs/audits/{yyyy-mm-dd}-{domain}.md`.
+Analyze the codebase (or section of codebase) and output a comprehensive
+**Technical Audit** report. Save it to `/docs/audits/{yyyy-mm-dd}-{domain}.md`.
 
 ---
 
@@ -53,7 +57,8 @@ Analyze the codebase (or section of codebase) and output a comprehensive **Techn
    - `Entire codebase` - Comprehensive audit across all projects
    - `Specific path` - Focus on a particular project/feature/module/file
 
-   If they choose "Specific path", ask: "What's the path to audit?" (e.g., `apps/api/src/routes`)
+   If they choose "Specific path", ask: "What's the path to audit?" (e.g.,
+   `apps/api/src/routes`)
 
    **Question 3: Detail Level**
 
@@ -64,12 +69,14 @@ Analyze the codebase (or section of codebase) and output a comprehensive **Techn
 
    **Question 4: Specific Focus**
 
-   "Is there something specific you're looking for or concerned about? (optional)"
+   "Is there something specific you're looking for or concerned about?
+   (optional)"
    - Accept free-form answer or "No specific concerns"
 
 3. **Load domain-specific context:**
    - Based on the selected domain, load the appropriate rules file
-   - Use the standards and best practices from that rules file as your audit criteria
+   - Use the standards and best practices from that rules file as your audit
+     criteria
 
 4. **Conduct the audit:**
    - Examine the specified scope thoroughly
@@ -97,7 +104,8 @@ Analyze the codebase (or section of codebase) and output a comprehensive **Techn
 
 7. **Ask about follow-up:**
    - "Would you like me to:"
-     - "1. Create a Technical Specification to address these issues? Run `/spec`"
+     - "1. Create a Technical Specification to address these issues? Run
+       `/spec`"
      - "2. Explain any specific finding in more detail? Run `/explain`"
      - "3. Conduct another audit in a different domain?"
 

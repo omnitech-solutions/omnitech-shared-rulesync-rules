@@ -4,9 +4,12 @@ This directory contains example MCP configurations for different AI platforms.
 
 ## Files
 
-- **cursor-mcp.json** - Configuration for Cursor IDE (works with Claude, GPT, Gemini, Grok)
+- **cursor-mcp.json** - Configuration for Cursor IDE (works with Claude, GPT,
+  Gemini, Grok)
 - **windsurf-mcp.json** - Configuration for Windsurf IDE
 - **continue-mcp.json** - Configuration for Continue VS Code extension
+- **jetbrains-mcp.json** - Configuration for JetBrains IDEs (IntelliJ, PyCharm,
+  WebStorm, etc.)
 
 ## Usage
 
@@ -14,6 +17,14 @@ This directory contains example MCP configurations for different AI platforms.
 2. Merge it into your platform's MCP configuration
 3. Adjust environment variables as needed
 4. Restart your IDE/editor
+
+### JetBrains
+
+- Configuration location: `.idea/mcp.json` in your workspace
+- Works with all JetBrains IDEs that support MCP (IntelliJ IDEA, PyCharm,
+  WebStorm, etc.)
+- Uses `$PROJECT_DIR$` as the workspace root variable
+- Requires MCP plugin to be installed in the JetBrains IDE
 
 ## Platform-Specific Notes
 
@@ -50,4 +61,5 @@ Add API keys and other environment variables to the `env` object:
 }
 ```
 
-**Important:** Never commit API keys to version control. Use environment variables or secret management tools.
+**Important:** Never commit API keys to version control. Use environment
+variables or secret management tools.

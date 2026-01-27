@@ -13,7 +13,20 @@
   "scripts": {
     "setup-mcp": "tsx scripts/setup-mcp.ts",
     "setup-mcp:help": "tsx scripts/setup-mcp.ts --help",
-    "postinstall": "echo '✅ MCP setup script available via: pnpm setup-mcp'"
+    "setup-mcp:auto": "tsx scripts/auto-mcp-setup.ts",
+    "postinstall": "tsx scripts/auto-mcp-setup.ts",
+    "lint": "eslint . --ext .js,.ts,.jsx,.tsx --max-warnings=0",
+    "lint:fix": "eslint . --ext .js,.ts,.jsx,.tsx --fix",
+    "lint:check": "eslint . --ext .js,.ts,.jsx,.tsx --quiet",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "tsc --noEmit",
+    "typecheck:watch": "tsc --noEmit --watch",
+    "prepare": "husky install",
+    "precommit": "lint-staged",
+    "build": "pnpm typecheck && pnpm lint && pnpm format:check",
+    "dev": "pnpm typecheck:watch",
+    "clean": "rm -rf .eslintcache dist build *.tsbuildinfo"
   },
   "files": [
     "rules",
@@ -25,8 +38,26 @@
     "mcp-server"
   ],
   "devDependencies": {
+    "@commitlint/cli": "^17.0.0",
+    "@commitlint/config-conventional": "^17.0.0",
     "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "eslint-config-prettier": "^9.0.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^15.0.0",
+    "prettier": "^3.0.0",
     "tsx": "^4.7.0",
     "typescript": "^5.3.0"
+  },
+  "lint-staged": {
+    "*.{js,ts,jsx,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,yml,yaml,md}": [
+      "prettier --write"
+    ]
   }
 }

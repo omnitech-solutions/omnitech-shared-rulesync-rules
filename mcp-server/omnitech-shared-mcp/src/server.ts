@@ -2,7 +2,7 @@
 
 /**
  * Omnitech Shared MCP Server
- * 
+ *
  * Standalone MCP server for Rulesync configuration and tooling.
  * Provides tools for managing rules, commands, subagents, and MCP configuration.
  */
@@ -16,10 +16,6 @@ import {
 } from '@modelcontextprotocol/sdk/types.js';
 import * as fs from 'fs';
 import * as path from 'path';
-import { fileURLToPath } from 'url';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 class OmnitechSharedMCPServer {
   private server: Server;
@@ -35,7 +31,7 @@ class OmnitechSharedMCPServer {
         capabilities: {
           tools: {},
         },
-      }
+      },
     );
 
     // Determine project root (where rulesync rules are located)
@@ -58,7 +54,16 @@ class OmnitechSharedMCPServer {
                 category: {
                   type: 'string',
                   description: 'Filter by category (optional)',
-                  enum: ['architecture', 'code-quality', 'testing', 'security', 'documentation', 'performance', 'ui-ux', 'technology'],
+                  enum: [
+                    'architecture',
+                    'code-quality',
+                    'testing',
+                    'security',
+                    'documentation',
+                    'performance',
+                    'ui-ux',
+                    'technology',
+                  ],
                 },
               },
             },
@@ -139,7 +144,7 @@ class OmnitechSharedMCPServer {
     });
 
     // Handle tool calls
-    this.server.setRequestHandler(CallToolRequestSchema, async (request) => {
+    this.server.setRequestHandler(CallToolRequestSchema, async request => {
       const { name, arguments: args } = request.params;
 
       try {
@@ -186,29 +191,32 @@ class OmnitechSharedMCPServer {
     content: Array<{ type: string; text: string }>;
   }> {
     const rulesDir = path.join(this.projectRoot, '.rulesync', 'rules');
-    
+
     if (!fs.existsSync(rulesDir)) {
       return {
         content: [
           {
             type: 'text',
-            text: JSON.stringify({
-              error: 'Rules directory not found',
-              path: rulesDir,
-              hint: 'Run pnpm sync-rules to set up rules',
-            }, null, 2),
+            text: JSON.stringify(
+              {
+                error: 'Rules directory not found',
+                path: rulesDir,
+                hint: 'Run pnpm sync-rules to set up rules',
+              },
+              null,
+              2,
+            ),
           },
         ],
       };
     }
 
-    const files = fs.readdirSync(rulesDir)
-      .filter((file) => file.endsWith('.md'))
-      .map((file) => file.replace('.md', ''));
+    const files = fs
+      .readdirSync(rulesDir)
+      .filter(file => file.endsWith('.md'))
+      .map(file => file.replace('.md', ''));
 
-    const filtered = category
-      ? files.filter((file) => file.includes(category))
-      : files;
+    const filtered = category ? files.filter(file => file.includes(category)) : files;
 
     return {
       content: [
@@ -221,7 +229,7 @@ class OmnitechSharedMCPServer {
               category: category || 'all',
             },
             null,
-            2
+            2,
           ),
         },
       ],
@@ -259,18 +267,23 @@ class OmnitechSharedMCPServer {
         content: [
           {
             type: 'text',
-            text: JSON.stringify({
-              error: 'Commands directory not found',
-              path: commandsDir,
-            }, null, 2),
+            text: JSON.stringify(
+              {
+                error: 'Commands directory not found',
+                path: commandsDir,
+              },
+              null,
+              2,
+            ),
           },
         ],
       };
     }
 
-    const files = fs.readdirSync(commandsDir)
-      .filter((file) => file.endsWith('.md'))
-      .map((file) => file.replace('.md', ''));
+    const files = fs
+      .readdirSync(commandsDir)
+      .filter(file => file.endsWith('.md'))
+      .map(file => file.replace('.md', ''));
 
     return {
       content: [
@@ -282,7 +295,7 @@ class OmnitechSharedMCPServer {
               count: files.length,
             },
             null,
-            2
+            2,
           ),
         },
       ],
@@ -320,18 +333,23 @@ class OmnitechSharedMCPServer {
         content: [
           {
             type: 'text',
-            text: JSON.stringify({
-              error: 'Subagents directory not found',
-              path: subagentsDir,
-            }, null, 2),
+            text: JSON.stringify(
+              {
+                error: 'Subagents directory not found',
+                path: subagentsDir,
+              },
+              null,
+              2,
+            ),
           },
         ],
       };
     }
 
-    const files = fs.readdirSync(subagentsDir)
-      .filter((file) => file.endsWith('.md'))
-      .map((file) => file.replace('.md', ''));
+    const files = fs
+      .readdirSync(subagentsDir)
+      .filter(file => file.endsWith('.md'))
+      .map(file => file.replace('.md', ''));
 
     return {
       content: [
@@ -343,7 +361,7 @@ class OmnitechSharedMCPServer {
               count: files.length,
             },
             null,
-            2
+            2,
           ),
         },
       ],
@@ -353,7 +371,12 @@ class OmnitechSharedMCPServer {
   private async readSubagent(subagentName: string): Promise<{
     content: Array<{ type: string; text: string }>;
   }> {
-    const subagentPath = path.join(this.projectRoot, '.rulesync', 'subagents', `${subagentName}.md`);
+    const subagentPath = path.join(
+      this.projectRoot,
+      '.rulesync',
+      'subagents',
+      `${subagentName}.md`,
+    );
 
     if (!fs.existsSync(subagentPath)) {
       throw new Error(`Subagent file not found: ${subagentName}.md`);
@@ -388,7 +411,7 @@ class OmnitechSharedMCPServer {
                 path: configFile,
               },
               null,
-              2
+              2,
             ),
           },
         ],
@@ -426,7 +449,7 @@ class OmnitechSharedMCPServer {
                 servers: Object.keys(config.mcpServers || {}),
               },
               null,
-              2
+              2,
             ),
           },
         ],
@@ -442,7 +465,7 @@ class OmnitechSharedMCPServer {
                 error: error instanceof Error ? error.message : String(error),
               },
               null,
-              2
+              2,
             ),
           },
         ],
@@ -458,13 +481,14 @@ class OmnitechSharedMCPServer {
 }
 
 // Run server if called directly
-const isMainModule = import.meta.url === `file://${process.argv[1]}` || 
-                     process.argv[1]?.includes('server.ts') ||
-                     process.argv[1]?.includes('server.js');
+const isMainModule =
+  import.meta.url === `file://${process.argv[1]}` ||
+  process.argv[1]?.includes('server.ts') ||
+  process.argv[1]?.includes('server.js');
 
 if (isMainModule) {
   const server = new OmnitechSharedMCPServer();
-  server.run().catch((error) => {
+  server.run().catch(error => {
     console.error('Fatal error:', error);
     process.exit(1);
   });

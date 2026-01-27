@@ -3,14 +3,18 @@ targets:
   - '*'
 description: ''
 ---
+
 # CODE Task
 
-**Persona:** Execute this task as the `@developer` subagent (Devin, Staff Engineer 💻).  
-Load the persona characteristics from `.rulesync/subagents/developer.md` before proceeding.
+**Persona:** Execute this task as the `@developer` subagent (Devin, Staff
+Engineer 💻).  
+Load the persona characteristics from `.rulesync/subagents/developer.md` before
+proceeding.
 
 **Required Context:** Review these rules before proceeding:
 
-- `.rulesync/rules/architecture.md` - Architectural patterns and component structure
+- `.rulesync/rules/architecture.md` - Architectural patterns and component
+  structure
 - `.rulesync/rules/code-quality.md` - Code quality standards and conventions
 - `.rulesync/rules/testing.md` - Testing requirements and patterns
 - `.rulesync/rules/documentation.md` - Documentation standards
@@ -23,21 +27,28 @@ Load the persona characteristics from `.rulesync/subagents/developer.md` before 
 
 ## Task Objective
 
-Implement a **Technical Specification** (from `/docs/specs`) with production-ready code, comprehensive test coverage, and thorough documentation. Mark the spec as complete and optionally create a draft pull request.
+Implement a **Technical Specification** (from `/docs/specs`) with
+production-ready code, comprehensive test coverage, and thorough documentation.
+Mark the spec as complete and optionally create a draft pull request.
 
 ---
 
 ## Task Instructions
 
 1. **Read the Technical Specification:**
-   - Ask: "What's the path to the Technical Specification?" (e.g., `/docs/specs/magic-link-login.md`)
-   - Parse its contents to understand requirements, architecture, data models, APIs, testing requirements
+   - Ask: "What's the path to the Technical Specification?" (e.g.,
+     `/docs/specs/magic-link-login.md`)
+   - Parse its contents to understand requirements, architecture, data models,
+     APIs, testing requirements
    - Read any referenced Product Brief for additional context
-   - Identify which technologies are involved (GraphQL, React, Vue, Rails, Laravel, etc.)
+   - Identify which technologies are involved (GraphQL, React, Vue, Rails,
+     Laravel, etc.)
 
 2. **Ask clarification questions:**
-   1. "I've reviewed the spec. Should I proceed with full implementation including tests and documentation?"
-   2. "Are there any specific parts of the spec you'd like me to prioritize or implement first?"
+   1. "I've reviewed the spec. Should I proceed with full implementation
+      including tests and documentation?"
+   2. "Are there any specific parts of the spec you'd like me to prioritize or
+      implement first?"
    3. "Should I create a feature branch for this work?"
 
 3. **Create feature branch (if approved):**
@@ -142,7 +153,8 @@ Implement a **Technical Specification** (from `/docs/specs`) with production-rea
    - ℹ️ Minor style warnings (<10 warnings)
    - ℹ️ Opportunity for optimization noted
 
-   If any checks fail with P0 issues, fix them before proceeding to the next step.
+   If any checks fail with P0 issues, fix them before proceeding to the next
+   step.
 
 8. **Update the Technical Specification:**
    - Update `Status` field from "Draft" to "✅ Completed"

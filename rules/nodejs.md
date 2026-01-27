@@ -14,6 +14,7 @@ cursor:
     - '**/*.js'
     - '**/*.mjs'
 ---
+
 # Node.js Rules
 
 ## Node.js Best Practices
