@@ -349,9 +349,9 @@ async function processOrder(orderId: string) {
 
 ## Related Documentation
 
-- `.rulesync/rules/graphql.md` - GraphQL-specific patterns
-- `.rulesync/rules/react.md` - React architecture patterns
-- `.rulesync/rules/vue.md` - Vue.js architecture patterns
-- `.rulesync/rules/rails.md` - Rails architecture patterns
-- `.rulesync/rules/laravel.md` - Laravel architecture patterns
-- `.rulesync/rules/nodejs.md` - Node.js architecture patterns
+- `.rulesync/rules/stacks/graphql/overview.md` - GraphQL-specific patterns
+- `.rulesync/rules/stacks/react/overview.md` - React architecture patterns
+- `.rulesync/rules/stacks/vue/overview.md` - Vue.js architecture patterns
+- `.rulesync/rules/stacks/rails/overview.md` - Rails architecture patterns
+- `.rulesync/rules/stacks/laravel/overview.md` - Laravel architecture patterns
+- `.rulesync/rules/stacks/nodejs/overview.md` - Node.js architecture patterns

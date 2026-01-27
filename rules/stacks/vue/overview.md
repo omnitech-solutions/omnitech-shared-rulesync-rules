@@ -3,6 +3,7 @@ targets:
   - '*'
 root: false
 description: Vue.js best practices and patterns
+stack: vue
 globs:
   - '**/*.vue'
   - '**/components/**'
@@ -301,5 +302,5 @@ const localCount = computed({
 ## Related Documentation
 
 - `.rulesync/rules/ui-ux.md` - UI/UX patterns
-- `.rulesync/rules/typescript.md` - TypeScript patterns
+- `.rulesync/rules/stacks/typescript/overview.md` - TypeScript patterns
 - [Vue.js Documentation](https://vuejs.org/)

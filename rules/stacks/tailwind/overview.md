@@ -3,6 +3,7 @@ targets:
   - '*'
 root: false
 description: Tailwind CSS best practices and patterns
+stack: tailwind
 globs:
   - '**/*.tsx'
   - '**/*.jsx'

@@ -66,10 +66,10 @@ Example `sync-rules` script in `package.json`:
 
 ## Contents
 
-- **rules/** - Coding standards and best practices (architecture, code-quality,
-  database, GraphQL, React, Vue, Rails, Laravel, etc.) plus DDD-specific
-  reference guides (`ddd-architecture.md`, `ddd-code-quality.md`,
-  `ddd-testing.md`)
+- **rules/** - Coding standards and best practices. Shared, cross-stack rules
+  live at the root; stack-specific rules live under `rules/stacks/` (React, Vue,
+  Rails, Laravel, PHP, etc.) plus DDD-specific reference guides
+  (`ddd-architecture.md`, `ddd-code-quality.md`, `ddd-testing.md`)
 - **commands/** - Slash commands for AI agents (brief, spec, code, test, review,
   etc.)
 - **subagents/** - Agent personas (architect, developer, product-owner, qa)

@@ -3,6 +3,7 @@ targets:
   - '*'
 root: false
 description: Node.js best practices and patterns
+stack: nodejs
 globs:
   - '**/*.js'
   - '**/*.mjs'

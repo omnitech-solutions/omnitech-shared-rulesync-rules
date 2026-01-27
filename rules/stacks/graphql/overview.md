@@ -3,6 +3,7 @@ targets:
   - '*'
 root: false
 description: GraphQL and Federated GraphQL best practices
+stack: graphql
 globs:
   - '**/*.graphql'
   - '**/*.gql'

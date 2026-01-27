@@ -3,6 +3,7 @@ targets:
   - '*'
 root: false
 description: TypeScript best practices and patterns
+stack: typescript
 globs:
   - '**/*.ts'
   - '**/*.tsx'

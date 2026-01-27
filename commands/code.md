@@ -62,34 +62,34 @@ Mark the spec as complete and optionally create a draft pull request.
    - Create schema definitions in appropriate service
    - Define resolvers following federation patterns
    - Add directives and federation keys
-   - Follow patterns from `.rulesync/rules/graphql.md`
+   - Follow patterns from `.rulesync/rules/stacks/graphql/overview.md`
 
    **For React:**
-   - Follow component patterns from `.rulesync/rules/react.md`
-   - Use hooks appropriately (see `.rulesync/rules/react-hooks.md`)
+   - Follow component patterns from `.rulesync/rules/stacks/react/overview.md`
+   - Use hooks appropriately (see `.rulesync/rules/stacks/react/hooks.md`)
    - Implement Server Components where applicable
    - Follow patterns from `.rulesync/rules/ui-ux.md`
 
    **For Vue.js:**
    - Use Composition API patterns
-   - Follow component structure from `.rulesync/rules/vue.md`
+   - Follow component structure from `.rulesync/rules/stacks/vue/overview.md`
    - Implement proper state management
    - Follow patterns from `.rulesync/rules/ui-ux.md`
 
    **For Ruby on Rails:**
-   - Follow MVC patterns from `.rulesync/rules/rails.md`
+   - Follow MVC patterns from `.rulesync/rules/stacks/rails/overview.md`
    - Use ActiveRecord conventions
    - Implement proper service objects
    - Follow RESTful conventions
 
    **For Laravel (PHP 8.x):**
-   - Follow MVC patterns from `.rulesync/rules/laravel.md`
+   - Follow MVC patterns from `.rulesync/rules/stacks/laravel/overview.md`
    - Use Eloquent ORM conventions
    - Implement proper service classes
    - Follow RESTful conventions
 
    **For Node.js:**
-   - Follow patterns from `.rulesync/rules/nodejs.md`
+   - Follow patterns from `.rulesync/rules/stacks/nodejs/overview.md`
    - Use appropriate framework (Express, Fastify, etc.)
    - Implement proper middleware
    - Follow async/await patterns

@@ -138,6 +138,6 @@ function UserList() {
 
 ## Related Documentation
 
-- `.rulesync/rules/react.md` - React patterns
-- `.rulesync/rules/vue.md` - Vue.js patterns
-- `.rulesync/rules/tailwind.md` - Tailwind CSS patterns
+- `.rulesync/rules/stacks/react/overview.md` - React patterns
+- `.rulesync/rules/stacks/vue/overview.md` - Vue.js patterns
+- `.rulesync/rules/stacks/tailwind/overview.md` - Tailwind CSS patterns
