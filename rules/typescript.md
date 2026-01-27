@@ -17,7 +17,7 @@ cursor:
 
 ## TypeScript Best Practices
 
-- **Strict Mode:** Always use strict TypeScript configuration
+- **Strict Mode:** Prefer strict TypeScript configuration
 - **No Any Types:** Avoid `any`, use `unknown` and type guards instead
 - **Type Inference:** Leverage TypeScript's type inference where appropriate
 - **Type Definitions:** Define interfaces and types for all data structures

@@ -64,6 +64,18 @@ jobs/listeners, integrations, and adapters.
 - Must remain thin: no business rules, no handler chaining, no aggregates in
   responses.
 
+---
+
+## Boundary Rules (Do / Don't)
+
+- **Domain:** No framework imports, no persistence, no network calls.
+- **Application:** Orchestrates use cases; does not contain business rules.
+- **Infrastructure:** Adapts frameworks/IO; never owns rules or decisions.
+- **Controllers/Jobs/Listeners:** Translate input/output and delegate to
+  handlers; no transactions or business logic.
+- **Integrations:** Anti-corruption layers translate external models to domain
+  language; never embed business rules.
+
 ## Dependency Matrix
 
 | From ↓ / To →      | **Domain** | **Application** |  **Infrastructure**  |
@@ -109,6 +121,17 @@ jobs/listeners, integrations, and adapters.
 - Interface lives in Domain; implementation in Infrastructure.
 - Operate on aggregates (save/find whole aggregates), expose transaction
   helpers, and publish events post-commit.
+
+### Commands / Queries
+
+- **Commands:** Mutate state; validate input up front; return results/events.
+- **Queries:** Read-only; no side effects; can return read models/DTOs.
+- **Handlers:** Orchestrate one use case; do not call other handlers.
+
+### Policies
+
+- Live in the Domain layer; answer authorization in business terms.
+- Do not perform persistence or framework calls.
 
 ### Factories & Policies
 

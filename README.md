@@ -90,6 +90,7 @@ Example `sync-rules` script in `package.json`:
 - **Ruby on Rails** - MVC patterns, ActiveRecord, conventions
 - **Laravel (PHP 8.x)** - Eloquent, service patterns, conventions
 - **Node.js** - Express, middleware, async patterns
+- **PHP (8.x)** - Language conventions, error handling, and data access patterns
 
 ## Supported AI Platforms
 

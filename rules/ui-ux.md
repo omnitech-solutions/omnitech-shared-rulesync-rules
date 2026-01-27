@@ -19,15 +19,14 @@ cursor:
 
 ## UI/UX Best Practices
 
-- **Accessibility First:** Ensure WCAG 2.1 AA compliance
-- **Responsive Design:** Test across mobile (320px+), tablet (768px+), and
-  desktop (1024px+)
-- **Loading States:** Always show loading indicators for async operations
+- **Accessibility First:** Meet applicable accessibility standards (e.g., WCAG)
+- **Responsive Design:** Test across common device sizes and orientations
+- **Loading States:** Provide clear feedback during async operations
 - **Error States:** Provide clear, actionable error messages
 - **Consistent Design:** Use design system components and patterns
 - **Keyboard Navigation:** All interactive elements must be keyboard accessible
-- **Touch Targets:** Minimum 44x44px tap targets for mobile
-- **Color Contrast:** Ensure sufficient contrast ratios (4.5:1 for text)
+- **Touch Targets:** Ensure tap targets are comfortably touchable
+- **Color Contrast:** Ensure sufficient contrast for readability
 - **Focus States:** Provide visible focus indicators
 - **Semantic HTML:** Use proper HTML elements for structure
 

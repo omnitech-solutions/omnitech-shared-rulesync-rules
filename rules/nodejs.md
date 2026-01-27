@@ -22,8 +22,8 @@ cursor:
 - **Async/Await:** Use async/await instead of callbacks
 - **Error Handling:** Always handle errors in async operations
 - **Environment Variables:** Use environment variables for configuration
-- **Logging:** Use structured logging (Winston, Pino)
-- **Process Management:** Use PM2 or similar for production
+- **Logging:** Use structured logging
+- **Process Management:** Use a process manager appropriate to the deployment
 - **Security:** Keep dependencies updated, use security scanning
 - **Performance:** Use clustering for CPU-intensive tasks
 - **Middleware:** Use middleware for cross-cutting concerns

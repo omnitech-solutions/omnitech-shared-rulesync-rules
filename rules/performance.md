@@ -21,7 +21,7 @@ cursor:
 - **Code Splitting:** Lazy load routes and components
 - **Bundle Size:** Monitor and optimize bundle sizes
 - **Image Optimization:** Use appropriate image formats and sizes
-- **API Response Times:** Target <200ms for API responses
+- **API Response Times:** Define and measure response-time budgets
 - **Database Queries:** Optimize with proper indexes and query patterns
 - **Background Jobs:** Use queues for heavy processing
 - **Connection Pooling:** Use connection pools for database connections
@@ -108,9 +108,8 @@ import _ from 'lodash'; // ❌ BAD: Import entire library
 
 ### Response Time Targets
 
-- **Simple queries:** <50ms
-- **Complex queries:** <200ms
-- **Mutations:** <500ms
+- Set SLOs per endpoint class (read vs write, user-facing vs batch)
+- Monitor p95/p99 latencies and regressions
 
 ### Pagination
 

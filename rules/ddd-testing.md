@@ -21,6 +21,7 @@ cursor:
   orchestration, Infrastructure contracts.
 - Keep OAuth or external integration tests offline by fully faking providers and
   signing tokens locally.
+- Prefer business-language test names that describe rules, not mechanics.
 
 ## Test Pyramid
 
@@ -58,6 +59,8 @@ cursor:
 - Assert JSON/resource shape and event publication, not raw ORM fields.
 - Group tests by layer (`tests/Unit`, `tests/Integration/Infrastructure`,
   `tests/Feature`).
+- Add contract tests for integrations using fakes or stubs that mirror real
+  provider payloads.
 
 ## Test Data & Determinism
 
@@ -66,6 +69,7 @@ cursor:
 - Freeze time for expiry/authorization flows; inject deterministic UUIDs or IDs
   where needed.
 - Avoid randomness, network calls, and real tokens.
+- Isolate shared state; tests must be order-independent.
 
 ## OAuth / OIDC Testing
 

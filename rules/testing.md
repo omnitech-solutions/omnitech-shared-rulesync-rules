@@ -22,11 +22,11 @@ cursor:
 - **Test Behavior, Not Implementation:** Focus on what code does, not how
 - **Arrange-Act-Assert:** Structure tests clearly with setup, execution,
   verification
-- **One Assertion Per Test:** Keep tests focused on a single behavior
+- **Focused Assertions:** Keep tests centered on a single behavior
 - **Descriptive Names:** Test names should read like specifications
 - **Test Isolation:** Each test should be independent and runnable alone
-- **Fast Tests:** Unit tests should run in milliseconds
-- **Coverage Targets:** Aim for 80%+ coverage on critical paths
+- **Fast Tests:** Keep unit tests fast to enable tight feedback loops
+- **Coverage Targets:** Set coverage goals based on risk and criticality
 - **Mock External Dependencies:** Isolate units under test
 - **Test Edge Cases:** Empty inputs, null values, boundary conditions
 - **Integration Tests:** Test interactions between components
@@ -169,24 +169,13 @@ jest.mock('axios', () => ({
 
 ### Coverage Targets
 
-- **Critical Business Logic:** 90%+
-- **API Endpoints:** 80%+
-- **Utility Functions:** 80%+
-- **Components:** 70%+
-- **Overall:** 80%+
+- Prioritize high-risk and high-change areas
+- Track trends and prevent regressions
+- Balance coverage with meaningful assertions
 
 ### Coverage Reports
 
-```bash
-# TypeScript/Jest
-npm test -- --coverage
-
-# PHP/PHPUnit
-phpunit --coverage-html coverage/
-
-# Ruby/RSpec
-rspec --format documentation --format html --out coverage.html
-```
+- Use your test runner’s coverage tooling and publish reports in CI
 
 ---
 

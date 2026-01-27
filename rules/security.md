@@ -212,9 +212,12 @@ app.use(csrfProtection);
 ```typescript
 import rateLimit from 'express-rate-limit';
 
+const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000;
+const RATE_LIMIT_MAX = 100;
+
 const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // Limit each IP to 100 requests per windowMs
+  windowMs: RATE_LIMIT_WINDOW_MS,
+  max: RATE_LIMIT_MAX,
 });
 
 app.use('/api/', limiter);

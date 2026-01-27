@@ -20,11 +20,11 @@ cursor:
 - **SOLID Principles:** Apply Single Responsibility, Open/Closed, Liskov
   Substitution, Interface Segregation, Dependency Inversion
 - **Meaningful Names:** Use descriptive variable, function, and class names
-- **Small Functions:** Keep functions focused and under 50 lines when possible
-- **Error Handling:** Always handle errors explicitly
+- **Small Functions:** Keep functions focused and refactor when they do too much
+- **Error Handling:** Handle errors explicitly and contextually
 - **Documentation:** Document public APIs and complex logic
-- **Code Formatting:** Use consistent formatting (Prettier, RuboCop, Pint)
-- **Linting:** Use ESLint, RuboCop, PHPStan to catch issues early
+- **Code Formatting:** Use the formatter configured for the repo
+- **Linting:** Use the repo’s static analysis tooling to catch issues early
 - **No Dead Code:** Remove unused code, don't comment it out
 
 ---

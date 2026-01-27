@@ -21,12 +21,43 @@ cursor:
 - **RESTful Routes:** Use RESTful routing conventions
 - **Eloquent ORM:** Use Eloquent query methods, avoid raw SQL
 - **Service Classes:** Extract complex business logic into service classes
-- **Form Requests:** Use form requests for validation
+- **Validation:** Use Form Requests for MVC-only apps; for DDD, validate in
+  commands
 - **N+1 Queries:** Use `with()` or `load()` to prevent N+1 queries
 - **Type Hints:** Use PHP 8.x type hints and return types
 - **Testing:** Write tests using PHPUnit
 - **Security:** Use Laravel's built-in security features
 - **Performance:** Use database indexes, caching, and queues
+- **Layer Isolation:** Keep Laravel in Infrastructure; Domain/Application stay
+  framework-agnostic
+
+---
+
+## Framework Layer Isolation (DDD)
+
+- Laravel-specific code lives in Infrastructure (controllers, routes, models,
+  jobs)
+- Domain and Application must not import framework types
+- Bind interfaces to implementations in service providers
+
+```php
+<?php
+
+namespace App\Providers;
+
+use Illuminate\Support\ServiceProvider;
+
+final class BillingServiceProvider extends ServiceProvider
+{
+    public function register(): void
+    {
+        $this->app->bind(
+            BillingRepository::class,
+            EloquentBillingRepository::class,
+        );
+    }
+}
+```
 
 ---
 
@@ -159,6 +190,44 @@ class UserCreationService
 
 ---
 
+## Controller Pattern (DDD)
+
+- Controllers are thin: validate input, build commands, call handlers, return
+  resources
+- No business rules or transactions in controllers
+
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Application\Commands\ActivateUserCommand;
+use App\Application\Handlers\ActivateUserHandler;
+use App\Http\Resources\UserResource;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+
+final class ActivateUserController extends Controller
+{
+    public function __construct(private ActivateUserHandler $handler)
+    {
+    }
+
+    public function __invoke(Request $request, string $userId): JsonResponse
+    {
+        $validated = $request->validate([
+            'reason' => ['required', 'string'],
+        ]);
+        $command = ActivateUserCommand::fromArray($userId, $validated);
+        $user = $this->handler->handle($command);
+
+        return UserResource::make($user)->response();
+    }
+}
+```
+
+---
+
 ## Eloquent Patterns
 
 ### Query Methods
@@ -212,7 +281,36 @@ User::active()->recent()->get();
 
 ---
 
-## Form Requests
+## Validation (DDD-Friendly)
+
+- Validate at the edge (controller/request), then construct commands from
+  validated data
+- Keep Application/Domain free of framework-specific request types
+- Use Form Requests when you are not using commands/handlers
+
+```php
+<?php
+
+namespace App\Application\Commands;
+
+final class UpdateItemsCommand
+{
+    private function __construct(
+        public readonly string $userId,
+        public readonly array $items,
+    ) {}
+
+    /** @param array{items: array<int, array{item_id: string, quantity: int}>} $data */
+    public static function fromArray(string $userId, array $data): self
+    {
+        return new self($userId, $data['items']);
+    }
+}
+```
+
+---
+
+## Form Requests (MVC-Only)
 
 ```php
 <?php
@@ -242,6 +340,81 @@ class StoreUserRequest extends FormRequest
         return [
             'email.unique' => 'This email is already registered.',
             'password.min' => 'Password must be at least 8 characters.',
+        ];
+    }
+}
+```
+
+---
+
+## Service Provider Pattern
+
+- Register routes, migrations, and bindings in providers
+- Bind interfaces to concrete implementations
+
+```php
+<?php
+
+namespace App\Providers;
+
+use Illuminate\Support\ServiceProvider;
+
+final class UserServiceProvider extends ServiceProvider
+{
+    public function boot(): void
+    {
+        $this->loadRoutesFrom(__DIR__.'/../routes/api.php');
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+    }
+
+    public function register(): void
+    {
+        $this->app->bind(UserRepository::class, EloquentUserRepository::class);
+    }
+}
+```
+
+---
+
+## Migrations & Schema
+
+- Use stable, non-sequential identifiers for aggregates (UUID/ULID per team
+  standards)
+- Add indexes for hot query columns
+- Use soft deletes for user-generated aggregates where recovery is required
+
+```php
+Schema::create('users', function (Blueprint $table) {
+    $table->uuid('id')->primary();
+    $table->string('email')->unique();
+    $table->timestamps();
+    $table->softDeletes();
+    $table->index(['email']);
+});
+```
+
+---
+
+## API Resources
+
+- Use API Resources to shape responses
+- Keep domain models out of HTTP responses
+
+```php
+<?php
+
+namespace App\Http\Resources;
+
+use Illuminate\Http\Resources\Json\JsonResource;
+
+final class UserResource extends JsonResource
+{
+    public function toArray($request): array
+    {
+        return [
+            'id' => $this->id,
+            'email' => $this->email,
+            'created_at' => $this->created_at,
         ];
     }
 }
@@ -349,6 +522,27 @@ class SendWelcomeEmail implements ShouldQueue
 
 // Usage
 SendWelcomeEmail::dispatch($user);
+```
+
+---
+
+## Jobs & Listeners (DDD)
+
+- Jobs do async work and call handlers/services
+- Listeners should be thin and may dispatch jobs
+
+```php
+final class ProcessUserActivationJob implements ShouldQueue
+{
+    use Queueable;
+
+    public function __construct(private string $userId) {}
+
+    public function handle(ActivateUserHandler $handler): void
+    {
+        $handler->handle(new ActivateUserCommand($this->userId));
+    }
+}
 ```
 
 ---

@@ -250,10 +250,12 @@ type Error {
 ```typescript
 import depthLimit from 'graphql-depth-limit';
 
+const MAX_QUERY_DEPTH = 10;
+
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  validationRules: [depthLimit(10)],
+  validationRules: [depthLimit(MAX_QUERY_DEPTH)],
 });
 ```
 
@@ -262,7 +264,8 @@ const server = new ApolloServer({
 ```typescript
 import { createComplexityLimitRule } from 'graphql-query-complexity';
 
-const complexityRule = createComplexityLimitRule(1000, {
+const MAX_QUERY_COMPLEXITY = 1000;
+const complexityRule = createComplexityLimitRule(MAX_QUERY_COMPLEXITY, {
   scalarCost: 1,
   objectCost: 10,
   listFactor: 10,
@@ -513,9 +516,12 @@ const resolvers: Resolvers = {
 ```typescript
 import rateLimit from 'express-rate-limit';
 
+const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000;
+const RATE_LIMIT_MAX = 100;
+
 const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // Limit each IP to 100 requests per windowMs
+  windowMs: RATE_LIMIT_WINDOW_MS,
+  max: RATE_LIMIT_MAX,
 });
 
 app.use('/graphql', limiter);
