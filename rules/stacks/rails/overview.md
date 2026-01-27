@@ -2,52 +2,77 @@
 targets:
   - '*'
 root: false
-description: Ruby on Rails core conventions and architecture
-summary: Rails conventions, MVC boundaries, and domain boundaries
+description: Rails core architecture and application contract
+summary: Non-negotiable Rails standards and system-wide guarantees
 stack: rails
 globs:
   - '**/*.rb'
   - '**/app/**'
   - '**/config/**'
 cursor:
-  description: Ruby on Rails core conventions and architecture
+  description: Rails architectural overview
   globs:
     - '**/*.rb'
 ---
 
 # Rails Overview Rules
 
-## Core Principles
+> **Authority**
+>
+> Governed by: `.rulesync/rules/stacks/rails/non-negotiables.md`
 
-- **Convention Over Configuration:** Follow Rails defaults unless there’s a
-  strong reason not to.
-- **Thin Controllers:** Controllers orchestrate requests; domain logic lives in
-  models/services.
-- **Fat Models, Lean Views:** Keep business behavior in models/services, not
-  templates.
-- **Clear Boundaries:** Separate concerns across models, services, policies, and
-  jobs.
-- **Consistency:** Keep naming and folder structure aligned with Rails
-  conventions.
+This document defines the **baseline contract** for Rails applications. All
+other Rails rules **specialize or elaborate** on these guarantees.
 
 ---
 
-## Layer Responsibilities
+## Rule Strength
 
-- **Controllers:** Validate input, authorize, and delegate.
-- **Models:** Encapsulate persistence + core business behavior.
-- **Services:** Orchestrate workflows that span models.
-- **Jobs:** Async work only; call services.
+- **MUST** — Required. Violations block merge.
+- **SHOULD** — Default expectation.
+- **MAY** — Optional guidance.
 
 ---
 
-## Related Rules
+## Core Contract
 
-- `.rulesync/rules/stacks/rails/controllers.md`
-- `.rulesync/rules/stacks/rails/models.md`
-- `.rulesync/rules/stacks/rails/services.md`
-- `.rulesync/rules/stacks/rails/persistence.md`
-- `.rulesync/rules/stacks/rails/routing.md`
-- `.rulesync/rules/stacks/rails/jobs.md`
-- `.rulesync/rules/stacks/rails/testing.md`
-- `.rulesync/rules/stacks/rails/security.md`
+- **Rails as Infrastructure (MUST)**  
+  Rails provides delivery mechanisms, not domain structure.
+
+- **Explicit Boundaries (MUST)**  
+  Routing → Controllers → Services → Domain → Persistence.
+
+- **Replaceability (MUST)**  
+  Domain and application logic must not depend on Rails APIs.
+
+- **Predictability (MUST)**  
+  Validation, authorization, transactions, and side effects must be explicit.
+
+---
+
+## Execution Model
+
+- **Thin Controllers (MUST)**
+- **Service-Driven Workflows (MUST)**
+- **No Hidden Work (MUST)** — callbacks may not hide behavior
+
+---
+
+## Evolution
+
+- **Additive Change (MUST)**
+- **Consistency (MUST)** across routing, errors, and responses
+
+---
+
+## Authoritative Index
+
+- non-negotiables.md
+- controllers.md
+- models.md
+- services.md
+- persistence.md
+- routing.md
+- jobs.md
+- security.md
+- testing.md

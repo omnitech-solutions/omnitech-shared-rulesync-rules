@@ -2,50 +2,35 @@
 targets:
   - '*'
 root: false
-description: Rails model rules
-summary: Validations, associations, domain logic placement
+description: Rails model discipline
+summary: Entity behavior, validations, and associations
 stack: rails
 globs:
   - '**/app/models/**'
-  - '**/models/**'
 cursor:
-  description: Rails model rules
+  description: Rails model discipline
   globs:
     - '**/app/models/**'
 ---
 
 # Rails Model Rules
 
-## Model Behavior
+## Scope
 
-- Keep domain behavior on models when it naturally belongs to the entity.
-- Prefer intention‑revealing methods over attribute mutation.
-- Avoid bloated models by extracting services or concerns.
-- Keep data integrity with validations and DB constraints.
-
-```ruby
-class Subscription < ApplicationRecord
-  enum status: { draft: 0, active: 1, paused: 2 }
-
-  def activate!
-    raise AlreadyActive if active?
-    update!(status: :active)
-  end
-end
-```
+- **MUST** represent a single aggregate or entity.
+- **MUST** expose intention-revealing behavior.
+- **MUST NOT** coordinate workflows.
 
 ---
 
 ## Validations & Callbacks
 
-- Use validations for data integrity and invariants.
-- Avoid heavy logic in callbacks; keep callbacks predictable.
-- Prefer explicit lifecycle methods over deep callback chains.
+- **MAY** use validations for user-level guarantees.
+- **MUST NOT** rely on callbacks for orchestration.
 
 ---
 
 ## Associations
 
-- Prefer explicit associations and `dependent:` behavior.
-- Avoid implicit data access chains that hide N+1 issues.
-- Use `inverse_of` where it improves consistency.
+- **MUST** avoid deep association chains.
+- **MUST** explicitly manage eager loading.
