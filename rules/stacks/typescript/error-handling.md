@@ -17,31 +17,32 @@ cursor:
 
 # TypeScript Error Handling Rules
 
-## Error Modeling
+## Error Taxonomy
 
-- Prefer typed error objects or result types over throwing strings.
-- Keep error types stable and well-documented.
-- Avoid exposing infrastructure errors to domain callers.
-
----
-
-## Boundaries
-
-- Translate low-level errors at module boundaries.
-- Preserve root cause context without leaking sensitive details.
-- Ensure error handling aligns with public API contracts.
+- MUST distinguish between validation, authorization, and system errors.
+- MUST use structured error shapes with stable codes.
+- SHOULD map errors to user-safe messages at boundaries.
 
 ---
 
-## Recovery
+## Handling Strategy
 
-- Make failure modes explicit in return types.
-- Avoid catching errors without handling or rethrowing with context.
+- MUST avoid swallowing errors silently.
+- MUST log unexpected failures with context.
+- SHOULD propagate typed errors rather than raw exceptions.
+- SHOULD provide fallbacks for recoverable failures.
+
+---
+
+## User Experience
+
+- MUST avoid exposing sensitive details in errors.
+- SHOULD include actionable guidance when possible.
+- MAY include retry hints for transient failures.
 
 ---
 
 ## Related Rules
 
-- `.rulesync/rules/code-quality.md`
 - `.rulesync/rules/stacks/typescript/overview.md`
-- `.rulesync/rules/stacks/typescript/runtime-validation.md`
+- `.rulesync/rules/stacks/typescript/error-handling.md`

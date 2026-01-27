@@ -11,25 +11,38 @@ globs:
   - '**/*.js'
 ---
 
-# Node.js HTTP / API Rules
+# Node.js HTTP API Rules
 
-## Boundary Responsibilities
+> Authority Notice
+>
+> This stack is governed by `.rulesync/rules/stacks/nodejs/non-negotiables.md`.
+> If any rule here conflicts with a non-negotiable, the non-negotiable wins.
 
-- **MUST** validate and normalize all external input at the boundary.
-- **MUST** map transport concerns to application commands.
-- **MUST NOT** leak request/response objects into domain logic.
+## Request Handling
 
----
-
-## Responses & Errors
-
-- **MUST** return stable, documented response shapes.
-- **MUST** map domain errors to explicit HTTP errors.
-- **MUST NOT** leak stack traces or internals.
+- MUST validate inputs and headers at the edge.
+- MUST enforce authentication and authorization per request.
+- SHOULD support idempotency for write operations where feasible.
 
 ---
 
-## Safety & Idempotency
+## Response Design
 
-- **MUST NOT** perform side effects in GET requests.
-- **SHOULD** make retriable operations idempotent.
+- MUST use consistent response envelopes and error shapes.
+- MUST return correct HTTP status codes.
+- SHOULD document pagination, filtering, and sorting behavior.
+
+---
+
+## Compatibility
+
+- MUST avoid breaking changes without a migration plan.
+- SHOULD version APIs when public consumers exist.
+
+---
+
+## Related Rules
+
+- `.rulesync/rules/stacks/nodejs/overview.md`
+- `.rulesync/rules/stacks/nodejs/http-api.md`
+- `.rulesync/rules/stacks/nodejs/security.md`

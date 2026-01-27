@@ -1,19 +1,25 @@
 # PHP Testing Rules
 
-## Test Scope
+> Authority Notice
+>
+> This stack is governed by `.rulesync/rules/stacks/php/non-negotiables.md`. If
+> any rule here conflicts with a non-negotiable, the non-negotiable wins.
 
-- **MUST** test domain logic without frameworks.
-- **MUST** use integration tests for IO and persistence boundaries.
+## Coverage
 
----
-
-## Determinism
-
-- **MUST** keep tests deterministic and order-independent.
-- **MUST** isolate shared state between tests.
+- MUST test domain logic and critical data access.
+- SHOULD include integration tests for persistence.
 
 ---
 
-## Failure Paths
+## Hygiene
 
-- **MUST** test error conditions and invariant violations.
+- SHOULD avoid shared mutable test state.
+- SHOULD keep tests readable with builders.
+
+---
+
+## Related Rules
+
+- `.rulesync/rules/stacks/php/overview.md`
+- `.rulesync/rules/stacks/php/testing.md`

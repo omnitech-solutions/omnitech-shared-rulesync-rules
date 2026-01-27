@@ -16,15 +16,30 @@ cursor:
 
 # Rails Persistence Rules
 
-## Queries
+## Persistence Boundaries
 
-- **MUST** keep complex queries in scopes or query objects.
-- **MUST** paginate unbounded reads.
-- **MUST** avoid N+1 queries explicitly.
+- MUST treat persistence as infrastructure, not domain logic.
+- MUST keep persistence decisions outside controllers.
+- SHOULD isolate persistence behind services or repositories.
 
 ---
 
-## Migrations
+## Transactions
 
-- **MUST** be small and reversible.
-- **MUST NOT** perform large data backfills inline.
+- MUST use explicit transactions for multi-step writes.
+- SHOULD avoid nested transactions.
+- SHOULD keep transaction scope minimal.
+
+---
+
+## Query Discipline
+
+- MUST prevent N+1 queries with eager loading.
+- SHOULD keep queries readable and indexed.
+
+---
+
+## Related Rules
+
+- `.rulesync/rules/stacks/rails/overview.md`
+- `.rulesync/rules/stacks/rails/persistence.md`

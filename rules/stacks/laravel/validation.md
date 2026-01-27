@@ -11,22 +11,28 @@ globs:
 
 # Laravel Validation Rules
 
-## Boundary Validation
+> Authority Notice
+>
+> This stack is governed by `.rulesync/rules/stacks/laravel/non-negotiables.md`.
+> If any rule here conflicts with a non-negotiable, the non-negotiable wins.
 
-- **MUST** validate all external input at the boundary.
-- **MUST** construct application commands from validated data only.
-- **MUST NOT** leak Request objects into domain logic.
+## Validation Strategy
 
----
-
-## Form Requests
-
-- **SHOULD** use Form Requests for MVC-style flows.
-- **MUST NOT** embed business rules in Form Requests.
+- MUST validate all request inputs using Form Requests.
+- MUST centralize validation rules for reuse.
+- SHOULD keep validation errors user-safe and consistent.
 
 ---
 
-## Domain Validation
+## Rule Design
 
-- **MUST** enforce invariants inside domain entities/value objects.
-- **MUST** fail fast with explicit exceptions.
+- MUST use explicit rule sets per endpoint.
+- SHOULD prefer dedicated rule objects for complex validation.
+- SHOULD avoid validation inside controllers.
+
+---
+
+## Related Rules
+
+- `.rulesync/rules/stacks/laravel/overview.md`
+- `.rulesync/rules/stacks/laravel/validation.md`

@@ -18,25 +18,31 @@ cursor:
     - '**/*.vue'
 ---
 
-# Utility-First Layout Rules
+# Tailwind Layout Rules
 
-## Layout Structure
+## Layout System
 
-- Favor layout primitives (flex, grid, stack) over bespoke positioning.
-- Keep spacing aligned to the shared scale for rhythm and consistency.
-- Avoid deeply nested layout wrappers when simpler structures work.
+- MUST use consistent spacing and layout primitives.
+- MUST prefer flex/grid utilities over custom CSS.
+- SHOULD keep layout responsive by default.
 
 ---
 
-## Responsive Design
+## Responsiveness
 
-- Design mobile-first and scale up progressively.
-- Keep breakpoint usage consistent across features.
-- Avoid layout shifts by reserving space for dynamic content.
+- MUST design for mobile-first breakpoints.
+- SHOULD avoid fixed widths when fluid layouts work.
+
+---
+
+## Composition
+
+- SHOULD build layout utilities into reusable components.
 
 ---
 
 ## Related Rules
 
-- `.rulesync/rules/ui-ux.md`
 - `.rulesync/rules/stacks/tailwind/overview.md`
+- `.rulesync/rules/stacks/tailwind/layout.md`
+- `.rulesync/rules/stacks/tailwind/tokens.md`

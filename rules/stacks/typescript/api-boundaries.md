@@ -17,30 +17,30 @@ cursor:
 
 # TypeScript API Boundary Rules
 
-## Public Interfaces
+## Boundary Contracts
 
-- Export minimal, well-documented types for public modules.
-- Avoid exposing internal implementation types or private generics.
-- Keep function signatures stable and predictable.
-
----
-
-## Generics & Constraints
-
-- Use generics when they simplify reuse, not to hide complexity.
-- Constrain generics to prevent invalid states.
-- Prefer explicit type parameters in public APIs when inference is ambiguous.
+- MUST validate external inputs at the boundary.
+- MUST map external DTOs into internal domain types.
+- SHOULD version or scope public APIs explicitly.
 
 ---
 
-## Dependency Direction
+## Error Mapping
 
-- Keep domain types independent of framework or transport types.
-- Avoid circular type dependencies across modules.
+- MUST map domain errors to stable API error shapes.
+- SHOULD keep error payloads consistent across endpoints.
+
+---
+
+## Change Management
+
+- MUST avoid breaking changes without a migration plan.
+- SHOULD deprecate fields and document replacements.
 
 ---
 
 ## Related Rules
 
 - `.rulesync/rules/stacks/typescript/overview.md`
-- `.rulesync/rules/stacks/typescript/types.md`
+- `.rulesync/rules/stacks/typescript/api-boundaries.md`
+- `.rulesync/rules/stacks/typescript/runtime-validation.md`

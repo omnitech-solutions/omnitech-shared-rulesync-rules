@@ -13,8 +13,29 @@ cursor:
     - '**/spec/**'
 ---
 
-# Rails Testing Rules
+# Rails Security Rules
 
-- **MUST** test services and workflows explicitly.
-- **MUST** cover failure paths.
-- **MUST** keep tests deterministic and isolated.
+> Authority Notice
+>
+> This stack is governed by `.rulesync/rules/stacks/rails/non-negotiables.md`.
+> If any rule here conflicts with a non-negotiable, the non-negotiable wins.
+
+## Input and Output
+
+- MUST use strong params for all inputs.
+- MUST sanitize user-generated output.
+- SHOULD encode data in views and serializers.
+
+---
+
+## Auth and Authorization
+
+- MUST authorize every protected action.
+- SHOULD centralize authorization policies.
+
+---
+
+## Related Rules
+
+- `.rulesync/rules/stacks/rails/overview.md`
+- `.rulesync/rules/stacks/rails/security.md`

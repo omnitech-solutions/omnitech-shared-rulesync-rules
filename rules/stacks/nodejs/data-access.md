@@ -12,21 +12,31 @@ globs:
 
 # Node.js Data Access Rules
 
-## Boundaries
+## Access Boundaries
 
-- **MUST** isolate persistence behind repositories/adapters.
-- **MUST NOT** embed query logic in domain code.
+- MUST centralize database access behind repositories or services.
+- MUST avoid leaking persistence models into domain logic.
+- SHOULD keep query building in a dedicated layer.
+
+---
+
+## Query Safety
+
+- MUST avoid N+1 queries via preloading or batching.
+- MUST use parameterized queries or ORM bindings.
+- SHOULD keep queries deterministic and well-scoped.
 
 ---
 
 ## Transactions
 
-- **MUST** keep transaction boundaries explicit.
-- **MUST NOT** span multiple aggregates without coordination.
+- MUST scope transactions to a single business unit of work.
+- SHOULD avoid long-lived transactions.
+- SHOULD document transactional boundaries.
 
 ---
 
-## Safety
+## Related Rules
 
-- **MUST** paginate unbounded reads.
-- **MUST** prevent N+1 access patterns.
+- `.rulesync/rules/stacks/nodejs/overview.md`
+- `.rulesync/rules/stacks/nodejs/data-access.md`

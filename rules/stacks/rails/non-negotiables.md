@@ -16,68 +16,32 @@ cursor:
 
 # Rails Non-Negotiables
 
-These rules define the **hard architectural limits** of Rails applications.
-Violations indicate **architectural drift** and must be corrected immediately.
+## Absolute Requirements
 
-These rules **override all other Rails rules**.
-
----
-
-## Framework Discipline
-
-- **MUST** treat Rails as an infrastructure and delivery framework.
-- **MUST NOT** treat Rails models, controllers, or concerns as the domain model.
-- **MUST** keep core domain behavior executable without Rails loaded.
+- MUST validate all external inputs.
+- MUST enforce authorization for protected actions.
+- MUST keep business logic out of transport layers.
+- MUST keep errors structured and user-safe.
+- MUST log and monitor critical flows.
 
 ---
 
-## Boundary Integrity
+## Operational Safety
 
-- **MUST** enforce the following boundary order:
-
-  `Routing → Controllers → Services → Domain → Persistence`
-
-- **MUST NOT** pass request, params, session, or controller state beyond
-  controllers.
-- **MUST NOT** use callbacks, concerns, or filters to orchestrate business
-  workflows.
+- MUST handle timeouts and retries explicitly.
+- MUST prevent unbounded concurrency.
+- MUST use explicit configuration and secret management.
 
 ---
 
-## Model Discipline
+## Change Control
 
-- **MUST NOT** allow ActiveRecord models to coordinate workflows.
-- **MUST NOT** encode cross-aggregate behavior in a single model.
-- **MUST** restrict models to persistence + entity-local behavior only.
-
----
-
-## Transactions & Side Effects
-
-- **MUST** define transaction boundaries explicitly in services.
-- **MUST NOT** open transactions in controllers or callbacks.
-- **MUST** trigger side effects (jobs, emails, events) explicitly and
-  intentionally.
+- MUST avoid breaking API changes without a migration plan.
+- MUST document behavioral changes and deprecations.
 
 ---
 
-## Error Semantics
+## Related Rules
 
-- **MUST** use exceptions for error signaling.
-- **MUST NOT** use `nil`, `false`, or sentinel values to represent failure.
-- **MUST** fail fast when invariants are violated.
-
----
-
-## Persistence Integrity
-
-- **MUST** back critical invariants with database constraints.
-- **MUST NOT** rely on validations alone for correctness.
-- **MUST NOT** hide expensive queries behind associations or callbacks.
-
----
-
-## Authority
-
-If any rule in any Rails file conflicts with this document,  
-**this document takes precedence**.
+- `.rulesync/rules/stacks/rails/overview.md`
+- `.rulesync/rules/stacks/rails/non-negotiables.md`

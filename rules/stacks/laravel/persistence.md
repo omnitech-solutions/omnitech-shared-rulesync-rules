@@ -11,22 +11,30 @@ globs:
 
 # Laravel Persistence Rules
 
-## Repositories
+## Persistence Boundaries
 
-- **MUST** keep repository interfaces domain-facing.
-- **MUST** isolate Eloquent in infrastructure.
-- **MUST** centralize mapping logic.
+- MUST treat persistence as infrastructure, not domain logic.
+- MUST keep persistence decisions outside controllers.
+- SHOULD isolate persistence behind services or repositories.
 
 ---
 
 ## Transactions
 
-- **MUST** define transaction boundaries in application/services.
-- **MUST NOT** manage transactions in controllers.
+- MUST use explicit transactions for multi-step writes.
+- SHOULD avoid nested transactions.
+- SHOULD keep transaction scope minimal.
 
 ---
 
-## Migrations
+## Query Discipline
 
-- **MUST** keep migrations reversible.
-- **MUST** add constraints for invariants.
+- MUST prevent N+1 queries with eager loading.
+- SHOULD keep queries readable and indexed.
+
+---
+
+## Related Rules
+
+- `.rulesync/rules/stacks/laravel/overview.md`
+- `.rulesync/rules/stacks/laravel/persistence.md`

@@ -11,21 +11,27 @@ globs:
 
 # Node.js Performance Rules
 
-## Latency
+> Authority Notice
+>
+> This stack is governed by `.rulesync/rules/stacks/nodejs/non-negotiables.md`.
+> If any rule here conflicts with a non-negotiable, the non-negotiable wins.
 
-- **MUST** minimize synchronous work in hot paths.
-- **SHOULD** stream large responses.
+## Throughput and Latency
+
+- MUST keep critical paths non-blocking.
+- SHOULD use streaming for large payloads.
+- SHOULD keep payload sizes small and compressible.
 
 ---
 
-## Concurrency
+## Dependency Management
 
-- **MUST** bound parallelism.
-- **MUST NOT** allow unbounded queues.
+- SHOULD isolate slow dependencies with timeouts and retries.
+- SHOULD cache stable reads when safe.
 
 ---
 
-## Memory
+## Related Rules
 
-- **MUST** keep request-scoped data short-lived.
-- **MUST** monitor and address memory growth.
+- `.rulesync/rules/stacks/nodejs/overview.md`
+- `.rulesync/rules/stacks/nodejs/performance.md`

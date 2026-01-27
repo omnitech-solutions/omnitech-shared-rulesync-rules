@@ -17,23 +17,31 @@ cursor:
 
 # TypeScript Runtime Validation Rules
 
-## Untrusted Inputs
+## Validation Discipline
 
-- Validate all external data before use (HTTP, storage, queues, user input).
-- Treat unknown data as `unknown` until validated and narrowed.
-- Prefer fail-fast parsing with clear error reporting.
+- MUST validate all untrusted inputs at runtime.
+- MUST fail fast with clear, structured errors.
+- SHOULD centralize schemas for reuse and consistency.
 
 ---
 
-## Runtime Guarantees
+## Schema Design
 
-- Keep parsing and validation close to the boundary of the system.
-- Avoid assuming runtime shape from compile-time types.
-- Use schema or guard-based validation that is easy to audit.
+- MUST keep schemas aligned with TypeScript types.
+- SHOULD treat parse failures as validation errors, not system errors.
+- SHOULD include defaults in schema definitions when appropriate.
+
+---
+
+## Error Reporting
+
+- MUST return user-safe messages from boundary validation.
+- SHOULD log full details server-side for debugging.
 
 ---
 
 ## Related Rules
 
-- `.rulesync/rules/security.md`
 - `.rulesync/rules/stacks/typescript/overview.md`
+- `.rulesync/rules/stacks/typescript/runtime-validation.md`
+- `.rulesync/rules/stacks/typescript/error-handling.md`

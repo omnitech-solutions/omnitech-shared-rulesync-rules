@@ -18,32 +18,22 @@ cursor:
 
 # Vue Routing Rules
 
-## Route Ownership
+## Route Design
 
-- Keep route definitions focused on layout and composition, not business logic.
-- Treat routes as feature boundaries with clear entry points.
-- Avoid coupling components to route implementation details.
-
----
-
-## Navigation State
-
-- Keep navigation state (filters, pagination) explicit and shareable.
-- Avoid mixing UI state with routing unless it affects navigation history.
-- Ensure back/forward navigation preserves user context.
+- MUST keep routes shallow and feature-focused.
+- MUST lazy-load heavy route components.
+- SHOULD use route-level data fetching.
 
 ---
 
-## Performance & Loading
+## Navigation Guards
 
-- Lazy-load route-level features where possible.
-- Keep route guards lightweight and deterministic.
-- Avoid blocking navigation on non-critical data.
+- MUST keep guards focused on auth and preconditions.
+- SHOULD avoid side effects in guards.
 
 ---
 
 ## Related Rules
 
 - `.rulesync/rules/stacks/vue/overview.md`
-- `.rulesync/rules/stacks/vue/state.md`
-- `.rulesync/rules/stacks/vue/performance.md`
+- `.rulesync/rules/stacks/vue/routing.md`

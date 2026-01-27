@@ -12,62 +12,32 @@ globs:
 
 # PHP Non-Negotiables
 
-Violations of these rules indicate **architectural drift** and must be
-corrected. These constraints take precedence over all other PHP rules.
+## Absolute Requirements
+
+- MUST validate all external inputs.
+- MUST enforce authorization for protected actions.
+- MUST keep business logic out of transport layers.
+- MUST keep errors structured and user-safe.
+- MUST log and monitor critical flows.
 
 ---
 
-## Language Discipline
+## Operational Safety
 
-- **MUST** use `declare(strict_types=1);` in all new PHP files.
-- **MUST NOT** rely on implicit type coercion.
-- **MUST NOT** use `mixed` or untyped arrays outside explicit boundaries.
-
----
-
-## Boundary Integrity
-
-- **MUST** separate concerns strictly: Transport / Framework → Application →
-  Domain → Infrastructure.
-- **MUST NOT** leak framework, ORM, or IO concerns into domain code.
-- **MUST** keep domain logic executable without a framework.
+- MUST handle timeouts and retries explicitly.
+- MUST prevent unbounded concurrency.
+- MUST use explicit configuration and secret management.
 
 ---
 
-## Error & Control Flow
+## Change Control
 
-- **MUST NOT** use sentinel values (`false`, `null`) to signal errors.
-- **MUST** use exceptions for error conditions.
-- **MUST** make failure paths explicit and observable.
-
----
-
-## State & Mutation
-
-- **MUST** favor immutability for domain objects.
-- **MUST NOT** mutate shared state implicitly.
-- **MUST** make side effects explicit and intentional.
+- MUST avoid breaking API changes without a migration plan.
+- MUST document behavioral changes and deprecations.
 
 ---
 
-## Persistence Discipline
+## Related Rules
 
-- **MUST NOT** treat ORM entities as domain entities.
-- **MUST** isolate persistence behind repositories/adapters.
-- **MUST NOT** expose persistence models across boundaries.
-
----
-
-## Authority
-
-If any rule in:
-
-- `overview.md`
-- `types.md`
-- `errors.md`
-- `structure.md`
-- `data-access.md`
-- `performance.md`
-- `testing.md`
-
-conflicts with this document, **this document takes precedence**.
+- `.rulesync/rules/stacks/php/overview.md`
+- `.rulesync/rules/stacks/php/non-negotiables.md`

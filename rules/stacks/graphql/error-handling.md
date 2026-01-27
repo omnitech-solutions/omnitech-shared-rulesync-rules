@@ -13,41 +13,23 @@ globs:
 
 # GraphQL Error Handling Rules
 
-## Error Shape
+## Error Shapes
 
-- **MUST** expose a stable, machine-readable error code.
-- **MUST** keep error codes backward compatible once released.
-- **MUST NOT** leak internal or sensitive details in error messages.
-- **SHOULD** provide human-readable messages for debugging and UX.
-
----
-
-## Error Categories
-
-- **MUST** distinguish between:
-  - User / validation errors
-  - Authentication / authorization errors
-  - Not-found conditions
-  - System or dependency failures
+- MUST return structured errors with stable codes.
+- MUST avoid using nulls as primary error signals.
+- SHOULD include path and field context where safe.
 
 ---
 
-## Partial Failures
+## Error Propagation
 
-- **MUST** document which fields may return partial data.
-- **MUST** define behavior for nullable vs non-nullable failures.
-- **MUST NOT** silently mask critical failures behind nulls.
-
----
-
-## Client Experience
-
-- **SHOULD** include actionable, non-sensitive context where appropriate.
-- **SHOULD** support client logic via stable error codes, not message parsing.
+- MUST map domain errors to GraphQL errors at the boundary.
+- SHOULD log internal errors with correlation ids.
 
 ---
 
 ## Related Rules
 
-- `.rulesync/rules/stacks/graphql/schema.md`
-- `.rulesync/rules/stacks/graphql/resolvers.md`
+- `.rulesync/rules/stacks/graphql/overview.md`
+- `.rulesync/rules/stacks/graphql/error-handling.md`
+- `.rulesync/rules/stacks/graphql/error-codes.md`

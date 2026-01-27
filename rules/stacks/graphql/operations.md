@@ -13,35 +13,23 @@ globs:
 
 # GraphQL Operations Rules
 
-## Query Design
+## Operation Design
 
-- **MUST** keep queries focused and intentional.
-- **MUST NOT** expose deeply nested traversal by default.
-- **SHOULD** use consistent filtering and sorting conventions.
-
----
-
-## Pagination
-
-- **MUST** use cursor-based pagination for unbounded datasets.
-- **MUST** provide stable, documented pagination metadata.
-- **MUST NOT** return unbounded lists.
-- **SHOULD** use a consistent connection-style shape across the schema.
-- **SHOULD** tie cursors to a stable, documented sort order.
+- MUST keep queries focused and predictable.
+- MUST avoid overly broad selection sets.
+- SHOULD use fragments to share common fields.
 
 ---
 
-## Mutations
+## Naming and Organization
 
-- **MUST** model mutations as domain actions, not generic CRUD.
-- **MUST** return enough data for clients to update local state without extra
-  round-trips.
-- **MUST** make side effects explicit and documented.
-- **SHOULD** be idempotent when feasible.
+- MUST name operations consistently and descriptively.
+- SHOULD group operations by feature.
 
 ---
 
 ## Related Rules
 
-- `.rulesync/rules/stacks/graphql/schema.md`
-- `.rulesync/rules/stacks/graphql/error-handling.md`
+- `.rulesync/rules/stacks/graphql/overview.md`
+- `.rulesync/rules/stacks/graphql/operations.md`
+- `.rulesync/rules/stacks/graphql/performance.md`

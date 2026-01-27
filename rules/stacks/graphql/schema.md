@@ -15,35 +15,29 @@ globs:
 
 ## Type Modeling
 
-- **MUST** represent domain concepts, not database tables.
-- **MUST** keep input types distinct from output types.
-- **MUST** avoid ambiguous or overloaded field semantics.
-- **SHOULD** use explicit, descriptive names over generic ones.
+- MUST model domain concepts, not database tables.
+- MUST separate input and output types.
+- SHOULD use descriptive, explicit names.
 
 ---
 
-## Nullability & Errors
+## Nullability
 
-- **MUST** mark fields non-null only when value presence is guaranteed under
-  expected failure modes.
-- **MUST NOT** use `null` as a primary error signaling mechanism.
-- **SHOULD** document nullability expectations in field descriptions.
-- **SHOULD** prefer nullable fields plus structured errors for recoverable
-  failures.
+- MUST mark fields non-null only when guarantees exist.
+- SHOULD document nullability assumptions.
+- SHOULD prefer nullable fields plus structured errors.
 
 ---
 
-## Evolution & Deprecation
+## Evolution
 
-- **MUST NOT** change the meaning of an existing field.
-- **MUST** evolve schemas through additive fields and deprecations.
-- **MUST** provide descriptions for all public types, fields, and arguments.
-- **SHOULD** include deprecation reasons and migration guidance.
+- MUST evolve via additive changes and deprecations.
+- MUST include descriptions for public fields and args.
 
 ---
 
 ## Related Rules
 
 - `.rulesync/rules/stacks/graphql/overview.md`
-- `.rulesync/rules/stacks/graphql/operations.md`
+- `.rulesync/rules/stacks/graphql/schema.md`
 - `.rulesync/rules/stacks/graphql/governance.md`

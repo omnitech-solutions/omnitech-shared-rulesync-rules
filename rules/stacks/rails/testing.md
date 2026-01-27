@@ -18,23 +18,26 @@ cursor:
 
 # Rails Testing Rules
 
-## Test Focus
+> Authority Notice
+>
+> This stack is governed by `.rulesync/rules/stacks/rails/non-negotiables.md`.
+> If any rule here conflicts with a non-negotiable, the non-negotiable wins.
 
-- Test domain behavior in model specs.
-- Test controllers/routes for request/response behavior.
-- Use factories/builders for setup.
-- Cover critical background jobs and service workflows.
+## Coverage
 
----
-
-## Request Specs
-
-- Prefer request specs over controller specs for end‑to‑end behavior.
-- Assert response status, shape, and side effects.
-- Include auth/authorization paths in integration coverage.
+- MUST test services and critical controllers.
+- SHOULD include model validation tests.
 
 ---
 
-## Test Data
+## Data
 
-- Use deterministic factories; avoid random data in CI.
+- SHOULD use factories and keep fixtures minimal.
+- SHOULD avoid hitting external services in unit tests.
+
+---
+
+## Related Rules
+
+- `.rulesync/rules/stacks/rails/overview.md`
+- `.rulesync/rules/stacks/rails/testing.md`

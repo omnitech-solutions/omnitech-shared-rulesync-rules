@@ -1,14 +1,19 @@
 # PHP Performance Rules
 
-## Memory & IO
+> Authority Notice
+>
+> This stack is governed by `.rulesync/rules/stacks/php/non-negotiables.md`. If
+> any rule here conflicts with a non-negotiable, the non-negotiable wins.
 
-- **MUST** stream large datasets.
-- **MUST** avoid loading unbounded collections into memory.
-- **SHOULD** use generators for incremental processing.
+## Efficiency
+
+- MUST avoid N+1 queries.
+- SHOULD cache expensive computations.
+- SHOULD keep payload sizes small.
 
 ---
 
-## Hot Paths
+## Related Rules
 
-- **MUST** minimize allocations in hot paths.
-- **SHOULD** cache expensive computations at safe boundaries.
+- `.rulesync/rules/stacks/php/overview.md`
+- `.rulesync/rules/stacks/php/performance.md`

@@ -18,43 +18,22 @@ cursor:
 
 # React Performance Rules
 
-## Rendering Efficiency
+## Rendering
 
-- Keep renders cheap; avoid heavy work in render.
-- Move expensive calculations to memoized selectors or precomputed data.
-- Split large components into smaller ones to limit re-render scope.
-
----
-
-## Memoization
-
-- Use `React.memo` for components with stable props and expensive renders.
-- Use `useMemo`/`useCallback` when it prevents measurable re-renders.
-- Avoid premature memoization; validate with profiling.
+- MUST avoid unnecessary rerenders by keeping props stable.
+- SHOULD use memoization intentionally, not by default.
+- SHOULD avoid expensive computations in render.
 
 ---
 
-## Lists & Virtualization
+## Data Loading
 
-- Virtualize long lists to avoid rendering hundreds of DOM nodes.
-- Use stable keys and avoid re-sorting in render.
-- Paginate or window data from the server when possible.
-
----
-
-## Code Splitting
-
-- Split feature routes and heavy components.
-- Provide meaningful loading states during lazy load.
-
-```tsx
-const Settings = React.lazy(() => import('./Settings'));
-```
+- SHOULD batch network requests where possible.
+- SHOULD avoid waterfalls in component trees.
 
 ---
 
-## Re-render Control
+## Related Rules
 
-- Avoid prop drilling through many layers; use context or composition.
-- Keep derived props stable to reduce churn.
-- Co-locate state with the component that renders it.
+- `.rulesync/rules/stacks/react/overview.md`
+- `.rulesync/rules/stacks/react/performance.md`

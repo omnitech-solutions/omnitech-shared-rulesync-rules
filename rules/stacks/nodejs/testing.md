@@ -12,21 +12,26 @@ globs:
 
 # Node.js Testing Rules
 
-## Test Scope
+> Authority Notice
+>
+> This stack is governed by `.rulesync/rules/stacks/nodejs/non-negotiables.md`.
+> If any rule here conflicts with a non-negotiable, the non-negotiable wins.
 
-- **MUST** separate unit and integration tests.
-- **MUST** mock external systems at boundaries.
+## Test Coverage
 
----
-
-## Async Correctness
-
-- **MUST** await all async work in tests.
-- **MUST** fail on unhandled rejections.
+- MUST test domain logic and critical HTTP paths.
+- SHOULD include integration tests for data stores and queues.
 
 ---
 
-## Stability
+## Isolation
 
-- **MUST** keep tests deterministic.
-- **MUST** reset shared state between tests.
+- MUST isolate tests from external services via mocks or fakes.
+- SHOULD keep fixtures small and realistic.
+
+---
+
+## Related Rules
+
+- `.rulesync/rules/stacks/nodejs/overview.md`
+- `.rulesync/rules/stacks/nodejs/testing.md`

@@ -18,26 +18,24 @@ cursor:
     - '**/*.jsx'
 ---
 
-# Utility-First Token Rules
+# Tailwind Token Rules
 
-## Token Discipline
+## Token Usage
 
-- Use tokenized values for spacing, color, typography, and radii.
-- Avoid ad-hoc values unless there is a documented design requirement.
-- Keep tokens consistent across features and platforms.
+- MUST use design tokens for color, spacing, and typography.
+- MUST avoid hard-coded one-off values.
+- SHOULD define tokens for semantic intent, not raw values.
 
 ---
 
-## Theming & Variants
+## Consistency
 
-- Model themes as token sets, not custom component overrides.
-- Prefer semantic tokens (e.g., "surface", "accent") over raw colors.
-- Keep token changes backward-compatible to avoid UI churn.
+- SHOULD centralize tokens in a single theme config.
+- SHOULD document token meaning and usage.
 
 ---
 
 ## Related Rules
 
-- `.rulesync/rules/ui-ux.md`
 - `.rulesync/rules/stacks/tailwind/overview.md`
-- `.rulesync/rules/stacks/tailwind/components.md`
+- `.rulesync/rules/stacks/tailwind/tokens.md`

@@ -11,15 +11,26 @@ globs:
 
 # Laravel Security Rules
 
-## Authorization
+> Authority Notice
+>
+> This stack is governed by `.rulesync/rules/stacks/laravel/non-negotiables.md`.
+> If any rule here conflicts with a non-negotiable, the non-negotiable wins.
 
-- **MUST** enforce authorization explicitly.
-- **MUST** check ownership and tenancy.
-- **MUST NOT** rely on implicit access.
+## Input and Output
+
+- MUST validate all request inputs.
+- MUST sanitize user-generated output.
 
 ---
 
-## Input & Secrets
+## Auth and Authorization
 
-- **MUST** validate all input.
-- **MUST** keep secrets out of code and logs.
+- MUST enforce policies or gates on protected actions.
+- SHOULD log authorization failures with safe context.
+
+---
+
+## Related Rules
+
+- `.rulesync/rules/stacks/laravel/overview.md`
+- `.rulesync/rules/stacks/laravel/security.md`

@@ -18,30 +18,30 @@ cursor:
 
 # TypeScript Configuration Rules
 
-## Compiler Intent
+## Compiler Strictness
 
-- Keep compiler options aligned with desired safety guarantees.
-- Avoid weakening strictness for convenience.
-- Ensure configuration reflects actual runtime environment.
-
----
-
-## Project Boundaries
-
-- Use separate configs for distinct build targets when needed.
-- Keep shared base config small and intentional.
-- Avoid implicit type roots or global leakage.
+- MUST enable strict type checking.
+- MUST disallow implicit any and unsafe casts.
+- SHOULD enable noUncheckedIndexedAccess where feasible.
 
 ---
 
-## Consistency
+## Module and Build Settings
 
-- Keep path aliases stable and well-documented.
-- Ensure tooling uses the same config as the build.
+- MUST align module resolution with runtime environment.
+- SHOULD keep tsconfig files small and layered.
+- SHOULD avoid path aliases that confuse tooling.
+
+---
+
+## Project Hygiene
+
+- SHOULD include type checking in CI.
+- SHOULD keep emitted JS out of source folders.
 
 ---
 
 ## Related Rules
 
-- `.rulesync/rules/code-quality.md`
 - `.rulesync/rules/stacks/typescript/overview.md`
+- `.rulesync/rules/stacks/typescript/configuration.md`

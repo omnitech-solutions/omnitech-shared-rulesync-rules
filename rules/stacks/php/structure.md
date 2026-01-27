@@ -1,20 +1,26 @@
 # PHP Structure Rules
 
-## Organization
+> Authority Notice
+>
+> This stack is governed by `.rulesync/rules/stacks/php/non-negotiables.md`. If
+> any rule here conflicts with a non-negotiable, the non-negotiable wins.
 
-- **MUST** have one class per file.
-- **MUST** align namespaces with directory structure.
-- **MUST** mark non-extensible classes as `final`.
+## Module Layout
 
----
-
-## Style
-
-- **MUST** follow PSR-12 or repository-defined standards.
-- **SHOULD** use constructor property promotion when it improves clarity.
+- MUST group code by feature or bounded context.
+- MUST keep domain logic separate from infrastructure.
+- SHOULD keep shared utilities small and focused.
 
 ---
 
-## Documentation
+## Naming
 
-- **MUST** document public APIs, invariants, and exceptions.
+- MUST use consistent class and namespace naming.
+- SHOULD avoid ambiguous folder names like common or helpers.
+
+---
+
+## Related Rules
+
+- `.rulesync/rules/stacks/php/overview.md`
+- `.rulesync/rules/stacks/php/structure.md`

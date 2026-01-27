@@ -21,89 +21,38 @@ cursor:
 
 ## Component API Design
 
-- Prefer explicit props and defaults; avoid “catch‑all” props for core behavior.
-- Keep prop names stable and intention‑revealing.
-- Prefer `children` for composition over configuration props when possible.
-- Expose minimal surface area; pass callbacks for actions, not state setters.
-
-```tsx
-export function Card({
-  title,
-  children,
-}: {
-  title?: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <section className="card">
-      {title ? <h2>{title}</h2> : null}
-      <div>{children}</div>
-    </section>
-  );
-}
-```
+- MUST keep props/inputs explicit and intention-revealing.
+- MUST document defaults and invariants.
+- SHOULD favor composition over configuration flags.
+- SHOULD keep components single-purpose.
 
 ---
 
-## Controlled vs Uncontrolled
+## Composition and Reuse
 
-- Controlled components should accept `value` + `onChange`.
-- Uncontrolled components should expose `defaultValue` and internal state.
-- Avoid mixing both patterns in the same component unless clearly documented.
-
----
-
-## Composition Patterns
-
-- Compose features from smaller components rather than large “mega” components.
-- Extract repeated UI patterns into shared primitives.
-- Keep components focused on one responsibility.
-
-```tsx
-function UserCard({ user }: { user: User }) {
-  return (
-    <div className="card">
-      <UserAvatar user={user} />
-      <UserDetails user={user} />
-      <UserActions user={user} />
-    </div>
-  );
-}
-```
+- MUST avoid deep prop drilling without justification.
+- SHOULD create primitives for repeatable UI patterns.
+- SHOULD limit component responsibilities to UI behavior.
 
 ---
 
-## Rendering & Keys
+## Rendering Discipline
 
-- Use stable IDs for keys.
-- Avoid index keys unless list is static and never reorders.
-
-```tsx
-{
-  items.map(item => <Item key={item.id} item={item} />);
-}
-```
+- MUST keep rendering pure and side-effect free.
+- SHOULD move heavy computation out of render paths.
+- SHOULD provide stable keys for list rendering.
 
 ---
 
-## Props vs State
+## Styling and Variants
 
-- Prefer props for data passed from parents; use state for local UI state only.
-- Avoid syncing props to state unless necessary (and document why).
-- Keep derived values out of state; compute from props/state.
-
----
-
-## Styling
-
-- Keep styling concerns close to the component.
-- Prefer design tokens and shared primitives over one-off class stacks.
-- Avoid mixing layout and data concerns in the same component.
+- MUST keep variant logic centralized and consistent.
+- SHOULD avoid one-off styles when a shared token exists.
+- MAY use a variant utility to control styling combinatorics.
 
 ---
 
-## Anti‑Patterns
+## Related Rules
 
-- Components with multiple unrelated responsibilities.
-- Implicit prop coupling (two props required but not enforced).
-- Conditional rendering that hides business rules.
+- `.rulesync/rules/stacks/react/overview.md`
+- `.rulesync/rules/stacks/react/components.md`

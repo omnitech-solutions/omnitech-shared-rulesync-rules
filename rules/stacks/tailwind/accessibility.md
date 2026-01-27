@@ -18,24 +18,24 @@ cursor:
     - '**/*.jsx'
 ---
 
-# Utility-First Accessibility Rules
+# Tailwind Accessibility Rules
 
-## Contrast & Visibility
+## A11y Defaults
 
-- Maintain sufficient contrast for text, icons, and controls.
-- Ensure focus styles are visible and consistent across components.
-- Avoid relying on color alone to convey state.
+- MUST include focus-visible styles on interactive elements.
+- MUST maintain sufficient color contrast.
+- SHOULD use semantic markup alongside utility classes.
 
 ---
 
-## Interaction States
+## States
 
-- Provide clear hover, active, and disabled states for controls.
-- Ensure focus outlines are not removed without a replacement.
+- MUST style disabled and error states clearly.
+- SHOULD avoid motion-only cues for status.
 
 ---
 
 ## Related Rules
 
-- `.rulesync/rules/ui-ux.md`
 - `.rulesync/rules/stacks/tailwind/overview.md`
+- `.rulesync/rules/stacks/tailwind/accessibility.md`

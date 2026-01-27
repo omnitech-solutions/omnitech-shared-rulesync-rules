@@ -11,21 +11,27 @@ globs:
 
 # Node.js Security Rules
 
-## Input Safety
+> Authority Notice
+>
+> This stack is governed by `.rulesync/rules/stacks/nodejs/non-negotiables.md`.
+> If any rule here conflicts with a non-negotiable, the non-negotiable wins.
 
-- **MUST** validate and sanitize all inputs.
-- **MUST** encode output appropriately.
+## Input and Output
+
+- MUST validate all external input.
+- MUST sanitize outputs that render in HTML contexts.
+- SHOULD encode data when embedding in templates.
 
 ---
 
-## Secrets
+## Auth and Secrets
 
-- **MUST** keep secrets out of code and logs.
-- **MUST** fail fast on missing secrets.
+- MUST enforce authentication/authorization per request.
+- MUST keep secrets out of repo and logs.
 
 ---
 
-## Dependencies
+## Related Rules
 
-- **MUST** remove unused dependencies.
-- **SHOULD** monitor transitive risk.
+- `.rulesync/rules/stacks/nodejs/overview.md`
+- `.rulesync/rules/stacks/nodejs/security.md`

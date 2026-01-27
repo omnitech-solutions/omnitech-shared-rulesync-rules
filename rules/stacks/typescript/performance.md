@@ -17,22 +17,40 @@ cursor:
 
 # TypeScript Performance Rules
 
-## Type Complexity
+## Performance Goals
 
-- Keep types understandable; avoid deeply nested conditional types.
-- Prefer simpler types over clever type gymnastics.
-- Split large type definitions into smaller, named parts.
+- MUST define performance budgets for critical paths.
+- MUST measure before optimizing and capture baselines.
+- SHOULD prioritize user-perceived latency over raw throughput.
 
 ---
 
-## Build Health
+## Efficiency Practices
 
-- Avoid exporting huge unions or inferred types that slow compilation.
-- Keep module boundaries clean to reduce incremental build churn.
+- MUST avoid unnecessary work in hot paths.
+- MUST batch or aggregate expensive operations where safe.
+- SHOULD cache repeatable results with explicit invalidation.
+- SHOULD use lazy loading for non-critical features.
+
+---
+
+## Observability
+
+- MUST instrument latency, error rate, and throughput metrics.
+- SHOULD add traces around slow or high-impact operations.
+- SHOULD log performance regressions with context.
+
+---
+
+## Performance Safety
+
+- MUST prevent unbounded loops or unbounded concurrency.
+- SHOULD include backpressure or rate limiting where needed.
+- MAY add circuit breakers for unstable dependencies.
 
 ---
 
 ## Related Rules
 
-- `.rulesync/rules/performance.md`
 - `.rulesync/rules/stacks/typescript/overview.md`
+- `.rulesync/rules/stacks/typescript/performance.md`

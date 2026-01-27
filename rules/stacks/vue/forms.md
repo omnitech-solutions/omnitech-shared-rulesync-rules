@@ -17,32 +17,31 @@ cursor:
 
 # Vue Form Rules
 
-## Form State
+## Form Architecture
 
-- Keep form state localized to the form component.
-- Separate display formatting from stored values.
-- Reset form state explicitly on success or navigation changes.
-
----
-
-## Validation
-
-- Validate at the boundary before submitting.
-- Show validation errors near the relevant fields.
-- Avoid relying on server errors for client-side validation.
+- MUST validate inputs before submission.
+- MUST provide clear error messages near inputs.
+- SHOULD keep form state centralized per form.
 
 ---
 
-## Submission Flow
+## UX and Accessibility
 
-- Disable or guard against double submissions.
-- Provide clear pending and success states.
-- Handle partial failures without losing user input.
+- MUST associate labels with inputs.
+- MUST support keyboard submission and focus states.
+- SHOULD disable submit while processing.
+
+---
+
+## Security
+
+- MUST protect against injection via validation and encoding.
+- SHOULD prevent double submits with idempotency or locks.
 
 ---
 
 ## Related Rules
 
-- `.rulesync/rules/ui-ux.md`
 - `.rulesync/rules/stacks/vue/overview.md`
-- `.rulesync/rules/stacks/vue/state.md`
+- `.rulesync/rules/stacks/vue/forms.md`
+- `.rulesync/rules/stacks/vue/accessibility.md`

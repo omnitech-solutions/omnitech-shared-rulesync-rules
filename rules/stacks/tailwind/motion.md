@@ -18,32 +18,25 @@ cursor:
     - '**/*.jsx'
 ---
 
-# Utility-First Motion Rules
+# Tailwind Motion Rules
 
 ## Motion Principles
 
-- Use motion to clarify state changes, not to decorate.
-- Keep animations short and purposeful.
-- Avoid motion that competes with content or usability.
+- MUST respect prefers-reduced-motion.
+- MUST keep motion purposeful and minimal.
+- SHOULD avoid distracting or long-running animations.
 
 ---
 
-## Accessibility
+## Performance
 
-- Respect reduced-motion preferences.
-- Avoid large-scale motion on critical workflows.
-
----
-
-## Consistency
-
-- Use a small set of shared transition patterns.
-- Keep durations and easing consistent across components.
+- MUST use transform/opacity for animations.
+- SHOULD avoid layout-thrashing animations.
 
 ---
 
 ## Related Rules
 
-- `.rulesync/rules/ui-ux.md`
 - `.rulesync/rules/stacks/tailwind/overview.md`
-- `.rulesync/rules/stacks/tailwind/accessibility.md`
+- `.rulesync/rules/stacks/tailwind/motion.md`
+- `.rulesync/rules/stacks/tailwind/performance.md`

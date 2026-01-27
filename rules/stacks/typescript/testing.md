@@ -19,23 +19,42 @@ cursor:
 
 # TypeScript Testing Rules
 
-## Type Coverage
+## Testing Strategy
 
-- Cover public types with usage examples in tests or fixtures.
-- Validate that types prevent invalid states, not just happy paths.
-- Keep test helpers strongly typed to avoid leaking `any`.
+- MUST test business rules at the unit level with clear input/output.
+- MUST include integration tests for IO boundaries (database, HTTP, queues).
+- SHOULD include end-to-end tests for critical user paths.
+- SHOULD keep the test pyramid balanced and intentional.
 
 ---
 
-## Runtime Behavior
+## Determinism and Stability
 
-- Test runtime validation for untrusted inputs.
-- Ensure error handling aligns with type contracts.
-- Avoid tests that only assert type inference without runtime behavior.
+- MUST avoid nondeterministic tests (time, randomness, network).
+- MUST control time via fakes or clock helpers.
+- SHOULD run tests in isolation without cross-test state.
+- SHOULD clean up global state and restore mocks.
+
+---
+
+## Test Design
+
+- MUST assert behavior, not implementation details.
+- SHOULD use fixtures/builders to keep tests readable.
+- SHOULD keep tests small and focused on one behavior.
+- MAY use snapshots sparingly for stable UI output.
+
+---
+
+## Tooling Expectations
+
+- MUST run tests in CI and gate merges on failures.
+- SHOULD measure coverage on critical modules and regressions.
+- SHOULD include linting/type checks in the same pipeline.
 
 ---
 
 ## Related Rules
 
-- `.rulesync/rules/testing.md`
 - `.rulesync/rules/stacks/typescript/overview.md`
+- `.rulesync/rules/stacks/typescript/testing.md`

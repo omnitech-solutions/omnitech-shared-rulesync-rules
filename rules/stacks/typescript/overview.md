@@ -17,31 +17,52 @@ cursor:
 
 # TypeScript Overview Rules
 
-## Core Principles
+## Purpose
 
-- **Type Safety First:** Prefer precise types over broad or implicit shapes.
-- **Explicit Boundaries:** Define clear public interfaces between modules.
-- **Runtime Alignment:** Validate untrusted data at runtime; types alone are not
-  enough.
-- **Maintainability:** Keep types readable and avoid unnecessary complexity.
+- Define the architectural contract for TypeScript work in this repo.
+- Keep rules focused on predictable behavior, testability, and operational
+  safety.
+- Treat all guidance here as defaults unless a narrower rule overrides it.
 
 ---
 
-## Design Expectations
+## Core Principles
 
-- Model domain concepts explicitly with types and interfaces.
-- Keep type changes backward-compatible for public APIs.
-- Avoid leaking infrastructure types into domain models.
+- MUST separate concerns: UI/transport, application flow, domain logic, and
+  infrastructure.
+- MUST keep side effects explicit and traceable.
+- MUST prefer composable units over large multi-purpose modules.
+- SHOULD optimize for clarity before micro-optimization.
+- SHOULD design for change with clear extension points.
+
+---
+
+## Data Flow and Boundaries
+
+- MUST keep inputs validated at boundaries before use.
+- MUST keep outputs shaped and documented at boundaries.
+- SHOULD prevent data leakage across layers (no direct model/ORM exposure).
+- SHOULD define stable interfaces for cross-module calls.
+
+---
+
+## Reliability and Observability
+
+- MUST handle errors intentionally with typed or structured error shapes.
+- MUST emit logs/metrics for user-impacting paths and background work.
+- SHOULD include tracing or correlation identifiers when possible.
+- SHOULD keep performance budgets for critical workflows.
+
+---
+
+## Evolution and Change
+
+- MUST avoid breaking changes to public APIs without a migration plan.
+- SHOULD deprecate gradually with clear replacement guidance.
+- MAY provide compatibility shims when external consumers exist.
 
 ---
 
 ## Related Rules
 
-- `.rulesync/rules/code-quality.md`
-- `.rulesync/rules/stacks/typescript/types.md`
-- `.rulesync/rules/stacks/typescript/api-boundaries.md`
-- `.rulesync/rules/stacks/typescript/runtime-validation.md`
-- `.rulesync/rules/stacks/typescript/error-handling.md`
-- `.rulesync/rules/stacks/typescript/configuration.md`
-- `.rulesync/rules/stacks/typescript/testing.md`
-- `.rulesync/rules/stacks/typescript/performance.md`
+- `.rulesync/rules/stacks/typescript/overview.md`

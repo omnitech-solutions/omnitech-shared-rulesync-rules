@@ -19,76 +19,52 @@ cursor:
 
 # React Overview Rules
 
+## Purpose
+
+- Define the architectural contract for React work in this repo.
+- Keep rules focused on predictable behavior, testability, and operational
+  safety.
+- Treat all guidance here as defaults unless a narrower rule overrides it.
+
+---
+
 ## Core Principles
 
-- **Components as APIs:** Treat components like public APIs with stable props,
-  predictable defaults, and clear responsibilities.
-- **Unidirectional Data Flow:** Keep data flowing down via props and events
-  flowing up via callbacks.
-- **Colocate State:** Keep state closest to where it’s needed; lift only when
-  coordination is required.
-- **Type Safety:** Prefer TypeScript and precise prop types.
-- **Composition First:** Compose small components rather than building large,
-  monolithic ones.
-- **Predictable Rendering:** Avoid hidden side effects in render; keep render
-  pure and idempotent.
+- MUST separate concerns: UI/transport, application flow, domain logic, and
+  infrastructure.
+- MUST keep side effects explicit and traceable.
+- MUST prefer composable units over large multi-purpose modules.
+- SHOULD optimize for clarity before micro-optimization.
+- SHOULD design for change with clear extension points.
 
 ---
 
-## Component Boundaries
+## Data Flow and Boundaries
 
-- UI components render data; **containers** orchestrate data fetching,
-  composition, and side effects.
-- Keep business rules out of UI components; call domain/services instead.
-- Prefer explicit prop names over “bag” props when behavior matters.
-
-```tsx
-// ✅ GOOD: Clear props and responsibilities
-export function UserCard({
-  user,
-  onSelect,
-}: {
-  user: User;
-  onSelect?: (user: User) => void;
-}) {
-  return (
-    <button onClick={() => onSelect?.(user)}>
-      <h3>{user.name}</h3>
-      <p>{user.email}</p>
-    </button>
-  );
-}
-```
+- MUST keep inputs validated at boundaries before use.
+- MUST keep outputs shaped and documented at boundaries.
+- SHOULD prevent data leakage across layers (no direct model/ORM exposure).
+- SHOULD define stable interfaces for cross-module calls.
 
 ---
 
-## Data & Side Effects
+## Reliability and Observability
 
-- Keep data fetching in hooks or containers.
-- Treat effects as lifecycle transitions; clean up subscriptions.
-- Prefer derived values (`useMemo`) over storing redundant state.
+- MUST handle errors intentionally with typed or structured error shapes.
+- MUST emit logs/metrics for user-impacting paths and background work.
+- SHOULD include tracing or correlation identifiers when possible.
+- SHOULD keep performance budgets for critical workflows.
 
 ---
 
-## File Organization (Suggested)
+## Evolution and Change
 
-- `components/` — presentational components
-- `features/` — feature-level composition
-- `hooks/` — shared hooks
-- `state/` — client state or stores
-- `services/` — API clients, adapters
+- MUST avoid breaking changes to public APIs without a migration plan.
+- SHOULD deprecate gradually with clear replacement guidance.
+- MAY provide compatibility shims when external consumers exist.
 
 ---
 
 ## Related Rules
 
-- `.rulesync/rules/stacks/react/components.md`
-- `.rulesync/rules/stacks/react/hooks.md`
-- `.rulesync/rules/stacks/react/state.md`
-- `.rulesync/rules/stacks/react/performance.md`
-- `.rulesync/rules/stacks/react/testing.md`
-- `.rulesync/rules/stacks/react/error-handling.md`
-- `.rulesync/rules/stacks/react/accessibility.md`
-- `.rulesync/rules/ui-ux.md`
-- `.rulesync/rules/stacks/typescript/overview.md`
-- `.rulesync/rules/stacks/typescript/types.md`
+- `.rulesync/rules/stacks/react/overview.md`

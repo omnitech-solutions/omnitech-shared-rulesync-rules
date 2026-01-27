@@ -9,17 +9,29 @@ globs:
   - '**/app/Http/Resources/**'
 ---
 
-# Laravel Resources Rules
+# Laravel Resource Rules
+
+> Authority Notice
+>
+> This stack is governed by `.rulesync/rules/stacks/laravel/non-negotiables.md`.
+> If any rule here conflicts with a non-negotiable, the non-negotiable wins.
 
 ## Response Shaping
 
-- **MUST** use Resources or DTOs for JSON responses.
-- **MUST** define explicit output shapes.
-- **MUST NOT** leak internal fields or persistence concerns.
+- MUST use API Resources to shape external responses.
+- MUST avoid returning raw models from controllers.
+- SHOULD keep resources stable and versioned.
 
 ---
 
-## Stability
+## Consistency
 
-- **MUST** treat resource shapes as public contracts.
-- **MUST** evolve resources additively.
+- MUST keep response fields consistent across endpoints.
+- SHOULD include links and meta data where appropriate.
+
+---
+
+## Related Rules
+
+- `.rulesync/rules/stacks/laravel/overview.md`
+- `.rulesync/rules/stacks/laravel/resources.md`

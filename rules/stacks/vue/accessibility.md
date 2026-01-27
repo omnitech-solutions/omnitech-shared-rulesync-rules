@@ -17,30 +17,21 @@ cursor:
 
 # Vue Accessibility Rules
 
-## Semantics & Structure
+## Semantics and Labels
 
-- Use semantic HTML elements before adding ARIA roles.
-- Ensure labels, hints, and error messages are programmatically associated.
-- Keep heading and landmark structure logical and consistent.
-
----
-
-## Focus & Interaction
-
-- Ensure all interactive elements are keyboard accessible.
-- Provide visible focus states and logical tab order.
-- Manage focus on navigation, dialogs, and dynamic content updates.
+- MUST use semantic HTML and proper labels.
+- MUST provide accessible names for icon-only controls.
 
 ---
 
-## Visual Accessibility
+## Keyboard and Focus
 
-- Maintain sufficient color contrast for text and UI controls.
-- Avoid conveying meaning with color alone.
+- MUST ensure keyboard support for all interactions.
+- SHOULD manage focus for modals and route transitions.
 
 ---
 
 ## Related Rules
 
-- `.rulesync/rules/ui-ux.md`
-- `.rulesync/rules/stacks/vue/components.md`
+- `.rulesync/rules/stacks/vue/overview.md`
+- `.rulesync/rules/stacks/vue/accessibility.md`

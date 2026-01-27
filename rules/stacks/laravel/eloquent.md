@@ -11,23 +11,36 @@ globs:
 
 # Laravel Eloquent Rules
 
-## Model Scope
+> Authority Notice
+>
+> This stack is governed by `.rulesync/rules/stacks/laravel/non-negotiables.md`.
+> If any rule here conflicts with a non-negotiable, the non-negotiable wins.
 
-- **MUST** restrict models to persistence concerns.
-- **MUST NOT** encode business rules in models.
-- **SHOULD** use casts and accessors for normalization.
+## Model Discipline
 
----
-
-## Queries
-
-- **MUST** avoid N+1 queries.
-- **MUST** paginate unbounded result sets.
-- **SHOULD** use query scopes for reuse.
+- MUST keep Eloquent models thin and focused on data access.
+- SHOULD avoid business workflows in models.
+- SHOULD document relationships and scopes.
 
 ---
 
-## Serialization
+## Queries and Performance
 
-- **MUST** control serialization via resources.
-- **MUST NOT** expose models directly.
+- MUST avoid N+1 queries with eager loading.
+- SHOULD use query scopes for reuse and clarity.
+- SHOULD keep heavy queries out of controllers.
+
+---
+
+## Mass Assignment
+
+- MUST use guarded/fillable attributes.
+- SHOULD validate input before assignment.
+
+---
+
+## Related Rules
+
+- `.rulesync/rules/stacks/laravel/overview.md`
+- `.rulesync/rules/stacks/laravel/eloquent.md`
+- `.rulesync/rules/stacks/laravel/persistence.md`

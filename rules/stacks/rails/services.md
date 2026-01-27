@@ -13,17 +13,37 @@ cursor:
     - '**/app/services/**'
 ---
 
-# Rails Services Rules
+# Rails Service Rules
 
-## Responsibilities
+> Authority Notice
+>
+> This stack is governed by `.rulesync/rules/stacks/rails/non-negotiables.md`.
+> If any rule here conflicts with a non-negotiable, the non-negotiable wins.
 
-- **MUST** orchestrate multi-step workflows.
-- **MUST** define transaction boundaries.
-- **MUST** raise domain-specific errors.
+## Service Shape
+
+- MUST have a single, well-defined responsibility.
+- MUST be explicit about inputs and outputs.
+- SHOULD use command-style naming (e.g., CreateUser).
 
 ---
 
-## Side Effects
+## Error Handling
 
-- **MUST** make side effects explicit.
-- **SHOULD** trigger jobs/events after commit.
+- MUST return structured errors for predictable failures.
+- SHOULD avoid raising exceptions for expected outcomes.
+
+---
+
+## Transactions
+
+- SHOULD manage transaction boundaries at the service level.
+- MUST avoid transactions in controllers.
+
+---
+
+## Related Rules
+
+- `.rulesync/rules/stacks/rails/overview.md`
+- `.rulesync/rules/stacks/rails/services.md`
+- `.rulesync/rules/stacks/rails/persistence.md`

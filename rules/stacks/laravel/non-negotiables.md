@@ -11,25 +11,32 @@ globs:
 
 # Laravel Non-Negotiables
 
-Violations of these rules indicate architectural drift and must be corrected.
+## Absolute Requirements
 
-## Framework Boundaries
+- MUST validate all external inputs.
+- MUST enforce authorization for protected actions.
+- MUST keep business logic out of transport layers.
+- MUST keep errors structured and user-safe.
+- MUST log and monitor critical flows.
 
-- Laravel is infrastructure, not the domain.
-- Domain code MUST NOT depend on Laravel types.
+---
 
-## Transaction Ownership
+## Operational Safety
 
-- Transactions MUST live in application/services.
-- Controllers MUST NOT manage transactions.
+- MUST handle timeouts and retries explicitly.
+- MUST prevent unbounded concurrency.
+- MUST use explicit configuration and secret management.
 
-## Persistence Discipline
+---
 
-- Eloquent models are not domain entities.
-- HTTP responses MUST NOT expose Eloquent models.
+## Change Control
 
-## Boundary Integrity
+- MUST avoid breaking API changes without a migration plan.
+- MUST document behavioral changes and deprecations.
 
-- Validation occurs at HTTP boundaries only.
-- Authorization is explicit and testable.
-- Side effects are never implicit.
+---
+
+## Related Rules
+
+- `.rulesync/rules/stacks/laravel/overview.md`
+- `.rulesync/rules/stacks/laravel/non-negotiables.md`

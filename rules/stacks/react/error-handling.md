@@ -18,32 +18,21 @@ cursor:
 
 # React Error Handling Rules
 
-## Error Boundaries
+## Boundaries
 
-- Use error boundaries around feature areas and routes.
-- Provide user‑friendly fallbacks and recovery actions.
-
-```tsx
-class ErrorBoundary extends React.Component<
-  { children: React.ReactNode; fallback?: React.ReactNode },
-  { hasError: boolean }
-> {
-  static getDerivedStateFromError() {
-    return { hasError: true };
-  }
-  render() {
-    if (this.state.hasError) {
-      return this.props.fallback ?? <div>Something went wrong.</div>;
-    }
-    return this.props.children;
-  }
-}
-```
+- MUST use error boundaries for component tree failures.
+- SHOULD isolate high-risk components behind boundaries.
 
 ---
 
-## Error Surface
+## UX
 
-- Bubble errors to user‑visible areas with context.
-- Avoid swallowing errors silently.
-- Log errors at boundaries with correlation context.
+- MUST provide user-safe fallback UIs.
+- SHOULD include retry actions for recoverable errors.
+
+---
+
+## Related Rules
+
+- `.rulesync/rules/stacks/react/overview.md`
+- `.rulesync/rules/stacks/react/error-handling.md`

@@ -20,29 +20,19 @@ cursor:
 
 ## Component Tests
 
-- Test components as users interact with them, not as implementation details.
-- Keep tests focused on props, emitted events, and visible output.
-- Mock network and store boundaries rather than internal helpers.
+- MUST test behavior from the user's perspective.
+- SHOULD avoid fragile selectors.
 
 ---
 
-## Composables & State
+## Integration
 
-- Test composables with controlled inputs and deterministic clocks.
-- Validate edge cases for async flows and error states.
-- Keep store tests isolated and reset state between runs.
-
----
-
-## Stability
-
-- Avoid relying on DOM timing or order-dependent behavior.
-- Prefer small, fast tests; reserve end-to-end coverage for critical paths.
+- SHOULD test data-fetching and routing flows.
+- SHOULD keep mocks focused on external boundaries.
 
 ---
 
 ## Related Rules
 
-- `.rulesync/rules/testing.md`
-- `.rulesync/rules/stacks/vue/components.md`
-- `.rulesync/rules/stacks/vue/composables.md`
+- `.rulesync/rules/stacks/vue/overview.md`
+- `.rulesync/rules/stacks/vue/testing.md`

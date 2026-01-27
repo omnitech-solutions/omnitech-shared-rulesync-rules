@@ -13,36 +13,22 @@ globs:
 
 # GraphQL Governance Rules
 
-## Change Management
+## Schema Governance
 
-- **MUST** review schema changes for backward compatibility.
-- **MUST** use deprecation before removal.
-- **MUST NOT** change field meaning or semantics.
-
----
-
-## Deprecation Policy
-
-- **MUST** keep deprecated fields available for at least one release cycle.
-- **MUST** provide migration guidance before removal.
-- **SHOULD** track deprecated usage.
-
----
-
-## Quality Gates
-
-- **MUST** validate schema changes against representative operations.
-- **MUST** block breaking changes without explicit approval.
+- MUST review schema changes before release.
+- MUST document deprecations and migrations.
+- SHOULD enforce linting and schema checks in CI.
 
 ---
 
 ## Ownership
 
-- **SHOULD** assign ownership for critical schema areas.
-- **SHOULD** keep schema documentation current.
+- MUST assign owners to schema areas and operations.
+- SHOULD document SLAs and performance budgets.
 
 ---
 
 ## Related Rules
 
-- `.rulesync/rules/stacks/graphql/schema.md`
+- `.rulesync/rules/stacks/graphql/overview.md`
+- `.rulesync/rules/stacks/graphql/governance.md`

@@ -17,33 +17,25 @@ cursor:
     - '**/*.vue'
 ---
 
-# Utility-First Component Rules
+# Tailwind Component Rules
 
-## Composition & Extraction
+## Component Composition
 
-- Extract repeated class stacks into shared components or utilities.
-- Keep component variants explicit and limited.
-- Prefer a small set of shared primitives over many similar one-off patterns.
-
----
-
-## Class Readability
-
-- Group classes by purpose (layout, spacing, typography, color).
-- Avoid long chains of conditional classes; move logic into variants.
-- Keep component styling close to the component definition.
+- MUST build components from utility classes and tokens.
+- SHOULD use consistent variant APIs for size and intent.
+- SHOULD avoid duplication by extracting shared patterns.
 
 ---
 
-## Consistency
+## Variants and States
 
-- Use consistent naming for variant props and states.
-- Align component styles with the design system tokens.
+- MUST define hover, focus, active, and disabled states.
+- SHOULD keep state styles consistent across components.
 
 ---
 
 ## Related Rules
 
-- `.rulesync/rules/ui-ux.md`
 - `.rulesync/rules/stacks/tailwind/overview.md`
+- `.rulesync/rules/stacks/tailwind/components.md`
 - `.rulesync/rules/stacks/tailwind/tokens.md`

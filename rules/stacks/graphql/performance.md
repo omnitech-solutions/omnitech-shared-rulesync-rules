@@ -13,32 +13,23 @@ globs:
 
 # GraphQL Performance Rules
 
-## Query Cost Management
+## Query Cost
 
-- **MUST** enforce query depth or cost limits.
-- **MUST** reject or throttle abusive or overly expensive queries early.
-- **SHOULD** document cost-heavy fields and expected usage.
-
----
-
-## Caching & Batching
-
-- **MUST** batch resolver data access.
-- **MUST** define clear cache invalidation strategies.
-- **MUST NOT** cache personalized data without strict scoping.
-- **SHOULD** prefer explicit caches over implicit framework behavior.
+- MUST enforce depth/complexity limits.
+- MUST batch or cache repeated data fetches.
+- SHOULD use persisted queries for critical clients.
 
 ---
 
-## Data Shaping
+## Caching
 
-- **MUST** keep list fields lightweight.
-- **SHOULD** separate summary vs detail fields.
-- **MUST NOT** encourage multi-hop fan-out traversal.
+- SHOULD cache stable queries at the edge or service level.
+- SHOULD include cache keys that reflect authorization scope.
 
 ---
 
 ## Related Rules
 
-- `.rulesync/rules/stacks/graphql/resolvers.md`
-- `.rulesync/rules/stacks/graphql/operations.md`
+- `.rulesync/rules/stacks/graphql/overview.md`
+- `.rulesync/rules/stacks/graphql/performance.md`
+- `.rulesync/rules/stacks/graphql/data-access.md`

@@ -12,58 +12,57 @@ globs:
 
 # PHP Overview Rules
 
-> **Authority Notice**
+> Authority Notice
 >
-> This ruleset is governed by: `.rulesync/rules/stacks/php/non-negotiables.md`
->
-> In the event of conflict, the non-negotiables take precedence.
+> This stack is governed by `.rulesync/rules/stacks/php/non-negotiables.md`. If
+> any rule here conflicts with a non-negotiable, the non-negotiable wins.
 
-This document defines the **baseline architectural contract** for PHP
-applications. All other PHP rules **specialize or elaborate** on these
-guarantees.
+## Purpose
 
----
-
-## Rule Strength
-
-- **MUST** — Required. Violations block merge or release.
-- **SHOULD** — Expected default. Deviations require justification.
-- **MAY** — Optional guidance.
+- Define the architectural contract for PHP work in this repo.
+- Keep rules focused on predictable behavior, testability, and operational
+  safety.
+- Treat all guidance here as defaults unless a narrower rule overrides it.
 
 ---
 
-## Core Contract
+## Core Principles
 
-- **PHP as a Systems Language (MUST)**  
-  PHP is a general-purpose systems language, not a scripting layer.
-
-- **Explicit Boundaries (MUST)**  
-  Transport → Application → Domain → Infrastructure.
-
-- **Replaceability (MUST)**  
-  Domain and application logic must not depend on frameworks or global state.
-
-- **Predictable Behavior (MUST)**  
-  Types, errors, persistence, and side effects must be explicit and testable.
+- MUST separate concerns: UI/transport, application flow, domain logic, and
+  infrastructure.
+- MUST keep side effects explicit and traceable.
+- MUST prefer composable units over large multi-purpose modules.
+- SHOULD optimize for clarity before micro-optimization.
+- SHOULD design for change with clear extension points.
 
 ---
 
-## Evolution & Quality
+## Data Flow and Boundaries
 
-- **Additive Change (MUST)**  
-  Public APIs evolve via additive change and deprecation only.
-
-- **Consistency (MUST)**  
-  Typing, error handling, and structure must be consistent across the codebase.
+- MUST keep inputs validated at boundaries before use.
+- MUST keep outputs shaped and documented at boundaries.
+- SHOULD prevent data leakage across layers (no direct model/ORM exposure).
+- SHOULD define stable interfaces for cross-module calls.
 
 ---
 
-## Related Rules (Authoritative Index)
+## Reliability and Observability
 
-- `.rulesync/rules/stacks/php/non-negotiables.md`
-- `.rulesync/rules/stacks/php/types.md`
-- `.rulesync/rules/stacks/php/errors.md`
-- `.rulesync/rules/stacks/php/structure.md`
-- `.rulesync/rules/stacks/php/data-access.md`
-- `.rulesync/rules/stacks/php/performance.md`
-- `.rulesync/rules/stacks/php/testing.md`
+- MUST handle errors intentionally with typed or structured error shapes.
+- MUST emit logs/metrics for user-impacting paths and background work.
+- SHOULD include tracing or correlation identifiers when possible.
+- SHOULD keep performance budgets for critical workflows.
+
+---
+
+## Evolution and Change
+
+- MUST avoid breaking changes to public APIs without a migration plan.
+- SHOULD deprecate gradually with clear replacement guidance.
+- MAY provide compatibility shims when external consumers exist.
+
+---
+
+## Related Rules
+
+- `.rulesync/rules/stacks/php/overview.md`

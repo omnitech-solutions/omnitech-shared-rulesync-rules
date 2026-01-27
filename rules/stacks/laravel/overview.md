@@ -15,96 +15,57 @@ globs:
 
 # Laravel Overview Rules
 
-> **Authority Notice**
+> Authority Notice
 >
-> This ruleset is governed by the constraints defined in:
-> `.rulesync/rules/stacks/laravel/non-negotiables.md`
->
-> If any rule in this document or its specializations conflicts with the
-> non-negotiables, the non-negotiables take precedence.
+> This stack is governed by `.rulesync/rules/stacks/laravel/non-negotiables.md`.
+> If any rule here conflicts with a non-negotiable, the non-negotiable wins.
 
-This document defines the **baseline architectural contract** for Laravel
-applications.  
-All other Laravel rules **specialize or elaborate** on the guarantees defined
-here.
+## Purpose
 
----
-
-## Rule Strength
-
-All rules use the following strength levels:
-
-- **MUST**  
-  Required. Violations block merge or release.
-
-- **SHOULD**  
-  Expected default. Deviations require explicit justification.
-
-- **MAY**  
-  Optional guidance.
+- Define the architectural contract for Laravel work in this repo.
+- Keep rules focused on predictable behavior, testability, and operational
+  safety.
+- Treat all guidance here as defaults unless a narrower rule overrides it.
 
 ---
 
-## Core Contract
+## Core Principles
 
-- **Framework as Infrastructure (MUST)**  
-  Laravel is an infrastructure and delivery framework, not the domain or
-  application model.
-
-- **Explicit Boundaries (MUST)**  
-  Execution flows through clear layers only:  
-  HTTP → Controllers → Application / Handlers → Domain → Persistence.
-
-- **Replaceability (MUST)**  
-  Domain and application logic must not depend on Laravel classes, helpers, or
-  facades.
-
-- **Predictable Behavior (MUST)**  
-  Validation, authorization, persistence, transactions, and side effects must be
-  explicit, observable, and testable.
+- MUST separate concerns: UI/transport, application flow, domain logic, and
+  infrastructure.
+- MUST keep side effects explicit and traceable.
+- MUST prefer composable units over large multi-purpose modules.
+- SHOULD optimize for clarity before micro-optimization.
+- SHOULD design for change with clear extension points.
 
 ---
 
-## Execution Model
+## Data Flow and Boundaries
 
-- **Thin Controllers (MUST)**  
-  Controllers validate input, invoke application logic, and shape responses
-  only.
-
-- **Single Responsibility (MUST)**  
-  Each layer owns exactly one concern: transport, orchestration, domain, or
-  persistence.
-
-- **No Hidden Work (MUST)**  
-  Background jobs, transactions, and side effects must never be implicit or
-  framework-driven by accident.
+- MUST keep inputs validated at boundaries before use.
+- MUST keep outputs shaped and documented at boundaries.
+- SHOULD prevent data leakage across layers (no direct model/ORM exposure).
+- SHOULD define stable interfaces for cross-module calls.
 
 ---
 
-## Quality & Evolution
+## Reliability and Observability
 
-- **Consistency (MUST)**  
-  Naming, routing, validation, authorization, and response shaping must be
-  consistent across the application.
-
-- **Additive Change (MUST)**  
-  Public APIs evolve via additive change and deprecation only.  
-  Breaking changes require explicit approval and migration planning.
+- MUST handle errors intentionally with typed or structured error shapes.
+- MUST emit logs/metrics for user-impacting paths and background work.
+- SHOULD include tracing or correlation identifiers when possible.
+- SHOULD keep performance budgets for critical workflows.
 
 ---
 
-## Related Rules (Authoritative Index)
+## Evolution and Change
 
-The following documents elaborate on and enforce the guarantees defined here:
+- MUST avoid breaking changes to public APIs without a migration plan.
+- SHOULD deprecate gradually with clear replacement guidance.
+- MAY provide compatibility shims when external consumers exist.
 
-- `.rulesync/rules/stacks/laravel/non-negotiables.md`
-- `.rulesync/rules/stacks/laravel/controllers.md`
-- `.rulesync/rules/stacks/laravel/routing.md`
-- `.rulesync/rules/stacks/laravel/validation.md`
-- `.rulesync/rules/stacks/laravel/resources.md`
-- `.rulesync/rules/stacks/laravel/eloquent.md`
-- `.rulesync/rules/stacks/laravel/persistence.md`
-- `.rulesync/rules/stacks/laravel/jobs.md`
-- `.rulesync/rules/stacks/laravel/providers.md`
-- `.rulesync/rules/stacks/laravel/security.md`
-- `.rulesync/rules/stacks/laravel/testing.md`
+---
+
+## Related Rules
+
+- `.rulesync/rules/stacks/laravel/overview.md`

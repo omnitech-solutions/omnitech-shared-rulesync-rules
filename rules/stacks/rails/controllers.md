@@ -15,24 +15,36 @@ cursor:
 
 # Rails Controller Rules
 
+> Authority Notice
+>
+> This stack is governed by `.rulesync/rules/stacks/rails/non-negotiables.md`.
+> If any rule here conflicts with a non-negotiable, the non-negotiable wins.
+
 ## Responsibilities
 
-- **MUST** validate and normalize input.
-- **MUST** enforce authorization explicitly.
-- **MUST** delegate all business behavior to services.
-- **MUST** shape responses only.
+- MUST validate and normalize inputs.
+- MUST enforce authentication and authorization.
+- MUST delegate business behavior to services or commands.
+- MUST shape responses only.
 
 ---
 
 ## Prohibited
 
-- **MUST NOT** contain domain logic.
-- **MUST NOT** manage transactions.
-- **MUST NOT** enqueue jobs implicitly.
-- **MUST NOT** return ActiveRecord models directly.
+- MUST NOT contain domain logic.
+- MUST NOT perform persistence directly.
+- MUST NOT hide behavior in filters or callbacks.
 
 ---
 
-## Filters
+## Response Consistency
 
-- **MUST NOT** hide business logic in filters or concerns.
+- MUST return consistent response shapes.
+- SHOULD map errors to stable error formats.
+
+---
+
+## Related Rules
+
+- `.rulesync/rules/stacks/rails/overview.md`
+- `.rulesync/rules/stacks/rails/controllers.md`

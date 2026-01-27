@@ -13,30 +13,23 @@ globs:
 
 # GraphQL Security Rules
 
-## Authorization
+## Query Safety
 
-- **MUST** enforce authorization at resolver boundaries.
-- **MUST** apply object-level authorization for ID-based access.
-- **MUST NOT** assume parent authorization applies to nested fields.
-
----
-
-## Input Safety
-
-- **MUST** validate all inputs.
-- **MUST** guard against query complexity and abuse.
-- **SHOULD** treat file uploads and URLs as untrusted.
+- MUST enforce depth/complexity limits.
+- MUST authorize access for every resolver.
+- SHOULD rate limit expensive operations.
 
 ---
 
-## Exposure Control
+## Data Exposure
 
-- **MUST** explicitly decide which fields are public vs internal.
-- **MUST NOT** expose implementation details in errors or descriptions.
+- MUST avoid leaking internal identifiers when unnecessary.
+- SHOULD audit field exposure for sensitive data.
 
 ---
 
 ## Related Rules
 
-- `.rulesync/rules/security.md`
 - `.rulesync/rules/stacks/graphql/overview.md`
+- `.rulesync/rules/stacks/graphql/security.md`
+- `.rulesync/rules/stacks/graphql/governance.md`

@@ -12,21 +12,36 @@ globs:
 
 # Node.js Operations Rules
 
+> Authority Notice
+>
+> This stack is governed by `.rulesync/rules/stacks/nodejs/non-negotiables.md`.
+> If any rule here conflicts with a non-negotiable, the non-negotiable wins.
+
+## Service Lifecycle
+
+- MUST implement readiness and liveness checks.
+- MUST handle shutdown signals gracefully.
+- SHOULD complete in-flight requests on shutdown where possible.
+
+---
+
 ## Observability
 
-- **MUST** emit structured logs.
-- **MUST** expose health and readiness endpoints.
+- MUST emit structured logs with correlation ids.
+- MUST expose metrics for latency, errors, and throughput.
+- SHOULD include traces around critical paths.
 
 ---
 
-## Lifecycle
+## Configuration
 
-- **MUST** handle SIGTERM/SIGINT gracefully.
-- **MUST** drain in-flight work on shutdown.
+- MUST use explicit config with validated environment variables.
+- SHOULD keep secrets in secure stores, not in code.
 
 ---
 
-## Resilience
+## Related Rules
 
-- **MUST** apply timeouts and retries.
-- **MUST** bound concurrency.
+- `.rulesync/rules/stacks/nodejs/overview.md`
+- `.rulesync/rules/stacks/nodejs/operations.md`
+- `.rulesync/rules/stacks/nodejs/security.md`

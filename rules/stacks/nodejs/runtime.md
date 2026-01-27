@@ -12,23 +12,36 @@ globs:
 
 # Node.js Runtime Rules
 
-## Event Loop Safety
+> Authority Notice
+>
+> This stack is governed by `.rulesync/rules/stacks/nodejs/non-negotiables.md`.
+> If any rule here conflicts with a non-negotiable, the non-negotiable wins.
 
-- **MUST** offload CPU-heavy work.
-- **MUST** avoid blocking I/O.
-- **MUST** bound in-memory buffers.
+## Event Loop Discipline
+
+- MUST avoid blocking the event loop.
+- MUST timebox all IO and async operations.
+- SHOULD prefer streaming for large payloads.
 
 ---
 
-## Async Boundaries
+## Async Safety
 
-- **MUST** await all promises.
-- **MUST** propagate errors explicitly.
-- **MUST** timebox external calls.
+- MUST await all asynchronous work in request paths.
+- MUST handle promise rejections explicitly.
+- SHOULD avoid fire-and-forget in request flows.
 
 ---
 
 ## Resource Management
 
-- **MUST** close connections and timers.
-- **MUST NOT** retain request-scoped state globally.
+- MUST clean up timers, sockets, and connections on shutdown.
+- SHOULD limit concurrency with explicit queues or pools.
+
+---
+
+## Related Rules
+
+- `.rulesync/rules/stacks/nodejs/overview.md`
+- `.rulesync/rules/stacks/nodejs/runtime.md`
+- `.rulesync/rules/stacks/nodejs/operations.md`

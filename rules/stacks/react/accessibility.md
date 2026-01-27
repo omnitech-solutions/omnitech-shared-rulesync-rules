@@ -18,32 +18,21 @@ cursor:
 
 # React Accessibility Rules
 
-## Semantic HTML
+## Semantics
 
-- Prefer semantic elements (`button`, `nav`, `main`) over generic `div`s.
-- Use proper label associations for form fields.
-
-```tsx
-<label htmlFor="email">Email</label>
-<input id="email" name="email" type="email" />
-```
+- MUST use semantic HTML and ARIA only when needed.
+- MUST provide accessible names for controls.
 
 ---
 
-## Keyboard Support
+## Interaction
 
-- Ensure all interactive elements are reachable and operable via keyboard.
-- Preserve focus order and provide visible focus states.
+- MUST support keyboard interaction for all controls.
+- SHOULD manage focus on route or modal changes.
 
 ---
 
-## ARIA Usage
+## Related Rules
 
-- Use ARIA only when semantic HTML is insufficient.
-- Keep ARIA attributes in sync with component state.
-
-```tsx
-<button aria-expanded={isOpen} aria-controls="menu">
-  Menu
-</button>
-```
+- `.rulesync/rules/stacks/react/overview.md`
+- `.rulesync/rules/stacks/react/accessibility.md`

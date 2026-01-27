@@ -13,17 +13,37 @@ cursor:
     - '**/app/jobs/**'
 ---
 
-# Rails Jobs Rules
+# Rails Job Rules
 
-## Responsibilities
+> Authority Notice
+>
+> This stack is governed by `.rulesync/rules/stacks/rails/non-negotiables.md`.
+> If any rule here conflicts with a non-negotiable, the non-negotiable wins.
 
-- **MUST** be idempotent.
-- **MUST** accept identifiers only.
-- **MUST** delegate work to services.
+## Job Design
+
+- MUST make jobs idempotent and safe to retry.
+- MUST validate inputs and enforce authorization if needed.
+- SHOULD keep job payloads small and stable.
 
 ---
 
-## Failures
+## Reliability
 
-- **MUST** log with context.
-- **MUST** be retry-safe.
+- MUST configure timeouts and retry policies.
+- MUST handle partial failures explicitly.
+- SHOULD record job outcome and retry counts.
+
+---
+
+## Observability
+
+- MUST log job start/finish and failures with context.
+- SHOULD emit metrics for queue depth and latency.
+
+---
+
+## Related Rules
+
+- `.rulesync/rules/stacks/rails/overview.md`
+- `.rulesync/rules/stacks/rails/jobs.md`

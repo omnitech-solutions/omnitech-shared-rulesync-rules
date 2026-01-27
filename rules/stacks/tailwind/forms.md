@@ -18,33 +18,33 @@ cursor:
     - '**/*.jsx'
 ---
 
-# Utility-First Form Rules
+# Tailwind Form Rules
 
-## Form Consistency
+## Form Architecture
 
-- Keep input styling consistent across the application.
-- Align spacing, sizing, and typography with design tokens.
-- Use shared form primitives for common controls.
-
----
-
-## Interaction States
-
-- Provide clear focus, error, and disabled states.
-- Ensure error styling is visible without relying on color alone.
-- Keep hover and focus treatments subtle and consistent.
+- MUST validate inputs before submission.
+- MUST provide clear error messages near inputs.
+- SHOULD keep form state centralized per form.
 
 ---
 
-## Layout & Grouping
+## UX and Accessibility
 
-- Group related fields visually and semantically.
-- Keep labels and helper text aligned for scannability.
+- MUST associate labels with inputs.
+- MUST support keyboard submission and focus states.
+- SHOULD disable submit while processing.
+
+---
+
+## Security
+
+- MUST protect against injection via validation and encoding.
+- SHOULD prevent double submits with idempotency or locks.
 
 ---
 
 ## Related Rules
 
-- `.rulesync/rules/ui-ux.md`
 - `.rulesync/rules/stacks/tailwind/overview.md`
+- `.rulesync/rules/stacks/tailwind/forms.md`
 - `.rulesync/rules/stacks/tailwind/accessibility.md`

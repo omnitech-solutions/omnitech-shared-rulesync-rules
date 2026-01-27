@@ -20,37 +20,22 @@ cursor:
 
 # React Testing Rules
 
-## Testing Principles
+## Component Tests
 
-- Test observable behavior, not implementation details.
-- Prefer user‑level interactions and assertions.
-- Keep tests small and focused on one behavior.
-- Cover critical accessibility states (labels, roles, focus).
-
-```tsx
-render(<UserCard user={user} />);
-expect(screen.getByText(user.name)).toBeInTheDocument();
-```
+- MUST test behavior via user interactions.
+- MUST avoid testing implementation details.
+- SHOULD use accessibility queries for elements.
 
 ---
 
-## Hooks Testing
+## Integration
 
-- Test hooks via public APIs (components) when possible.
-- If testing hooks directly, assert returned values and side effects.
-
----
-
-## Integration Tests
-
-- Cover critical flows that span multiple components.
-- Mock external services at the boundary, not inside components.
-- Assert error and empty states, not just happy paths.
+- SHOULD test feature flows across multiple components.
+- SHOULD mock network boundaries, not internal modules.
 
 ---
 
-## Test Data
+## Related Rules
 
-- Use builders/factories for consistent test setup.
-- Avoid brittle snapshots for complex UI; assert key text/roles instead.
-- Prefer deterministic time/IDs for stable tests.
+- `.rulesync/rules/stacks/react/overview.md`
+- `.rulesync/rules/stacks/react/testing.md`

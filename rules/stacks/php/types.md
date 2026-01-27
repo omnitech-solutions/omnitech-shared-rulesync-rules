@@ -1,22 +1,29 @@
 # PHP Type Rules
 
-## Type Safety
+## Type Modeling
 
-- **MUST** declare parameter and return types on all methods.
-- **MUST** use `readonly` properties where mutation is not required.
-- **MUST NOT** use `mixed` except at explicit boundaries.
-- **SHOULD** use value objects for domain concepts.
-
----
-
-## Enums & Exhaustiveness
-
-- **MUST** use enums for fixed domain sets.
-- **MUST** handle enums exhaustively using `match`.
+- MUST model domain concepts with explicit types.
+- MUST avoid untyped or overly broad primitives for critical data.
+- SHOULD use discriminated unions for workflow state.
 
 ---
 
-## Collections
+## Type Precision
 
-- **MUST NOT** pass raw arrays across boundaries.
-- **SHOULD** use typed collections or documented array shapes.
+- MUST keep types as narrow as is practical.
+- SHOULD prefer readonly structures for immutable data.
+- SHOULD avoid optional fields that are effectively required.
+
+---
+
+## Composition
+
+- SHOULD prefer small, composable types over massive interfaces.
+- MAY use utility types when they improve clarity.
+
+---
+
+## Related Rules
+
+- `.rulesync/rules/stacks/php/overview.md`
+- `.rulesync/rules/stacks/php/types.md`

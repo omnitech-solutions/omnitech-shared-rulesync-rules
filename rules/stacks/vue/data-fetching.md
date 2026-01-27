@@ -19,31 +19,30 @@ cursor:
 
 # Vue Data Fetching Rules
 
-## Server State Boundaries
+## Data Ownership
 
-- Keep data fetching in composables or services, not components.
-- Separate server state from local UI state.
-- Prefer explicit loading, empty, and error states.
+- MUST fetch data in feature-level containers or composables.
+- MUST avoid data fetching in presentational components.
+- SHOULD colocate fetching logic with the owning route.
 
 ---
 
-## Caching & Consistency
+## Caching and Staleness
 
-- Cache server responses with clear invalidation rules.
-- Avoid stale data by scoping caches to user and environment context.
-- Keep optimistic updates reversible.
+- SHOULD cache repeatable queries with explicit invalidation.
+- SHOULD handle loading and empty states consistently.
 
 ---
 
 ## Error Handling
 
-- Provide user-friendly error states and recovery paths.
-- Avoid retry storms; back off and surface failures clearly.
+- MUST surface recoverable errors in the UI.
+- SHOULD log unexpected failures with context.
 
 ---
 
 ## Related Rules
 
 - `.rulesync/rules/stacks/vue/overview.md`
-- `.rulesync/rules/stacks/vue/composables.md`
-- `.rulesync/rules/stacks/vue/state.md`
+- `.rulesync/rules/stacks/vue/data-fetching.md`
+- `.rulesync/rules/stacks/vue/error-handling.md`

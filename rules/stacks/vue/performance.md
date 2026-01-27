@@ -17,30 +17,22 @@ cursor:
 
 # Vue Performance Rules
 
-## Rendering Efficiency
+## Rendering
 
-- Keep render output minimal; avoid heavy computation in templates.
-- Prefer computed values over repeated inline expressions.
-- Use memoization patterns when rendering large lists or expensive trees.
-
----
-
-## Lists & Reconciliation
-
-- Use stable keys that map to persistent identities.
-- Avoid rendering large lists without pagination or virtualization.
-- Keep list item components lightweight.
+- MUST avoid unnecessary rerenders by keeping reactive state minimal.
+- SHOULD prefer computed properties over watchers for derivations.
+- SHOULD use keep-alive only when justified.
 
 ---
 
-## Async & Code Splitting
+## Bundling
 
-- Lazy-load routes or feature modules that are not immediately needed.
-- Defer non-critical data fetching until after initial render.
+- SHOULD lazy-load routes and large components.
+- SHOULD avoid heavy third-party dependencies in the main bundle.
 
 ---
 
 ## Related Rules
 
-- `.rulesync/rules/performance.md`
-- `.rulesync/rules/stacks/vue/components.md`
+- `.rulesync/rules/stacks/vue/overview.md`
+- `.rulesync/rules/stacks/vue/performance.md`

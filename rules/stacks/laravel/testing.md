@@ -11,15 +11,26 @@ globs:
 
 # Laravel Testing Rules
 
-## Test Coverage
+> Authority Notice
+>
+> This stack is governed by `.rulesync/rules/stacks/laravel/non-negotiables.md`.
+> If any rule here conflicts with a non-negotiable, the non-negotiable wins.
 
-- **MUST** cover domain logic with unit tests.
-- **MUST** cover HTTP behavior with feature tests.
-- **MUST** assert authorization boundaries.
+## Coverage
+
+- MUST test controllers, jobs, and services.
+- SHOULD test validation rules and policies.
 
 ---
 
-## Determinism
+## Isolation
 
-- **MUST** fake external systems.
-- **SHOULD** keep tests isolated and repeatable.
+- SHOULD fake queues and external APIs in unit tests.
+- SHOULD keep fixtures small and deterministic.
+
+---
+
+## Related Rules
+
+- `.rulesync/rules/stacks/laravel/overview.md`
+- `.rulesync/rules/stacks/laravel/testing.md`

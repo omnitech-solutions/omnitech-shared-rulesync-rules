@@ -1,20 +1,26 @@
 # PHP Data Access Rules
 
-## Boundaries
+> Authority Notice
+>
+> This stack is governed by `.rulesync/rules/stacks/php/non-negotiables.md`. If
+> any rule here conflicts with a non-negotiable, the non-negotiable wins.
 
-- **MUST** isolate persistence behind repositories or adapters.
-- **MUST NOT** embed SQL or ORM logic in domain code.
+## Data Access Discipline
 
----
-
-## Queries
-
-- **MUST** use prepared statements or ORM APIs.
-- **MUST** paginate unbounded result sets.
-- **MUST NOT** return raw database rows.
+- MUST centralize database access behind repositories.
+- MUST prevent raw queries in controllers.
+- SHOULD keep queries optimized and indexed.
 
 ---
 
-## Mapping
+## Transactions
 
-- **MUST** map persistence models to domain models explicitly.
+- MUST use explicit transactions for multi-step writes.
+- SHOULD avoid long-lived transactions.
+
+---
+
+## Related Rules
+
+- `.rulesync/rules/stacks/php/overview.md`
+- `.rulesync/rules/stacks/php/data-access.md`

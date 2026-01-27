@@ -13,29 +13,21 @@ globs:
 
 # GraphQL Testing Rules
 
-## Contract Testing
+## Schema Tests
 
-- **MUST** maintain a representative set of contract queries and mutations.
-- **MUST** detect breaking schema changes via tests.
-- **SHOULD** snapshot response shapes for critical operations.
-
----
-
-## Authorization Testing
-
-- **MUST** test authorization at both top-level and nested fields.
-- **MUST** test unauthorized access paths.
+- MUST test schema changes for breaking behavior.
+- SHOULD include contract tests for core operations.
 
 ---
 
-## Pagination & Invariants
+## Resolver Tests
 
-- **MUST** test pagination stability and cursor validity.
-- **SHOULD** test behavior under inserts, deletes, and reordering.
+- MUST test resolver error mapping and authorization.
+- SHOULD test batching and caching behavior.
 
 ---
 
 ## Related Rules
 
-- `.rulesync/rules/stacks/graphql/governance.md`
-- `.rulesync/rules/stacks/graphql/security.md`
+- `.rulesync/rules/stacks/graphql/overview.md`
+- `.rulesync/rules/stacks/graphql/testing.md`

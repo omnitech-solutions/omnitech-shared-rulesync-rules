@@ -1,21 +1,26 @@
-# PHP Error Handling Rules
+# PHP Error Rules
 
-## Exceptions
+> Authority Notice
+>
+> This stack is governed by `.rulesync/rules/stacks/php/non-negotiables.md`. If
+> any rule here conflicts with a non-negotiable, the non-negotiable wins.
 
-- **MUST** use domain-specific exception types.
-- **MUST** include actionable context in exception messages.
-- **MUST NOT** swallow exceptions silently.
+## Error Strategy
 
----
-
-## Boundaries
-
-- **MUST** translate technical exceptions at system boundaries.
-- **MUST NOT** leak framework or persistence exceptions into domain code.
+- MUST throw exceptions for exceptional failures only.
+- MUST return typed error results for expected failures.
+- SHOULD avoid mixing control flow with exceptions.
 
 ---
 
-## Control Flow
+## Logging
 
-- **MUST NOT** use exceptions for normal control flow.
-- **MUST** fail fast on invariant violations.
+- MUST log unexpected errors with context.
+- SHOULD sanitize sensitive data in logs.
+
+---
+
+## Related Rules
+
+- `.rulesync/rules/stacks/php/overview.md`
+- `.rulesync/rules/stacks/php/errors.md`

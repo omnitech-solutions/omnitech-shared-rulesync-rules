@@ -19,29 +19,27 @@ cursor:
 
 ## Composable Design
 
-- Make composables pure where possible: inputs in, outputs out.
-- Expose a minimal API; return stable references when feasible.
-- Keep composables focused on one responsibility.
+- MUST keep composables focused on one responsibility.
+- MUST return explicit APIs (state + actions).
+- SHOULD avoid hidden side effects on import.
 
 ---
 
-## Side Effects & Lifecycle
+## Reusability
 
-- Attach side effects only when a component uses the composable.
-- Clean up subscriptions, timers, and listeners reliably.
-- Avoid hidden global state inside composables.
+- SHOULD accept dependencies as parameters.
+- SHOULD expose configuration through options objects.
 
 ---
 
-## Dependencies
+## Lifecycle
 
-- Accept dependencies as parameters to ease testing and reuse.
-- Avoid importing app-specific singletons inside shared composables.
+- MUST clean up effects, listeners, and subscriptions.
+- SHOULD avoid leaking state across component instances.
 
 ---
 
 ## Related Rules
 
 - `.rulesync/rules/stacks/vue/overview.md`
-- `.rulesync/rules/stacks/vue/state.md`
-- `.rulesync/rules/stacks/vue/testing.md`
+- `.rulesync/rules/stacks/vue/composables.md`

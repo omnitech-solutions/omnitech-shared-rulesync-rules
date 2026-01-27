@@ -11,22 +11,29 @@ globs:
 
 # Laravel Routing Rules
 
-## Route Structure
+## Route Design
 
-- **MUST** define routes explicitly.
-- **MUST** group routes by version or bounded context.
-- **MUST** apply auth and policy middleware at the route boundary.
-
----
-
-## REST Discipline
-
-- **SHOULD** use RESTful resource routes for CRUD.
-- **MUST NOT** overload routes with hidden behavior.
+- MUST use resourceful routing conventions.
+- MUST keep routes shallow and readable.
+- SHOULD avoid deep nesting beyond one level.
 
 ---
 
-## Stability
+## HTTP Semantics
 
-- **MUST** treat public routes as API contracts.
-- **MUST** version routes when making breaking changes.
+- MUST align verbs with intent (GET, POST, PUT, PATCH, DELETE).
+- SHOULD keep route names consistent and predictable.
+
+---
+
+## Versioning
+
+- SHOULD version APIs when external consumers exist.
+- MAY deprecate routes with clear timelines.
+
+---
+
+## Related Rules
+
+- `.rulesync/rules/stacks/laravel/overview.md`
+- `.rulesync/rules/stacks/laravel/routing.md`

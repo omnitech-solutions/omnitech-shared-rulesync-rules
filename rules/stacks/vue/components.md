@@ -19,30 +19,38 @@ cursor:
 
 ## Component API Design
 
-- Keep props small, explicit, and intention-revealing.
-- Use events for actions, not state mutations.
-- Prefer slots for extensibility over large configuration props.
+- MUST keep props/inputs explicit and intention-revealing.
+- MUST document defaults and invariants.
+- SHOULD favor composition over configuration flags.
+- SHOULD keep components single-purpose.
 
 ---
 
-## Composition Patterns
+## Composition and Reuse
 
-- Compose features from smaller components rather than building monoliths.
-- Extract shared UI patterns into primitives with consistent APIs.
-- Avoid cross-component implicit coupling (shared mutable state, magic events).
+- MUST avoid deep prop drilling without justification.
+- SHOULD create primitives for repeatable UI patterns.
+- SHOULD limit component responsibilities to UI behavior.
 
 ---
 
 ## Rendering Discipline
 
-- Keep templates free of heavy logic; move computation to computed values.
-- Avoid side effects during render.
-- Use stable keys for list rendering.
+- MUST keep rendering pure and side-effect free.
+- SHOULD move heavy computation out of render paths.
+- SHOULD provide stable keys for list rendering.
+
+---
+
+## Styling and Variants
+
+- MUST keep variant logic centralized and consistent.
+- SHOULD avoid one-off styles when a shared token exists.
+- MAY use a variant utility to control styling combinatorics.
 
 ---
 
 ## Related Rules
 
-- `.rulesync/rules/ui-ux.md`
 - `.rulesync/rules/stacks/vue/overview.md`
-- `.rulesync/rules/stacks/vue/state.md`
+- `.rulesync/rules/stacks/vue/components.md`

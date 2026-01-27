@@ -18,25 +18,23 @@ cursor:
     - '**/*.jsx'
 ---
 
-# Utility-First Performance Rules
+# Tailwind Performance Rules
 
-## CSS Output Size
+## CSS Output
 
-- Keep utility usage consistent to reduce redundant class combinations.
-- Avoid generating large numbers of one-off utilities.
-- Prefer shared component primitives to reduce duplicated class stacks.
+- MUST use purge/content config to minimize CSS size.
+- SHOULD avoid arbitrary values that prevent reuse.
 
 ---
 
-## Rendering Efficiency
+## Runtime Performance
 
-- Avoid excessive box shadows, filters, or large blur effects in lists.
-- Keep hover and focus effects simple on large collections.
-- Minimize layout thrash by limiting dynamic size changes.
+- SHOULD avoid excessive DOM depth in styled components.
+- SHOULD prefer static class lists over dynamic string building.
 
 ---
 
 ## Related Rules
 
-- `.rulesync/rules/performance.md`
 - `.rulesync/rules/stacks/tailwind/overview.md`
+- `.rulesync/rules/stacks/tailwind/performance.md`

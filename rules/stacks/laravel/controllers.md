@@ -12,25 +12,36 @@ globs:
 
 # Laravel Controller Rules
 
+> Authority Notice
+>
+> This stack is governed by `.rulesync/rules/stacks/laravel/non-negotiables.md`.
+> If any rule here conflicts with a non-negotiable, the non-negotiable wins.
+
 ## Responsibilities
 
-- **MUST** validate input at the boundary.
-- **MUST** map requests to application commands/handlers.
-- **MUST** return resources or DTOs — never domain internals.
-- **MUST** keep controller actions short and intention-revealing.
+- MUST validate and normalize inputs.
+- MUST enforce authentication and authorization.
+- MUST delegate business behavior to services or commands.
+- MUST shape responses only.
 
 ---
 
-## Prohibited Behavior
+## Prohibited
 
-- **MUST NOT** contain business rules.
-- **MUST NOT** open database transactions.
-- **MUST NOT** return Eloquent models directly.
-- **MUST NOT** perform authorization implicitly.
+- MUST NOT contain domain logic.
+- MUST NOT perform persistence directly.
+- MUST NOT hide behavior in filters or callbacks.
 
 ---
 
-## Design Guidance
+## Response Consistency
 
-- **SHOULD** use single-action controllers.
-- **SHOULD** inject handlers explicitly.
+- MUST return consistent response shapes.
+- SHOULD map errors to stable error formats.
+
+---
+
+## Related Rules
+
+- `.rulesync/rules/stacks/laravel/overview.md`
+- `.rulesync/rules/stacks/laravel/controllers.md`

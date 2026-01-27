@@ -21,54 +21,29 @@ cursor:
 
 ## State Placement
 
-- Keep state local unless multiple components need it.
-- Lift state only when coordination is required.
-- Prefer derived values over duplicating data in state.
+- MUST colocate state with the component or module that owns it.
+- MUST lift state only when multiple consumers require coordination.
+- SHOULD avoid global state when local state suffices.
 
 ---
 
-## Server State
+## State Shape
 
-- Treat server state as external: use caching, invalidation, and retries.
-- Centralize API calls in services or hooks.
-- Normalize data where multiple views depend on shared entities.
-- Prefer optimistic updates only when rollback is well-defined.
-
-```tsx
-const usersQuery = useQuery({ queryKey: ['users'], queryFn: fetchUsers });
-```
+- MUST model state with explicit, typed structures.
+- SHOULD use discriminated unions for multi-state workflows.
+- SHOULD avoid storing derived data; compute it instead.
 
 ---
 
-## Client State
+## Updates and Effects
 
-- Use context for app-wide UI state (theme, auth, locale).
-- Keep UI-only state near the component that renders it.
-- Use URL/search params for shareable state (filters, pagination).
-
-```tsx
-const ThemeContext = createContext({ theme: 'light', toggle: () => {} });
-```
+- MUST keep state updates predictable and atomic.
+- SHOULD batch updates to avoid intermediate inconsistent state.
+- SHOULD avoid side effects inside state mutations.
 
 ---
 
-## State Transitions
+## Related Rules
 
-- Use explicit actions for complex state machines.
-- Prefer reducers when updates are interdependent.
-
-```tsx
-type Action = { type: 'open' } | { type: 'close' };
-function reducer(state: State, action: Action): State {
-  if (action.type === 'open') return { ...state, isOpen: true };
-  return { ...state, isOpen: false };
-}
-```
-
----
-
-## Anti‑Patterns
-
-- Duplicating server data into local state without a cache policy.
-- State that mixes UI concerns with business rules.
-- Global state for values only used in one component.
+- `.rulesync/rules/stacks/react/overview.md`
+- `.rulesync/rules/stacks/react/state.md`

@@ -15,22 +15,36 @@ cursor:
 
 # Rails Model Rules
 
-## Scope
+> Authority Notice
+>
+> This stack is governed by `.rulesync/rules/stacks/rails/non-negotiables.md`.
+> If any rule here conflicts with a non-negotiable, the non-negotiable wins.
 
-- **MUST** represent a single aggregate or entity.
-- **MUST** expose intention-revealing behavior.
-- **MUST NOT** coordinate workflows.
+## Model Responsibilities
 
----
-
-## Validations & Callbacks
-
-- **MAY** use validations for user-level guarantees.
-- **MUST NOT** rely on callbacks for orchestration.
+- MUST represent domain state and invariants.
+- SHOULD keep business workflows in services, not models.
+- SHOULD keep callbacks minimal and explicit.
 
 ---
 
-## Associations
+## Validations and Constraints
 
-- **MUST** avoid deep association chains.
-- **MUST** explicitly manage eager loading.
+- MUST validate critical invariants at the model level.
+- SHOULD back validations with database constraints.
+- SHOULD use clear, actionable validation messages.
+
+---
+
+## Associations and Queries
+
+- MUST avoid N+1 queries with explicit includes.
+- SHOULD keep associations intentional and documented.
+
+---
+
+## Related Rules
+
+- `.rulesync/rules/stacks/rails/overview.md`
+- `.rulesync/rules/stacks/rails/models.md`
+- `.rulesync/rules/stacks/rails/persistence.md`

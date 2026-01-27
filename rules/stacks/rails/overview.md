@@ -17,62 +17,57 @@ cursor:
 
 # Rails Overview Rules
 
-> **Authority**
+> Authority Notice
 >
-> Governed by: `.rulesync/rules/stacks/rails/non-negotiables.md`
+> This stack is governed by `.rulesync/rules/stacks/rails/non-negotiables.md`.
+> If any rule here conflicts with a non-negotiable, the non-negotiable wins.
 
-This document defines the **baseline contract** for Rails applications. All
-other Rails rules **specialize or elaborate** on these guarantees.
+## Purpose
 
----
-
-## Rule Strength
-
-- **MUST** — Required. Violations block merge.
-- **SHOULD** — Default expectation.
-- **MAY** — Optional guidance.
+- Define the architectural contract for Rails work in this repo.
+- Keep rules focused on predictable behavior, testability, and operational
+  safety.
+- Treat all guidance here as defaults unless a narrower rule overrides it.
 
 ---
 
-## Core Contract
+## Core Principles
 
-- **Rails as Infrastructure (MUST)**  
-  Rails provides delivery mechanisms, not domain structure.
-
-- **Explicit Boundaries (MUST)**  
-  Routing → Controllers → Services → Domain → Persistence.
-
-- **Replaceability (MUST)**  
-  Domain and application logic must not depend on Rails APIs.
-
-- **Predictability (MUST)**  
-  Validation, authorization, transactions, and side effects must be explicit.
+- MUST separate concerns: UI/transport, application flow, domain logic, and
+  infrastructure.
+- MUST keep side effects explicit and traceable.
+- MUST prefer composable units over large multi-purpose modules.
+- SHOULD optimize for clarity before micro-optimization.
+- SHOULD design for change with clear extension points.
 
 ---
 
-## Execution Model
+## Data Flow and Boundaries
 
-- **Thin Controllers (MUST)**
-- **Service-Driven Workflows (MUST)**
-- **No Hidden Work (MUST)** — callbacks may not hide behavior
-
----
-
-## Evolution
-
-- **Additive Change (MUST)**
-- **Consistency (MUST)** across routing, errors, and responses
+- MUST keep inputs validated at boundaries before use.
+- MUST keep outputs shaped and documented at boundaries.
+- SHOULD prevent data leakage across layers (no direct model/ORM exposure).
+- SHOULD define stable interfaces for cross-module calls.
 
 ---
 
-## Authoritative Index
+## Reliability and Observability
 
-- non-negotiables.md
-- controllers.md
-- models.md
-- services.md
-- persistence.md
-- routing.md
-- jobs.md
-- security.md
-- testing.md
+- MUST handle errors intentionally with typed or structured error shapes.
+- MUST emit logs/metrics for user-impacting paths and background work.
+- SHOULD include tracing or correlation identifiers when possible.
+- SHOULD keep performance budgets for critical workflows.
+
+---
+
+## Evolution and Change
+
+- MUST avoid breaking changes to public APIs without a migration plan.
+- SHOULD deprecate gradually with clear replacement guidance.
+- MAY provide compatibility shims when external consumers exist.
+
+---
+
+## Related Rules
+
+- `.rulesync/rules/stacks/rails/overview.md`
