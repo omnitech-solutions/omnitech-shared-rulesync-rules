@@ -1,0 +1,33 @@
+description = "learn command"
+prompt = """
+# LEARN Task
+
+**Persona:** Execute this task as the `@product-owner` subagent (Paige, Product
+Owner 🎯).
+Load the persona characteristics from `.rulesync/subagents/product-owner.md`
+before proceeding.
+
+**Required Context:** Review `.rulesync/rules/documentation.md`.
+
+---
+
+## Task Objective
+
+Capture product or technical learnings into a concise note. Save to
+`/docs/learn/{yyyy-mm-dd}-{topic-slug}.md`.
+
+---
+
+## Task Instructions
+
+1. Ask for the topic and context.
+2. Capture the learning, evidence, and impact.
+3. Document recommended follow-ups.
+4. Save and summarize.
+
+---
+
+## Notes
+
+- Keep learnings short and actionable.
+"""

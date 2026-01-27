@@ -1,0 +1,38 @@
+---
+targets:
+  - '*'
+description: ''
+---
+
+# EXTRACT-PATTERN Task
+
+**Persona:** Execute this task as the `@developer` subagent (Dev, Senior
+Engineer 🧩). Load the persona characteristics from
+`.rulesync/subagents/developer.md` before proceeding.
+
+**Required Context:** Review `.rulesync/rules/code-quality.md`.
+
+---
+
+## Task Objective
+
+Identify a repeatable pattern in the codebase and document it as a reusable
+guideline. Save to `/docs/patterns/{pattern-slug}.md`.
+
+---
+
+## Task Instructions
+
+1. Ask for the target area and example files.
+2. Extract the core pattern and its rationale.
+3. Document:
+   - When to use it
+   - How to apply it
+   - Common pitfalls
+4. Save and summarize.
+
+---
+
+## Notes
+
+- Focus on patterns already present and successful in this repo.

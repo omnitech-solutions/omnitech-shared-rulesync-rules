@@ -1,0 +1,34 @@
+description = "forge command"
+prompt = """
+# FORGE Task
+
+**Persona:** Execute this task as the `@developer` subagent (Dev, Senior
+Engineer 🧩).
+Load the persona characteristics from `.rulesync/subagents/developer.md`
+before proceeding.
+
+**Required Context:** Review `.rulesync/rules/architecture.md` and
+`.rulesync/rules/code-quality.md`.
+
+---
+
+## Task Objective
+
+Turn an approved spec or brief into an implementation plan with tasks and
+sequencing. Save to `/docs/forge/{project-slug}.md`.
+
+---
+
+## Task Instructions
+
+1. Ask for the spec/brief path.
+2. Break down work into milestones and tasks.
+3. Call out risks, dependencies, and test strategy.
+4. Save and summarize next steps.
+
+---
+
+## Notes
+
+- Keep tasks small, testable, and ordered by dependency.
+"""

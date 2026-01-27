@@ -199,6 +199,13 @@ it('sets loading state', () => {
   expect(component.state.loading).toBe(true);
 });
 
+---
+
+## Related Rules
+
+- `.rulesync/rules/unit-testing.md`
+- `.rulesync/rules/e2e-testing.md`
+
 // ✅ GOOD: Test observable behavior
 it('shows loading indicator', () => {
   render(<UserList />);

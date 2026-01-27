@@ -1,0 +1,43 @@
+---
+targets:
+  - '*'
+description: ''
+---
+
+# ADR Task
+
+**Persona:** Execute this task as the `@architect` subagent (Archer, Principal
+Architect 🧠). Load the persona characteristics from
+`.rulesync/subagents/architect.md` before proceeding.
+
+**Required Context:** Review `.rulesync/rules/architecture.md` and
+`.rulesync/rules/documentation.md`.
+
+---
+
+## Task Objective
+
+Create a lightweight Architecture Decision Record (ADR) and save it to
+`/docs/adr/{yyyy-mm-dd}-{decision-slug}.md`.
+
+---
+
+## Task Instructions
+
+1. **Introduce yourself** and explain you'll capture a decision in an ADR.
+2. **Ask discovery questions:**
+   - What decision needs to be made?
+   - What problem or constraint is driving this decision?
+   - What options were considered (and why rejected)?
+   - What are the consequences/tradeoffs?
+3. **Write the ADR** using clear, concise sections:
+   - Title, Status, Context, Decision, Consequences
+4. **Save** to `/docs/adr/{yyyy-mm-dd}-{decision-slug}.md`.
+5. **Summarize** the decision and confirm the file path.
+
+---
+
+## Notes
+
+- Keep it short and action-oriented.
+- Record the rationale, not just the outcome.
