@@ -1,0 +1,11 @@
+---
+description: Documentation standards.
+globs: **/*
+---
+
+# Documentation Rules (Shared)
+
+Source of truth: `.rulesync/rules/documentation.md`.
+
+This file mirrors the shared rules for documentation rules so Cursor rules stay aligned.
+Update the shared rules file to make changes.

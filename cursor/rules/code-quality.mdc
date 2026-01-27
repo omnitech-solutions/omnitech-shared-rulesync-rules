@@ -1,0 +1,11 @@
+---
+description: Cross-language quality standards.
+globs: **/*
+---
+
+# Code Quality Rules (Shared)
+
+Source of truth: `.rulesync/rules/code-quality.md`.
+
+This file mirrors the shared rules for code quality rules so Cursor rules stay aligned.
+Update the shared rules file to make changes.

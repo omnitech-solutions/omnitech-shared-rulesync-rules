@@ -1,0 +1,11 @@
+---
+description: UI/UX standards and accessibility guidance.
+globs: **/*
+---
+
+# UI/UX Rules (Shared)
+
+Source of truth: `.rulesync/rules/ui-ux.md`.
+
+This file mirrors the shared rules for ui/ux rules so Cursor rules stay aligned.
+Update the shared rules file to make changes.

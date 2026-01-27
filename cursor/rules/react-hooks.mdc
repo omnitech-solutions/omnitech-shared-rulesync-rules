@@ -1,0 +1,11 @@
+---
+description: React hooks usage and composition.
+globs: **/*
+---
+
+# React Hooks Rules (Shared)
+
+Source of truth: `.rulesync/rules/stacks/react/hooks.md`.
+
+This file mirrors the shared rules for react hooks rules so Cursor rules stay aligned.
+Update the shared rules file to make changes.

@@ -33,6 +33,27 @@ AI agents.
 }
 ```
 
+## Using Agent Bundles
+
+The MCP server tools support an optional `bundle` argument to read
+agent-specific rules/commands/subagents. Supported values: `claude`, `codex`,
+`cursor`, `gemini`. When omitted, the server reads from `.rulesync` (default).
+
+**Example:**
+
+```json
+{
+  "name": "read_rule",
+  "arguments": {
+    "ruleName": "architecture",
+    "bundle": "cursor"
+  }
+}
+```
+
+If a file is missing in the bundle, the server falls back to `.rulesync` when
+available.
+
 ## Platform-Specific Setup
 
 ### Claude (Anthropic) via Cursor

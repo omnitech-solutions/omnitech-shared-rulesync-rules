@@ -76,6 +76,7 @@ List all available rule files.
 **Parameters:**
 
 - `category` (optional): Filter by category
+- `bundle` (optional): Use agent bundle (`claude`, `codex`, `cursor`, `gemini`)
 
 **Example:**
 
@@ -83,7 +84,8 @@ List all available rule files.
 {
   "name": "list_rules",
   "arguments": {
-    "category": "architecture"
+    "category": "architecture",
+    "bundle": "cursor"
   }
 }
 ```
@@ -95,6 +97,7 @@ Read a specific rule file.
 **Parameters:**
 
 - `ruleName` (required): Name of the rule file (without .md extension)
+- `bundle` (optional): Use agent bundle (`claude`, `codex`, `cursor`, `gemini`)
 
 **Example:**
 
@@ -102,7 +105,8 @@ Read a specific rule file.
 {
   "name": "read_rule",
   "arguments": {
-    "ruleName": "architecture"
+    "ruleName": "architecture",
+    "bundle": "claude"
   }
 }
 ```
@@ -111,6 +115,10 @@ Read a specific rule file.
 
 List all available command files.
 
+**Parameters:**
+
+- `bundle` (optional): Use agent bundle (`claude`, `codex`, `cursor`, `gemini`)
+
 ### `read_command`
 
 Read a specific command file.
@@ -118,10 +126,15 @@ Read a specific command file.
 **Parameters:**
 
 - `commandName` (required): Name of the command file (without .md extension)
+- `bundle` (optional): Use agent bundle (`claude`, `codex`, `cursor`, `gemini`)
 
 ### `list_subagents`
 
 List all available subagent definitions.
+
+**Parameters:**
+
+- `bundle` (optional): Use agent bundle (`claude`, `codex`, `cursor`, `gemini`)
 
 ### `read_subagent`
 
@@ -130,6 +143,7 @@ Read a specific subagent definition.
 **Parameters:**
 
 - `subagentName` (required): Name of the subagent (without .md extension)
+- `bundle` (optional): Use agent bundle (`claude`, `codex`, `cursor`, `gemini`)
 
 ### `validate_config`
 
@@ -138,6 +152,18 @@ Validate the MCP configuration file.
 **Parameters:**
 
 - `configPath` (optional): Path to mcp.json file (defaults to mcp.json)
+
+### `list_bundles`
+
+List available agent bundles.
+
+### `validate_bundle`
+
+Validate that a bundle has expected folders and files.
+
+**Parameters:**
+
+- `bundle` (required): `claude`, `codex`, `cursor`, `gemini`
 
 ## Environment Variables
 

@@ -20,6 +20,7 @@ import * as path from 'path';
 class OmnitechSharedMCPServer {
   private server: Server;
   private projectRoot: string;
+  private readonly bundles = ['claude', 'codex', 'cursor', 'gemini'] as const;
 
   constructor() {
     this.server = new Server(
@@ -65,6 +66,12 @@ class OmnitechSharedMCPServer {
                     'technology',
                   ],
                 },
+                bundle: {
+                  type: 'string',
+                  description:
+                    'Optional agent bundle (claude, codex, cursor, gemini). Defaults to .rulesync.',
+                  enum: ['claude', 'codex', 'cursor', 'gemini'],
+                },
               },
             },
           },
@@ -78,6 +85,12 @@ class OmnitechSharedMCPServer {
                   type: 'string',
                   description: 'Name of the rule file (without .md extension)',
                 },
+                bundle: {
+                  type: 'string',
+                  description:
+                    'Optional agent bundle (claude, codex, cursor, gemini). Defaults to .rulesync.',
+                  enum: ['claude', 'codex', 'cursor', 'gemini'],
+                },
               },
               required: ['ruleName'],
             },
@@ -87,7 +100,14 @@ class OmnitechSharedMCPServer {
             description: 'List all available command files',
             inputSchema: {
               type: 'object',
-              properties: {},
+              properties: {
+                bundle: {
+                  type: 'string',
+                  description:
+                    'Optional agent bundle (claude, codex, cursor, gemini). Defaults to .rulesync.',
+                  enum: ['claude', 'codex', 'cursor', 'gemini'],
+                },
+              },
             },
           },
           {
@@ -100,6 +120,12 @@ class OmnitechSharedMCPServer {
                   type: 'string',
                   description: 'Name of the command file (without .md extension)',
                 },
+                bundle: {
+                  type: 'string',
+                  description:
+                    'Optional agent bundle (claude, codex, cursor, gemini). Defaults to .rulesync.',
+                  enum: ['claude', 'codex', 'cursor', 'gemini'],
+                },
               },
               required: ['commandName'],
             },
@@ -109,7 +135,14 @@ class OmnitechSharedMCPServer {
             description: 'List all available subagent definitions',
             inputSchema: {
               type: 'object',
-              properties: {},
+              properties: {
+                bundle: {
+                  type: 'string',
+                  description:
+                    'Optional agent bundle (claude, codex, cursor, gemini). Defaults to .rulesync.',
+                  enum: ['claude', 'codex', 'cursor', 'gemini'],
+                },
+              },
             },
           },
           {
@@ -121,6 +154,12 @@ class OmnitechSharedMCPServer {
                 subagentName: {
                   type: 'string',
                   description: 'Name of the subagent (without .md extension)',
+                },
+                bundle: {
+                  type: 'string',
+                  description:
+                    'Optional agent bundle (claude, codex, cursor, gemini). Defaults to .rulesync.',
+                  enum: ['claude', 'codex', 'cursor', 'gemini'],
                 },
               },
               required: ['subagentName'],
@@ -139,6 +178,29 @@ class OmnitechSharedMCPServer {
               },
             },
           },
+          {
+            name: 'list_bundles',
+            description: 'List available agent bundles',
+            inputSchema: {
+              type: 'object',
+              properties: {},
+            },
+          },
+          {
+            name: 'validate_bundle',
+            description: 'Validate that a bundle has expected folders and files',
+            inputSchema: {
+              type: 'object',
+              properties: {
+                bundle: {
+                  type: 'string',
+                  description: 'Agent bundle to validate',
+                  enum: ['claude', 'codex', 'cursor', 'gemini'],
+                },
+              },
+              required: ['bundle'],
+            },
+          },
         ] as Tool[],
       };
     });
@@ -150,25 +212,43 @@ class OmnitechSharedMCPServer {
       try {
         switch (name) {
           case 'list_rules':
-            return await this.listRules(args?.category as string | undefined);
+            return await this.listRules(
+              args?.category as string | undefined,
+              args?.bundle as string | undefined,
+            );
 
           case 'read_rule':
-            return await this.readRule(args?.ruleName as string);
+            return await this.readRule(
+              args?.ruleName as string,
+              args?.bundle as string | undefined,
+            );
 
           case 'list_commands':
-            return await this.listCommands();
+            return await this.listCommands(args?.bundle as string | undefined);
 
           case 'read_command':
-            return await this.readCommand(args?.commandName as string);
+            return await this.readCommand(
+              args?.commandName as string,
+              args?.bundle as string | undefined,
+            );
 
           case 'list_subagents':
-            return await this.listSubagents();
+            return await this.listSubagents(args?.bundle as string | undefined);
 
           case 'read_subagent':
-            return await this.readSubagent(args?.subagentName as string);
+            return await this.readSubagent(
+              args?.subagentName as string,
+              args?.bundle as string | undefined,
+            );
 
           case 'validate_config':
             return await this.validateConfig(args?.configPath as string | undefined);
+
+          case 'list_bundles':
+            return await this.listBundles();
+
+          case 'validate_bundle':
+            return await this.validateBundle(args?.bundle as string);
 
           default:
             throw new Error(`Unknown tool: ${name}`);
@@ -187,10 +267,13 @@ class OmnitechSharedMCPServer {
     });
   }
 
-  private async listRules(category?: string): Promise<{
+  private async listRules(
+    category?: string,
+    bundle?: string,
+  ): Promise<{
     content: Array<{ type: string; text: string }>;
   }> {
-    const rulesDir = path.join(this.projectRoot, '.rulesync', 'rules');
+    const rulesDir = path.join(this.resolveRulesRoot(bundle), 'rules');
 
     if (!fs.existsSync(rulesDir)) {
       return {
@@ -213,8 +296,8 @@ class OmnitechSharedMCPServer {
 
     const files = fs
       .readdirSync(rulesDir)
-      .filter(file => file.endsWith('.md'))
-      .map(file => file.replace('.md', ''));
+      .filter(file => file.endsWith('.md') || file.endsWith('.mdc'))
+      .map(file => file.replace(/\.md$|\.mdc$/u, ''));
 
     const filtered = category ? files.filter(file => file.includes(category)) : files;
 
@@ -236,15 +319,20 @@ class OmnitechSharedMCPServer {
     };
   }
 
-  private async readRule(ruleName: string): Promise<{
+  private async readRule(
+    ruleName: string,
+    bundle?: string,
+  ): Promise<{
     content: Array<{ type: string; text: string }>;
   }> {
-    const rulePath = path.join(this.projectRoot, '.rulesync', 'rules', `${ruleName}.md`);
-
-    if (!fs.existsSync(rulePath)) {
-      throw new Error(`Rule file not found: ${ruleName}.md`);
-    }
-
+    const base = this.resolveRulesRoot(bundle);
+    const rulePath = this.findFile(
+      base,
+      'rules',
+      ruleName,
+      ['.md', '.mdc'],
+      bundle ? this.resolveRulesRoot() : undefined,
+    );
     const content = fs.readFileSync(rulePath, 'utf-8');
 
     return {
@@ -257,10 +345,10 @@ class OmnitechSharedMCPServer {
     };
   }
 
-  private async listCommands(): Promise<{
+  private async listCommands(bundle?: string): Promise<{
     content: Array<{ type: string; text: string }>;
   }> {
-    const commandsDir = path.join(this.projectRoot, '.rulesync', 'commands');
+    const commandsDir = path.join(this.resolveRulesRoot(bundle), 'commands');
 
     if (!fs.existsSync(commandsDir)) {
       return {
@@ -282,8 +370,8 @@ class OmnitechSharedMCPServer {
 
     const files = fs
       .readdirSync(commandsDir)
-      .filter(file => file.endsWith('.md'))
-      .map(file => file.replace('.md', ''));
+      .filter(file => file.endsWith('.md') || file.endsWith('.toml'))
+      .map(file => file.replace(/\.md$|\.toml$/u, ''));
 
     return {
       content: [
@@ -302,15 +390,20 @@ class OmnitechSharedMCPServer {
     };
   }
 
-  private async readCommand(commandName: string): Promise<{
+  private async readCommand(
+    commandName: string,
+    bundle?: string,
+  ): Promise<{
     content: Array<{ type: string; text: string }>;
   }> {
-    const commandPath = path.join(this.projectRoot, '.rulesync', 'commands', `${commandName}.md`);
-
-    if (!fs.existsSync(commandPath)) {
-      throw new Error(`Command file not found: ${commandName}.md`);
-    }
-
+    const base = this.resolveRulesRoot(bundle);
+    const commandPath = this.findFile(
+      base,
+      'commands',
+      commandName,
+      ['.md', '.toml'],
+      bundle ? this.resolveRulesRoot() : undefined,
+    );
     const content = fs.readFileSync(commandPath, 'utf-8');
 
     return {
@@ -323,10 +416,10 @@ class OmnitechSharedMCPServer {
     };
   }
 
-  private async listSubagents(): Promise<{
+  private async listSubagents(bundle?: string): Promise<{
     content: Array<{ type: string; text: string }>;
   }> {
-    const subagentsDir = path.join(this.projectRoot, '.rulesync', 'subagents');
+    const subagentsDir = path.join(this.resolveRulesRoot(bundle), 'subagents');
 
     if (!fs.existsSync(subagentsDir)) {
       return {
@@ -368,20 +461,20 @@ class OmnitechSharedMCPServer {
     };
   }
 
-  private async readSubagent(subagentName: string): Promise<{
+  private async readSubagent(
+    subagentName: string,
+    bundle?: string,
+  ): Promise<{
     content: Array<{ type: string; text: string }>;
   }> {
-    const subagentPath = path.join(
-      this.projectRoot,
-      '.rulesync',
+    const base = this.resolveRulesRoot(bundle);
+    const subagentPath = this.findFile(
+      base,
       'subagents',
-      `${subagentName}.md`,
+      subagentName,
+      ['.md'],
+      bundle ? this.resolveRulesRoot() : undefined,
     );
-
-    if (!fs.existsSync(subagentPath)) {
-      throw new Error(`Subagent file not found: ${subagentName}.md`);
-    }
-
     const content = fs.readFileSync(subagentPath, 'utf-8');
 
     return {
@@ -471,6 +564,113 @@ class OmnitechSharedMCPServer {
         ],
       };
     }
+  }
+
+  private resolveRulesRoot(bundle?: string): string {
+    if (bundle) {
+      if (!this.bundles.includes(bundle as (typeof this.bundles)[number])) {
+        throw new Error(`Unknown bundle: ${bundle}`);
+      }
+      const bundleRoot = path.join(this.projectRoot, bundle);
+      if (!fs.existsSync(bundleRoot)) {
+        throw new Error(`Bundle not found: ${bundle}`);
+      }
+      return bundleRoot;
+    }
+
+    const rulesyncRoot = path.join(this.projectRoot, '.rulesync');
+    if (fs.existsSync(rulesyncRoot)) {
+      return rulesyncRoot;
+    }
+
+    return this.projectRoot;
+  }
+
+  private findFile(
+    base: string,
+    subdir: string,
+    name: string,
+    exts: string[],
+    fallbackBase?: string,
+  ): string {
+    for (const ext of exts) {
+      const candidate = path.join(base, subdir, `${name}${ext}`);
+      if (fs.existsSync(candidate)) {
+        return candidate;
+      }
+    }
+
+    if (fallbackBase) {
+      for (const ext of exts) {
+        const candidate = path.join(fallbackBase, subdir, `${name}${ext}`);
+        if (fs.existsSync(candidate)) {
+          return candidate;
+        }
+      }
+    }
+
+    throw new Error(`File not found: ${path.join(base, subdir, name)} (${exts.join(', ')})`);
+  }
+
+  private async listBundles(): Promise<{
+    content: Array<{ type: string; text: string }>;
+  }> {
+    const bundles = this.bundles.filter(bundle =>
+      fs.existsSync(path.join(this.projectRoot, bundle)),
+    );
+
+    return {
+      content: [
+        {
+          type: 'text',
+          text: JSON.stringify(
+            {
+              bundles,
+              count: bundles.length,
+            },
+            null,
+            2,
+          ),
+        },
+      ],
+    };
+  }
+
+  private async validateBundle(bundle: string): Promise<{
+    content: Array<{ type: string; text: string }>;
+  }> {
+    if (!this.bundles.includes(bundle as (typeof this.bundles)[number])) {
+      throw new Error(`Unknown bundle: ${bundle}`);
+    }
+
+    const bundleRoot = path.join(this.projectRoot, bundle);
+    const checks = {
+      root: fs.existsSync(bundleRoot),
+      rules: fs.existsSync(path.join(bundleRoot, 'rules')),
+      commands: fs.existsSync(path.join(bundleRoot, 'commands')),
+      subagents: fs.existsSync(path.join(bundleRoot, 'subagents')),
+    };
+
+    const missing = Object.entries(checks)
+      .filter(([, ok]) => !ok)
+      .map(([key]) => key);
+
+    return {
+      content: [
+        {
+          type: 'text',
+          text: JSON.stringify(
+            {
+              bundle,
+              ok: missing.length === 0,
+              missing,
+            },
+            null,
+            2,
+          ),
+        },
+      ],
+    };
   }
 
   async run(): Promise<void> {

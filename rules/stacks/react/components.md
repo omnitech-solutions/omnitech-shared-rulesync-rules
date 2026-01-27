@@ -25,6 +25,7 @@ cursor:
 - MUST document defaults and invariants.
 - SHOULD favor composition over configuration flags.
 - SHOULD keep components single-purpose.
+- SHOULD define prop types outside the component body.
 
 ---
 
@@ -41,6 +42,7 @@ cursor:
 - MUST keep rendering pure and side-effect free.
 - SHOULD move heavy computation out of render paths.
 - SHOULD provide stable keys for list rendering.
+- SHOULD use early returns to reduce nested conditional branches.
 
 ---
 
@@ -49,6 +51,14 @@ cursor:
 - MUST keep variant logic centralized and consistent.
 - SHOULD avoid one-off styles when a shared token exists.
 - MAY use a variant utility to control styling combinatorics.
+
+---
+
+## Data and State Discipline
+
+- SHOULD colocate data fetching with the component that renders it.
+- SHOULD avoid storing derived state; compute it during render.
+- SHOULD keep state as local as possible to reduce re-renders.
 
 ---
 

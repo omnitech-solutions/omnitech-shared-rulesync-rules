@@ -1,0 +1,11 @@
+---
+description: Supplemental conventions and norms.
+globs: **/*
+---
+
+# Additional Conventions (Shared)
+
+Source of truth: `.rulesync/rules/additional-conventions.md`.
+
+This file mirrors the shared rules for additional conventions so Cursor rules stay aligned.
+Update the shared rules file to make changes.

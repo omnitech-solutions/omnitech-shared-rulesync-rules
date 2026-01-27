@@ -1,0 +1,11 @@
+---
+description: React component patterns.
+globs: **/*
+---
+
+# React Components Rules (Shared)
+
+Source of truth: `.rulesync/rules/stacks/react/components.md`.
+
+This file mirrors the shared rules for react components rules so Cursor rules stay aligned.
+Update the shared rules file to make changes.

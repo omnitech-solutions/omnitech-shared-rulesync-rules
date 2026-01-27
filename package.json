@@ -33,6 +33,10 @@
     "commands",
     "subagents",
     "templates",
+    "claude",
+    "codex",
+    "cursor",
+    "gemini",
     "mcp.json",
     "scripts",
     "mcp-server"

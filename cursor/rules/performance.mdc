@@ -1,0 +1,11 @@
+---
+description: Performance standards and budgets.
+globs: **/*
+---
+
+# Performance Rules (Shared)
+
+Source of truth: `.rulesync/rules/performance.md`.
+
+This file mirrors the shared rules for performance rules so Cursor rules stay aligned.
+Update the shared rules file to make changes.

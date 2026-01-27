@@ -1,0 +1,11 @@
+---
+description: Type modeling and derivation guidance.
+globs: **/*
+---
+
+# TypeScript Type Rules (Shared)
+
+Source of truth: `.rulesync/rules/stacks/typescript/types.md`.
+
+This file mirrors the shared rules for typescript type rules so Cursor rules stay aligned.
+Update the shared rules file to make changes.

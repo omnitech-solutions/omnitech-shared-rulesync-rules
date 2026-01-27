@@ -1,0 +1,11 @@
+---
+description: Project overview and rule selection guidance.
+globs: **/*
+---
+
+# Overview Rules (Shared)
+
+Source of truth: `.rulesync/rules/overview.md`.
+
+This file mirrors the shared rules for overview rules so Cursor rules stay aligned.
+Update the shared rules file to make changes.
