@@ -6,10 +6,13 @@
   "scripts": {
     "dev": "concurrently -k -n rails,vite -c red,blue \"pnpm dev:backend\" \"pnpm dev:frontend\"",
     "dev:backend": "cd backend && bundle exec rails server",
-    "dev:frontend": "pnpm -C frontend dev"
+    "dev:frontend": "pnpm -C frontend dev",
+    "sync-rules": "rm -rf .rulesync && cp -r node_modules/@omnitech/shared-rulesync-rules/ .rulesync && rm -rf .rulesync/node_modules .rulesync/package.json && pnpm rulesync"
   },
   "devDependencies": {
+    "@omnitech/shared-rulesync-rules": "link:../..",
     "concurrently": "^9.1.0",
+    "rulesync": "^6.1.0",
     "turbo": "^2.7.6"
   }
 }
