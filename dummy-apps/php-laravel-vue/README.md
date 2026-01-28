@@ -1,36 +1,76 @@
-# PHP + Laravel + Vue
+# Laravel Vue Taxes App
 
-Minimal placeholder stack with a Laravel backend and Vue frontend. The folders
-here are **illustrative**. Use the bootstrap commands below to generate a real
-app.
+A high-performance tax calculator application built with Laravel 11, Vue 3,
+Tailwind CSS, and TanStack Query.
 
-## Bootstrap (Generate a Real App)
+## Tech Stack
 
-Backend (Laravel):
+- **Backend**: Laravel 11
+- **Frontend**: Vue 3 (Composition API)
+- **State/Data Fetching**: TanStack Query (Vue Query)
+- **Styling**: Tailwind CSS v4
+- **API Documentation**: L5-Swagger (OpenAPI)
 
-1. Install PHP (8.1+), Composer, and a DB (SQLite/MySQL).
-2. From `backend/`:
-   - `composer create-project laravel/laravel .`
+## Prerequisites
 
-Frontend (Vue):
+- PHP 8.2+
+- Composer
+- Node.js & npm
 
-1. Install Node.js (18+ recommended) and npm/pnpm.
-2. From `frontend/`:
-   - `npm create vite@latest . -- --template vue`
-   - `npm install`
+## Setup Instructions
 
-## Run (After Generation)
+1.  **Install PHP Dependencies**
 
-Backend:
+    ```bash
+    composer install
+    ```
 
-- `php artisan migrate`
-- `php artisan serve`
+2.  **Install Node Dependencies**
 
-Frontend:
+    ```bash
+    npm install
+    ```
 
-- `npm run dev`
+3.  **Environment Setup**
 
-## Notes
+    ```bash
+    cp .env.example .env
+    php artisan key:generate
+    ```
 
-- Typical endpoints: `/health`, `/api/hello`.
-- Frontend usually calls `http://localhost:8000/api/hello`.
+4.  **Database Setup** (Optional for this specific demo, but good practice)
+
+    ```bash
+    touch database/database.sqlite
+    php artisan migrate
+    ```
+
+5.  **Build Frontend**
+    ```bash
+    npm run build
+    ```
+
+## Running the Application
+
+1.  **Start Laravel Server**
+
+    ```bash
+    php artisan serve
+    ```
+
+2.  **Start Vite (Hot Reload)**
+    ```bash
+    npm run dev
+    ```
+
+Access the application at `http://localhost:8000`.
+
+## API Documentation
+
+Swagger documentation is available at `/api/documentation`. To regenerate docs:
+
+```bash
+php artisan l5-swagger:generate
+```
+
+_(Note: Ensure your L5-Swagger configuration matches your environment)_
