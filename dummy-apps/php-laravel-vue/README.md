@@ -74,3 +74,7 @@ php artisan l5-swagger:generate
 ```
 
 _(Note: Ensure your L5-Swagger configuration matches your environment)_
+
+## Shared setup
+
+See `../SHARED_SETUP.md` for Rulesync rules and AI/MCP setup.

@@ -1,10 +1,13 @@
 # Python Django React App with Taxes CRUD
 
-A full-stack application featuring Django REST API backend and React dashboard frontend for managing tax records. Uses Turbo monorepo with pnpm for efficient development.
+A full-stack application featuring Django REST API backend and React dashboard
+frontend for managing tax records. Uses Turbo monorepo with pnpm for efficient
+development.
 
 ## Quick Start
 
 ### Prerequisites
+
 - Python 3.11+
 - Node.js 18+
 - pnpm
@@ -75,3 +78,7 @@ python-django-react/
 - `pnpm run lint` - Run linting
 - `pnpm run test` - Run tests
 - `pnpm run clean` - Clean build artifacts
+
+## Shared setup
+
+See `../SHARED_SETUP.md` for Rulesync rules and AI/MCP setup.

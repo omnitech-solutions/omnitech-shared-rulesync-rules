@@ -1,6 +1,7 @@
 # Node Express React Tax Management App
 
-A full-stack tax management application built with Node.js, Express, React, and Turbo monorepo architecture using pnpm workspace.
+A full-stack tax management application built with Node.js, Express, React, and
+Turbo monorepo architecture using pnpm workspace.
 
 ## 🚀 Features
 
@@ -14,17 +15,19 @@ A full-stack tax management application built with Node.js, Express, React, and 
 
 ## 📋 Prerequisites
 
-- Node.js 18+ 
+- Node.js 18+
 - pnpm 8+
 
 ## 🛠️ Installation
 
 1. Clone and navigate to the project:
+
 ```bash
 cd node-express-react
 ```
 
 2. Install dependencies:
+
 ```bash
 pnpm install
 ```
@@ -32,11 +35,13 @@ pnpm install
 3. Set up environment variables:
 
 **Backend** (copy from example):
+
 ```bash
 cp packages/backend/.env.example packages/backend/.env
 ```
 
 **Frontend** (copy from example):
+
 ```bash
 cp packages/frontend/.env.local.example packages/frontend/.env.local
 ```
@@ -46,22 +51,26 @@ cp packages/frontend/.env.local.example packages/frontend/.env.local
 ### Development Mode
 
 Start both frontend and backend in development mode:
+
 ```bash
 pnpm dev
 ```
 
 This will start:
+
 - Frontend: http://localhost:3000
 - Backend API: http://localhost:3001
 
 ### Individual Services
 
 Start only the backend:
+
 ```bash
 pnpm --filter @tax-app/backend dev
 ```
 
 Start only the frontend:
+
 ```bash
 pnpm --filter @tax-app/frontend dev
 ```
@@ -69,11 +78,13 @@ pnpm --filter @tax-app/frontend dev
 ### Production Build
 
 Build all packages:
+
 ```bash
 pnpm build
 ```
 
 Start production servers:
+
 ```bash
 pnpm start
 ```
@@ -81,9 +92,11 @@ pnpm start
 ## 📡 API Endpoints
 
 ### Health Check
+
 - `GET /api/health` - Check API status
 
 ### Taxes CRUD
+
 - `GET /api/taxes` - Get all taxes (supports query filters)
 - `GET /api/taxes/:id` - Get specific tax
 - `POST /api/taxes` - Create new tax
@@ -91,6 +104,7 @@ pnpm start
 - `DELETE /api/taxes/:id` - Delete tax
 
 ### Query Parameters
+
 - `type` - Filter by tax type (income, sales, property, corporate)
 - `isActive` - Filter by status (true/false)
 
@@ -119,12 +133,14 @@ node-express-react/
 ## 🎯 Tax Management Features
 
 ### Tax Types
+
 - Income Tax
 - Sales Tax
 - Property Tax
 - Corporate Tax
 
 ### Operations
+
 - ✅ Create new taxes with name, rate, type, and description
 - ✅ View all taxes in a sortable table
 - ✅ Edit existing tax details
@@ -158,6 +174,7 @@ pnpm clean
 ## 📊 Dashboard Features
 
 The React dashboard includes:
+
 - **Statistics Cards**: Total taxes, active/inactive counts, average rate
 - **Filter Controls**: Filter by tax type and active status
 - **Data Table**: Sortable tax records with inline actions
@@ -167,6 +184,7 @@ The React dashboard includes:
 ## 🔧 Technology Stack
 
 ### Backend
+
 - **Node.js** - Runtime environment
 - **Express.js** - Web framework
 - **TypeScript** - Type safety
@@ -176,6 +194,7 @@ The React dashboard includes:
 - **UUID** - Unique identifier generation
 
 ### Frontend
+
 - **Next.js 14** - React framework
 - **React 18** - UI library
 - **TypeScript** - Type safety
@@ -184,6 +203,7 @@ The React dashboard includes:
 - **Lucide React** - Icon library
 
 ### DevOps
+
 - **Turbo** - Monorepo build system
 - **pnpm** - Package manager
 - **ESLint** - Code linting
@@ -191,20 +211,24 @@ The React dashboard includes:
 ## 🚀 Deployment
 
 ### Environment Variables
+
 Make sure to set these in production:
 
 **Backend (.env)**:
+
 ```
 PORT=3001
 NODE_ENV=production
 ```
 
 **Frontend (.env.local)**:
+
 ```
 NEXT_PUBLIC_API_URL=https://your-api-domain.com/api
 ```
 
 ### Build Process
+
 ```bash
 # Build all packages
 pnpm build
@@ -216,3 +240,7 @@ pnpm start
 ## 📝 License
 
 This project is for demonstration purposes.
+
+## Shared setup
+
+See `../SHARED_SETUP.md` for Rulesync rules and AI/MCP setup.

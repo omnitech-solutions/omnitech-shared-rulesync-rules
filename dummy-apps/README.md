@@ -12,3 +12,9 @@ short README and starter files.
 - Python + Django + React: `dummy-apps/python-django-react`
 
 Each group README includes install steps and local dev commands.
+
+For stack-specific setup, open the README inside each app folder above.
+
+## Shared setup
+
+See `SHARED_SETUP.md` for Rulesync rules and AI/MCP setup.
