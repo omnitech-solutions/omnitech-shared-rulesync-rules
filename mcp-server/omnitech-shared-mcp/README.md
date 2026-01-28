@@ -67,6 +67,38 @@ Or using tsx for development:
 }
 ```
 
+## Docker
+
+Build the image:
+
+```bash
+docker build -t omnitech-shared-mcp .
+```
+
+Run the server (mount your repo so RULESYNC_ROOT can resolve `.rulesync`):
+
+```bash
+docker run --rm \
+  -e RULESYNC_ROOT=/workspace \
+  -v "$PWD":/workspace \
+  -i omnitech-shared-mcp
+```
+
+Notes:
+
+- The container uses stdio for MCP; it does not expose a network port.
+- `RULESYNC_ROOT` defaults to `/workspace` and will be created if it doesn't
+  exist.
+
+### Docker Compose
+
+```bash
+docker compose up --build
+```
+
+This uses `docker-compose.yml` with the same volume and environment settings as
+the standalone `docker run` example.
+
 ## Available Tools
 
 ### `list_rules`
