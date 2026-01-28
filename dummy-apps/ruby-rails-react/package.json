@@ -1,0 +1,15 @@
+{
+  "name": "ruby-rails-react",
+  "private": true,
+  "version": "0.0.0",
+  "packageManager": "pnpm@10.26.2",
+  "scripts": {
+    "dev": "concurrently -k -n rails,vite -c red,blue \"pnpm dev:backend\" \"pnpm dev:frontend\"",
+    "dev:backend": "cd backend && bundle exec rails server",
+    "dev:frontend": "pnpm -C frontend dev"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0",
+    "turbo": "^2.7.6"
+  }
+}

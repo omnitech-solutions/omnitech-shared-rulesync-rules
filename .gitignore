@@ -7,6 +7,22 @@ node_modules/
 dist/
 build/
 *.tsbuildinfo
+.turbo/
+.vite/
+.eslintcache
+coverage/
+.nyc_output/
+.cache/
+.tmp/
+.temp/
+.parcel-cache/
+.rpt2_cache/
+.swc/
+.next/
+.nuxt/
+.svelte-kit/
+.vercel/
+.output/
 
 # Environment files
 .env
@@ -31,9 +47,39 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+lerna-debug.log*
 
 # MCP configurations (optional - uncomment if you want to ignore generated configs)
 # .cursor/mcp.json
 # .windsurf/mcp.json
 # .continue/config.json
 **/backend/.git
+
+# Rails
+**/backend/log/
+**/backend/tmp/
+**/backend/storage/
+**/backend/.bundle/
+**/backend/vendor/bundle/
+
+# Testing (Cypress/Playwright)
+cypress/videos/
+cypress/screenshots/
+cypress/downloads/
+playwright-report/
+playwright/.cache/
+test-results/
+
+# Storybook
+storybook-static/
+
+# Documentation sites
+.docusaurus/
+.vitepress/dist/
+
+# Docker / Compose
+**/.env.docker
+
+# NestJS
+dist-nest/
+nest-cli.json.bak

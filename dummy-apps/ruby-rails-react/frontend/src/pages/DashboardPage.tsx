@@ -15,7 +15,8 @@ export default function DashboardPage() {
     offset: 0,
   });
 
-  const taxes = useMemo(() => data?.data ?? [], [data]);
+  const response = data?.data;
+  const taxes = useMemo(() => (Array.isArray(response?.data) ? response.data : []), [response]);
 
   return (
     <div className="min-h-screen bg-slate-50">
@@ -37,7 +38,7 @@ export default function DashboardPage() {
       <main className="mx-auto grid max-w-6xl gap-6 px-6 py-6 lg:grid-cols-[2fr_1fr]">
         <TaxList
           taxes={taxes}
-          total={data?.meta?.total}
+          total={response?.meta?.total}
           selectedTaxId={selectedTaxId}
           onSelect={id => dispatch(selectTax(id))}
           isLoading={isLoading}

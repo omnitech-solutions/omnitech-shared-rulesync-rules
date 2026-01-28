@@ -1,0 +1,217 @@
+---
+openapi: 3.0.1
+info:
+  title: Tax API
+  version: 1.0.0
+  description: RESTful API for managing tax records.
+paths:
+  '/api/v1/taxes':
+    get:
+      summary: List taxes
+      tags:
+        - Taxes
+      operationId: listTaxes
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: string
+          required: false
+        - name: tax_year
+          in: query
+          schema:
+            type: integer
+          required: false
+        - name: jurisdiction
+          in: query
+          schema:
+            type: string
+          required: false
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          required: false
+        - name: offset
+          in: query
+          schema:
+            type: integer
+          required: false
+      responses:
+        '200':
+          description: taxes listed
+    post:
+      summary: Create a tax
+      tags:
+        - Taxes
+      operationId: createTax
+      parameters: []
+      responses:
+        '201':
+          description: tax created
+        '422':
+          description: validation error
+      requestBody:
+        content:
+          application/json:
+            schema:
+              '$ref': '#/components/schemas/TaxInput'
+  '/api/v1/taxes/{id}':
+    parameters:
+      - name: id
+        in: path
+        schema:
+          type: integer
+        required: true
+    get:
+      summary: Fetch a tax
+      tags:
+        - Taxes
+      operationId: getTax
+      responses:
+        '200':
+          description: tax found
+        '404':
+          description: tax not found
+    put:
+      summary: Update a tax
+      tags:
+        - Taxes
+      operationId: updateTax
+      parameters: []
+      responses:
+        '200':
+          description: tax updated
+      requestBody:
+        content:
+          application/json:
+            schema:
+              '$ref': '#/components/schemas/TaxInput'
+    delete:
+      summary: Delete a tax
+      tags:
+        - Taxes
+      operationId: deleteTax
+      responses:
+        '204':
+          description: tax deleted
+servers:
+  - url: http://localhost:3000
+components:
+  schemas:
+    Tax:
+      type: object
+      properties:
+        id:
+          type: integer
+        tax_year:
+          type: integer
+        jurisdiction:
+          type: string
+        filing_status:
+          type: string
+        income:
+          type: number
+          format: decimal
+        deductions:
+          type: number
+          format: decimal
+        taxable_income:
+          type: number
+          format: decimal
+        tax_amount:
+          type: number
+          format: decimal
+        currency:
+          type: string
+        status:
+          type: string
+        due_date:
+          type: string
+          format: date
+        paid_at:
+          type: string
+          format: date_time
+          nullable: true
+        notes:
+          type: string
+          nullable: true
+        metadata:
+          type: object
+        created_at:
+          type: string
+          format: date_time
+        updated_at:
+          type: string
+          format: date_time
+      required:
+        - id
+        - tax_year
+        - jurisdiction
+        - filing_status
+        - income
+        - deductions
+        - taxable_income
+        - tax_amount
+        - currency
+        - status
+        - metadata
+        - created_at
+        - updated_at
+    TaxInput:
+      type: object
+      properties:
+        tax_year:
+          type: integer
+        jurisdiction:
+          type: string
+        filing_status:
+          type: string
+        income:
+          type: number
+          format: decimal
+        deductions:
+          type: number
+          format: decimal
+        taxable_income:
+          type: number
+          format: decimal
+        tax_amount:
+          type: number
+          format: decimal
+        currency:
+          type: string
+        status:
+          type: string
+        due_date:
+          type: string
+          format: date
+        paid_at:
+          type: string
+          format: date_time
+          nullable: true
+        notes:
+          type: string
+          nullable: true
+        metadata:
+          type: object
+      required:
+        - tax_year
+        - jurisdiction
+        - filing_status
+        - income
+        - deductions
+        - taxable_income
+        - tax_amount
+        - currency
+        - status
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+      required:
+        - error
+        - message
