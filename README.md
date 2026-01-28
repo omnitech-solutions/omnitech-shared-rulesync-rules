@@ -159,20 +159,44 @@ for examples of integrating the setup script into your application.
 
 ### Manual Setup
 
-See [docs/mcp-quick-start.md](./docs/mcp-quick-start.md) for 30-second manual
-setup instructions.
+See `docs/mcp-quick-start.md` for 30-second manual setup instructions.
 
-See [docs/mcp-setup.md](./docs/mcp-setup.md) for comprehensive platform-specific
-setup instructions.
+See `docs/mcp-setup.md` for comprehensive platform-specific setup instructions.
 
 ### Platform Configuration Examples
 
-- [Cursor Configuration](./docs/platform-configs/cursor-mcp.json) - Works with
-  Claude, GPT, Gemini, Grok
-- [Windsurf Configuration](./docs/platform-configs/windsurf-mcp.json) - Native
-  MCP support
-- [Continue Configuration](./docs/platform-configs/continue-mcp.json) - VS Code
-  extension
+- Cursor: `docs/platform-configs/cursor-mcp.json`
+- Windsurf: `docs/platform-configs/windsurf-mcp.json`
+- Continue (VS Code): `docs/platform-configs/continue-mcp.json`
+- JetBrains: `docs/platform-configs/jetbrains-mcp.json`
+
+### Platform-Specific Setup (All)
+
+Cursor:
+
+1. Open Cursor Settings → Features → Model Context Protocol
+2. Paste config from `docs/platform-configs/cursor-mcp.json`
+3. Restart Cursor
+
+Windsurf:
+
+1. Open Windsurf Settings → MCP Servers
+2. Add a server using `docs/platform-configs/windsurf-mcp.json`
+3. Restart Windsurf
+
+Continue (VS Code):
+
+1. Install Continue
+2. Create `.continue/config.json` in the workspace root
+3. Paste config from `docs/platform-configs/continue-mcp.json`
+4. Restart VS Code
+
+JetBrains:
+
+1. Install the MCP plugin for your IDE
+2. Create `.idea/mcp.json` in the workspace root
+3. Paste config from `docs/platform-configs/jetbrains-mcp.json`
+4. Restart the IDE
 
 ## MCP Server
 

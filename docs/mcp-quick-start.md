@@ -35,6 +35,13 @@ platform.
 3. Copy configuration from `docs/platform-configs/continue-mcp.json`
 4. Restart VS Code
 
+### JetBrains
+
+1. Install the MCP plugin for your IDE
+2. Create `.idea/mcp.json` in your workspace
+3. Copy configuration from `docs/platform-configs/jetbrains-mcp.json`
+4. Restart the IDE
+
 ## Verify Setup
 
 After configuration, test the MCP connection:
