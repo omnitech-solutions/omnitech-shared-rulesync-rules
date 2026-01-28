@@ -15,12 +15,16 @@
     "dev:frontend": "cd frontend && pnpm dev"
   },
   "devDependencies": {
+    "concurrently": "^8.2.2",
     "prettier": "^3.0.0",
-    "turbo": "latest",
-    "concurrently": "^8.2.2"
+    "turbo": "latest"
   },
   "packageManager": "pnpm@8.15.0",
   "engines": {
     "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "@omnitech/shared-rulesync-rules": "link:../..",
+    "rulesync": "^6.1.0"
   }
 }
