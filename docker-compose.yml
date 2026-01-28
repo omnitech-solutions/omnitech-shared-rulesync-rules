@@ -1,8 +1,8 @@
-version: '3.9'
-
 services:
   omnitech-shared-mcp:
-    build: .
+    build:
+      context: ./mcp-server/omnitech-shared-mcp
+      dockerfile: Dockerfile
     environment:
       RULESYNC_ROOT: /workspace
     volumes:

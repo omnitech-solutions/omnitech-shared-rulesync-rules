@@ -15,23 +15,32 @@ different AI platforms.
 ## MCP Configuration
 
 The `mcp.json` file in this repository configures the MCP servers available to
-AI agents.
+AI agents. For consumers installing the package, point MCP to the copy in
+`node_modules`. If you're developing in this repo, the local `mcp.json` config
+uses the in-repo path.
 
-### Current Configuration
+### Recommended Consumer Configuration
 
 ```json
 {
   "mcpServers": {
     "omnitech-shared-mcp": {
       "command": "tsx",
-      "args": ["./mcp-server/omnitech-shared-mcp/src/server.ts"],
+      "args": [
+        "${workspaceFolder}/node_modules/@omnitech/shared-rulesync-rules/mcp-server/omnitech-shared-mcp/src/server.ts"
+      ],
       "env": {
-        "RULESYNC_ROOT": "${workspaceFolder}"
+        "RULESYNC_ROOT": "${workspaceFolder}/node_modules/@omnitech/shared-rulesync-rules"
       }
     }
   }
 }
 ```
+
+If you're developing inside this repository, set:
+
+- `args` to `./mcp-server/omnitech-shared-mcp/src/server.ts`
+- `RULESYNC_ROOT` to `${workspaceFolder}`
 
 ## Using Agent Bundles
 
@@ -71,7 +80,9 @@ available.
      "mcpServers": {
        "omnitech-shared-mcp": {
          "command": "tsx",
-         "args": ["./mcp-server/omnitech-shared-mcp/src/server.ts"],
+         "args": [
+           "${workspaceFolder}/node_modules/@omnitech/shared-rulesync-rules/mcp-server/omnitech-shared-mcp/src/server.ts"
+         ],
          "env": {}
        }
      }
@@ -94,7 +105,9 @@ available.
      "mcpServers": {
        "omnitech-shared-mcp": {
          "command": "tsx",
-         "args": ["./mcp-server/omnitech-shared-mcp/src/server.ts"],
+         "args": [
+           "${workspaceFolder}/node_modules/@omnitech/shared-rulesync-rules/mcp-server/omnitech-shared-mcp/src/server.ts"
+         ],
          "env": {
            "GOOGLE_API_KEY": "your-api-key-here"
          }
@@ -114,7 +127,9 @@ available.
      "mcpServers": {
        "omnitech-shared-mcp": {
          "command": "tsx",
-         "args": ["./mcp-server/omnitech-shared-mcp/src/server.ts"],
+         "args": [
+           "${workspaceFolder}/node_modules/@omnitech/shared-rulesync-rules/mcp-server/omnitech-shared-mcp/src/server.ts"
+         ],
          "env": {
            "OPENAI_API_KEY": "your-api-key-here"
          }
@@ -134,7 +149,9 @@ available.
      "mcpServers": {
        "omnitech-shared-mcp": {
          "command": "tsx",
-         "args": ["./mcp-server/omnitech-shared-mcp/src/server.ts"],
+         "args": [
+           "${workspaceFolder}/node_modules/@omnitech/shared-rulesync-rules/mcp-server/omnitech-shared-mcp/src/server.ts"
+         ],
          "env": {
            "XAI_API_KEY": "your-api-key-here"
          }
@@ -156,7 +173,8 @@ settings:
    - Click "Add Server"
    - Name: `omnitech-shared-mcp`
    - Command: `tsx`
-   - Arguments: `./mcp-server/omnitech-shared-mcp/src/server.ts`
+   - Arguments:
+     `${workspaceFolder}/node_modules/@omnitech/shared-rulesync-rules/mcp-server/omnitech-shared-mcp/src/server.ts`
    - Working Directory: Your project root
 
 3. **Configure Environment Variables**
@@ -179,7 +197,9 @@ settings:
      "mcpServers": {
        "omnitech-shared-mcp": {
          "command": "tsx",
-         "args": ["./mcp-server/omnitech-shared-mcp/src/server.ts"],
+         "args": [
+           "${workspaceFolder}/node_modules/@omnitech/shared-rulesync-rules/mcp-server/omnitech-shared-mcp/src/server.ts"
+         ],
          "env": {}
        }
      }
@@ -197,6 +217,11 @@ Some MCP servers may require environment variables. Common ones include:
 - `GOOGLE_API_KEY` - For Gemini
 - `XAI_API_KEY` - For Grok
 - `NODE_ENV` - Environment (development/production)
+- `LLM_PROVIDER` - LLM provider selector (local/openai/anthropic/google/other)
+- `LLM_MODEL` - LLM model identifier for the selected provider
+- `OPENAI_API_BASE` - Local OpenAI-compatible base URL (when
+  `LLM_PROVIDER=local`)
+- `LLM_API_BASE` - Custom base URL (when `LLM_PROVIDER=other`)
 
 Add these to the `env` object in your MCP configuration:
 
@@ -205,11 +230,16 @@ Add these to the `env` object in your MCP configuration:
   "mcpServers": {
     "omnitech-shared-mcp": {
       "command": "tsx",
-      "args": ["./mcp-server/omnitech-shared-mcp/src/server.ts"],
+      "args": [
+        "${workspaceFolder}/node_modules/@omnitech/shared-rulesync-rules/mcp-server/omnitech-shared-mcp/src/server.ts"
+      ],
       "env": {
         "OPENAI_API_KEY": "${OPENAI_API_KEY}",
+        "LLM_PROVIDER": "local",
+        "LLM_MODEL": "openai/qwen3-coder-30b",
+        "OPENAI_API_BASE": "http://localhost:1234/v1",
         "NODE_ENV": "development",
-        "RULESYNC_ROOT": "${workspaceFolder}"
+        "RULESYNC_ROOT": "${workspaceFolder}/node_modules/@omnitech/shared-rulesync-rules"
       }
     }
   }
@@ -291,7 +321,9 @@ To add more MCP servers, extend the `mcp.json` configuration:
   "mcpServers": {
     "omnitech-shared-mcp": {
       "command": "tsx",
-      "args": ["./mcp-server/omnitech-shared-mcp/src/server.ts"],
+      "args": [
+        "${workspaceFolder}/node_modules/@omnitech/shared-rulesync-rules/mcp-server/omnitech-shared-mcp/src/server.ts"
+      ],
       "env": {}
     },
     "your-custom-server": {

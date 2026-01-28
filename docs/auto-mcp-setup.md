@@ -79,11 +79,13 @@ If these conditions are met, the script automatically:
   "mcpServers": {
     "omnitech-shared-mcp": {
       "command": "tsx",
-      "args": ["./mcp-server/omnitech-shared-mcp/src/server.ts"],
+      "args": [
+        "${workspaceFolder}/node_modules/@omnitech/shared-rulesync-rules/mcp-server/omnitech-shared-mcp/src/server.ts"
+      ],
       "env": {
         "NODE_ENV": "development",
         "OPENAI_API_KEY": "...",
-        "RULESYNC_ROOT": "${workspaceFolder}"
+        "RULESYNC_ROOT": "${workspaceFolder}/node_modules/@omnitech/shared-rulesync-rules"
       }
     }
   }
@@ -99,11 +101,13 @@ If these conditions are met, the script automatically:
   "mcpServers": {
     "omnitech-shared-mcp": {
       "command": "tsx",
-      "args": ["./mcp-server/omnitech-shared-mcp/src/server.ts"],
+      "args": [
+        "${workspaceFolder}/node_modules/@omnitech/shared-rulesync-rules/mcp-server/omnitech-shared-mcp/src/server.ts"
+      ],
       "env": {
         "NODE_ENV": "development",
         "GOOGLE_API_KEY": "...",
-        "RULESYNC_ROOT": "${workspaceFolder}"
+        "RULESYNC_ROOT": "${workspaceFolder}/node_modules/@omnitech/shared-rulesync-rules"
       },
       "cwd": "${workspaceFolder}"
     }
@@ -120,11 +124,13 @@ If these conditions are met, the script automatically:
   "mcpServers": {
     "omnitech-shared-mcp": {
       "command": "tsx",
-      "args": ["./mcp-server/omnitech-shared-mcp/src/server.ts"],
+      "args": [
+        "${workspaceFolder}/node_modules/@omnitech/shared-rulesync-rules/mcp-server/omnitech-shared-mcp/src/server.ts"
+      ],
       "env": {
         "NODE_ENV": "development",
         "ANTHROPIC_API_KEY": "...",
-        "RULESYNC_ROOT": "${workspaceFolder}"
+        "RULESYNC_ROOT": "${workspaceFolder}/node_modules/@omnitech/shared-rulesync-rules"
       }
     }
   }
@@ -140,11 +146,13 @@ If these conditions are met, the script automatically:
   "mcpServers": {
     "omnitech-shared-mcp": {
       "command": "tsx",
-      "args": ["./mcp-server/omnitech-shared-mcp/src/server.ts"],
+      "args": [
+        "$PROJECT_DIR$/node_modules/@omnitech/shared-rulesync-rules/mcp-server/omnitech-shared-mcp/src/server.ts"
+      ],
       "env": {
         "NODE_ENV": "development",
         "OPENAI_API_KEY": "...",
-        "RULESYNC_ROOT": "$PROJECT_DIR$"
+        "RULESYNC_ROOT": "$PROJECT_DIR$/node_modules/@omnitech/shared-rulesync-rules"
       }
     }
   }
@@ -160,11 +168,13 @@ If these conditions are met, the script automatically:
   "mcpServers": {
     "omnitech-shared-mcp": {
       "command": "tsx",
-      "args": ["./mcp-server/omnitech-shared-mcp/src/server.ts"],
+      "args": [
+        "${workspaceFolder}/node_modules/@omnitech/shared-rulesync-rules/mcp-server/omnitech-shared-mcp/src/server.ts"
+      ],
       "env": {
         "NODE_ENV": "development",
         "OPENAI_API_KEY": "...",
-        "RULESYNC_ROOT": "${workspaceFolder}"
+        "RULESYNC_ROOT": "${workspaceFolder}/node_modules/@omnitech/shared-rulesync-rules"
       }
     }
   }
@@ -240,6 +250,12 @@ cat .cursor/mcp.json  # or .windsurf/mcp.json, .idea/mcp.json, etc.
 ```
 
 **Check MCP Server Path:**
+
+```bash
+ls -la ./node_modules/@omnitech/shared-rulesync-rules/mcp-server/omnitech-shared-mcp/src/server.ts
+```
+
+If you're working in the shared rules repo itself, use:
 
 ```bash
 ls -la ./mcp-server/omnitech-shared-mcp/src/server.ts

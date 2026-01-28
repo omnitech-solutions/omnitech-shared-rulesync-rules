@@ -18,6 +18,11 @@ This directory contains example MCP configurations for different AI platforms.
 3. Adjust environment variables as needed
 4. Restart your IDE/editor
 
+These configs assume the package is installed in `node_modules`. If you're
+developing inside the shared rules repo, replace the MCP server path with
+`./mcp-server/omnitech-shared-mcp/src/server.ts` and set `RULESYNC_ROOT` to
+`${workspaceFolder}` (or `$PROJECT_DIR$` for JetBrains).
+
 ### JetBrains
 
 - Configuration location: `.idea/mcp.json` in your workspace

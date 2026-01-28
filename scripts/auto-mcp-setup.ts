@@ -23,10 +23,14 @@ interface AutoDetectionResult {
 class AutoMCPSetup {
   private workspaceRoot: string;
   private isCI: boolean;
+  private hasLocalServer: boolean;
 
   constructor() {
     this.workspaceRoot = process.cwd();
     this.isCI = this.detectCIEnvironment();
+    this.hasLocalServer = fs.existsSync(
+      path.join(this.workspaceRoot, 'mcp-server/omnitech-shared-mcp/src/server.ts'),
+    );
   }
 
   private detectCIEnvironment(): boolean {
@@ -244,14 +248,22 @@ class AutoMCPSetup {
       configPath?: string;
     },
   ) {
+    const projectVar = platform.id === 'jetbrains' ? '$PROJECT_DIR$' : '${workspaceFolder}';
+    const packageRoot = `${projectVar}/node_modules/@omnitech/shared-rulesync-rules`;
+    const localServerPath = `${projectVar}/mcp-server/omnitech-shared-mcp/src/server.ts`;
+    const serverPath = this.hasLocalServer
+      ? localServerPath
+      : `${packageRoot}/mcp-server/omnitech-shared-mcp/src/server.ts`;
+    const rulesyncRoot = this.hasLocalServer ? projectVar : packageRoot;
+
     const config = {
       mcpServers: {
         'omnitech-shared-mcp': {
           command: 'tsx',
-          args: ['./mcp-server/omnitech-shared-mcp/src/server.ts'],
+          args: [serverPath],
           env: {
             ...envVars,
-            RULESYNC_ROOT: '${workspaceFolder}',
+            RULESYNC_ROOT: rulesyncRoot,
           },
           cwd: undefined as string | undefined,
         },
@@ -260,9 +272,7 @@ class AutoMCPSetup {
 
     // Add platform-specific configurations
     if (platform.id === 'windsurf') {
-      config.mcpServers['omnitech-shared-mcp'].cwd = '${workspaceFolder}';
-    } else if (platform.id === 'jetbrains') {
-      config.mcpServers['omnitech-shared-mcp'].env.RULESYNC_ROOT = '$PROJECT_DIR$';
+      config.mcpServers['omnitech-shared-mcp'].cwd = projectVar;
     }
 
     return config;

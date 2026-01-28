@@ -90,14 +90,14 @@ Notes:
 - `RULESYNC_ROOT` defaults to `/workspace` and will be created if it doesn't
   exist.
 
-### Docker Compose
+### Docker Compose (from repo root)
 
 ```bash
 docker compose up --build
 ```
 
-This uses `docker-compose.yml` with the same volume and environment settings as
-the standalone `docker run` example.
+This uses `docker-compose.yml` at the repo root with the same volume and
+environment settings as the standalone `docker run` example.
 
 ## Available Tools
 

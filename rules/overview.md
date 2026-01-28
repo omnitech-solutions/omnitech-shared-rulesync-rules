@@ -62,6 +62,7 @@ summary: High-level guidance for audits, telemetry, and rule selection
 ## Related Documentation
 
 - `.rulesync/rules/architecture.md` - Architecture patterns
+- `.rulesync/rules/llm-provider-configuration.md` - LLM provider configuration
 - `.rulesync/rules/security.md` - Security best practices
 - `.rulesync/rules/testing.md` - Testing standards
 - `.rulesync/rules/documentation.md` - Documentation standards

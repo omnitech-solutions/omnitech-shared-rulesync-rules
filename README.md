@@ -9,7 +9,15 @@ repositories.
 This package is published to GitHub Packages. Add to your project:
 
 ```bash
-pnpm add @omnitech/shared-rulesync-rules
+pnpm add @omnitech/shared-rulesync-rules -D
+pnpm add rulesync -D
+```
+
+OR
+
+```bash
+pnpm add ../../dev/omnitech-solutions/omnitech-shared-rulesync-rules
+pnpm add rulesync -D
 ```
 
 Requires `.npmrc` configured for GitHub Packages:
@@ -17,6 +25,20 @@ Requires `.npmrc` configured for GitHub Packages:
 ```
 @omnitech:registry=https://npm.pkg.github.com
 //npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
+```
+
+### 🚀 Manual MCP Setup
+
+#### Codex
+
+```bash
+codex mcp add rulesync npx tsx node_modules/@omnitech/shared-rulesync-rules/mcp-server/omnitech-shared-mcp/src/server.ts
+```
+
+#### Gemini
+
+```bash
+gemini mcp add rulesync npx tsx node_modules/@omnitech/shared-rulesync-rules/mcp-server/omnitech-shared-mcp/src/server.ts
 ```
 
 ### 🚀 Automatic MCP Setup
@@ -37,7 +59,8 @@ export OPENAI_API_KEY=sk-...
 export ANTHROPIC_API_KEY=sk-...
 
 # Install package (auto-configures MCP)
-pnpm add @omnitech/shared-rulesync-rules
+pnpm add @omnitech/shared-rulesync-rules -D
+pnpm add rulesync -D
 
 # Restart your IDE to load MCP configuration
 ```
@@ -63,6 +86,95 @@ Example `sync-rules` script in `package.json`:
   }
 }
 ```
+
+## LLM Provider Configuration Rule Installation
+
+To install the LLM provider configuration rule, use the standard rulesync flow:
+
+```bash
+pnpm sync-rules
+```
+
+Then verify the rule is present in your synced rules:
+
+```bash
+ls .rulesync/rules/llm-provider-configuration.md
+```
+
+### LLM Provider Setup (Local and External)
+
+Follow these steps to configure local or hosted LLMs using environment variables
+only.
+
+#### Local LLM (LM Studio, Ollama, etc.)
+
+1. Start your local server (example: LM Studio on `http://localhost:1234/v1`).
+2. Set the local provider environment variables:
+
+```bash
+export LLM_PROVIDER=local
+export LLM_MODEL=openai/qwen3-coder-30b
+export OPENAI_API_BASE=http://localhost:1234/v1
+export OPENAI_API_KEY=lmstudio
+```
+
+3. Run your app or tool. It should use the local OpenAI-compatible endpoint with
+   no external calls.
+
+Optional (CLI helper):
+
+```bash
+pnpm setup-mcp
+```
+
+Choose to configure LLM provider variables when prompted to generate a
+`.env.mcp` with `LLM_PROVIDER`, `LLM_MODEL`, and provider-specific keys.
+
+#### External LLM (OpenAI or Anthropic)
+
+OpenAI:
+
+1. Set the OpenAI environment variables:
+
+```bash
+export LLM_PROVIDER=openai
+export LLM_MODEL=gpt-4o-mini
+export OPENAI_API_KEY=sk-...
+```
+
+2. Run your app or tool. It should call OpenAI's hosted API with no local
+   endpoints configured.
+
+Anthropic:
+
+1. Set the Anthropic environment variables:
+
+```bash
+export LLM_PROVIDER=anthropic
+export LLM_MODEL=claude-3-5-sonnet
+export ANTHROPIC_API_KEY=sk-...
+```
+
+2. Run your app or tool. It should call Anthropic's API directly.
+
+Other providers:
+
+1. Set the generic provider environment variables:
+
+```bash
+export LLM_PROVIDER=other
+export LLM_MODEL=provider-model-id
+export LLM_API_BASE=https://api.provider.example
+export LLM_API_KEY=...
+```
+
+2. Run your app or tool using the provider-appropriate client.
+
+#### Failure Behavior (Missing or Invalid Variables)
+
+If any required variable is missing or invalid, the application must fail
+immediately with a clear configuration error and must not fall back to another
+provider.
 
 ## Contents
 
