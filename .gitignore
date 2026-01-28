@@ -36,3 +36,4 @@ pnpm-debug.log*
 # .cursor/mcp.json
 # .windsurf/mcp.json
 # .continue/config.json
+**/backend/.git
