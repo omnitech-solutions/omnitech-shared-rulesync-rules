@@ -14,5 +14,9 @@
   "packageManager": "pnpm@8.15.6",
   "engines": {
     "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "@omnitech/shared-rulesync-rules": "link:../..",
+    "rulesync": "^6.1.0"
   }
 }
