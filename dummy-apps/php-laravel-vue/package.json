@@ -16,10 +16,12 @@
     "vite": "^7.0.7"
   },
   "dependencies": {
+    "@omnitech/shared-rulesync-rules": "file:../..",
     "@tanstack/vue-query": "^5.92.9",
     "@vitejs/plugin-vue": "^6.0.3",
     "autoprefixer": "^10.4.23",
     "postcss": "^8.5.6",
+    "rulesync": "^6.1.0",
     "vue": "^3.5.27"
   }
 }
