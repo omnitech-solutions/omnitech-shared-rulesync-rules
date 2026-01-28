@@ -1,0 +1,14 @@
+{
+  "name": "backend",
+  "private": true,
+  "scripts": {
+    "dev": "source venv/bin/activate && python manage.py runserver",
+    "build": "echo 'No build step for Django backend'",
+    "lint": "echo 'No linting configured for Django backend'",
+    "test": "source venv/bin/activate && python manage.py test",
+    "clean": "find . -type d -name '__pycache__' -delete && find . -name '*.pyc' -delete"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

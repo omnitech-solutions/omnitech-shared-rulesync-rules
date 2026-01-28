@@ -1,40 +1,77 @@
-# Python + Django + React
+# Python Django React App with Taxes CRUD
 
-Minimal placeholder stack with a Django backend and React frontend. The folders
-here are **illustrative**. Use the bootstrap commands below to generate a real
-app.
+A full-stack application featuring Django REST API backend and React dashboard frontend for managing tax records. Uses Turbo monorepo with pnpm for efficient development.
 
-## Bootstrap (Generate a Real App)
+## Quick Start
 
-Backend (Django):
+### Prerequisites
+- Python 3.11+
+- Node.js 18+
+- pnpm
 
-1. Install Python (3.11+ recommended) and pip.
-2. From `backend/`:
-   - `python -m venv .venv`
-   - `source .venv/bin/activate`
-   - `pip install django`
-   - `django-admin startproject app .`
-   - `python manage.py startapp api`
+### Installation & Setup
 
-Frontend (React):
+```bash
+# Clone and navigate to the project
+cd dummy-apps/python-django-react
 
-1. Install Node.js (18+ recommended) and npm/pnpm.
-2. From `frontend/`:
-   - `npm create vite@latest . -- --template react`
-   - `npm install`
+# Install all dependencies and set up both backend and frontend
+pnpm run setup
+```
 
-## Run (After Generation)
+### Development
 
-Backend:
+```bash
+# Start both backend and frontend in development mode
+pnpm run dev
 
-- `python manage.py migrate`
-- `python manage.py runserver`
+# Or start individually:
+pnpm run dev:backend  # Django on http://localhost:8000
+pnpm run dev:frontend # React on http://localhost:5173
+```
 
-Frontend:
+## Project Structure
 
-- `npm run dev`
+```
+python-django-react/
+├── backend/          # Django REST API
+│   ├── app/         # Django project settings
+│   ├── api/         # Taxes API endpoints
+│   ├── requirements.txt
+│   └── manage.py
+├── frontend/         # React dashboard
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   └── App.tsx
+│   ├── package.json
+│   └── vite.config.ts
+├── package.json      # Root monorepo config
+├── turbo.json        # Turbo pipeline configuration
+└── pnpm-workspace.yaml
+```
 
-## Notes
+## API Endpoints
 
-- Typical endpoints: `/health`, `/api/hello`.
-- Frontend usually calls `http://localhost:8000/api/hello`.
+- `GET /api/taxes/` - List all tax records
+- `POST /api/taxes/` - Create new tax record
+- `GET /api/taxes/{id}/` - Get specific tax record
+- `PUT /api/taxes/{id}/` - Update tax record
+- `DELETE /api/taxes/{id}/` - Delete tax record
+
+## Features
+
+- **Backend**: Django REST Framework with CORS support
+- **Frontend**: React with TypeScript, Tailwind CSS, Axios
+- **CRUD Operations**: Complete tax record management
+- **Dashboard**: Modern UI with data tables and forms
+- **Hot Reload**: Both backend and frontend support hot reloading
+
+## Scripts
+
+- `pnpm run setup` - Install and configure everything
+- `pnpm run dev` - Start development servers
+- `pnpm run build` - Build for production
+- `pnpm run lint` - Run linting
+- `pnpm run test` - Run tests
+- `pnpm run clean` - Clean build artifacts
