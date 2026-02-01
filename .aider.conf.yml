@@ -1,0 +1,51 @@
+############################
+# LLM (LM Studio)
+############################
+
+model: openai/qwen3-coder-30b
+openai-api-base: http://localhost:1234/v1
+openai-api-key: lmstudio
+verify-ssl: false
+timeout: 300
+
+############################
+# Editing behavior
+############################
+
+edit-format: whole
+architect: false
+auto-accept-architect: true
+show-diffs: false
+yes-always: true
+
+############################
+# Repo-map
+############################
+
+map-tokens: 1024
+map-refresh: auto
+
+############################
+# Git safety
+############################
+
+git: true
+gitignore: false
+auto-commits: false
+dirty-commits: false
+git-commit-verify: false
+
+############################
+# Output / UX
+############################
+
+pretty: true
+stream: true
+dark-mode: true
+
+############################
+# Noise reduction
+############################
+
+show-model-warnings: false
+max-chat-history-tokens: 12000

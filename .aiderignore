@@ -1,0 +1,19 @@
+# Aider internal files
+.aider*
+.env
+
+# Dependencies & Build artifacts
+node_modules/
+dist/
+build/
+bin/
+obj/
+.venv/
+env/
+__pycache__/
+
+# System & Media
+.DS_Store
+*.log
+*.pdf
+*.zip
