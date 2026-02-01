@@ -1,7 +1,7 @@
 ---
 targets:
   - '*'
-root: false
+root: true
 description: Stack rules index and suggested subsets
 summary: Index of stack-specific rule modules and task-focused subsets
 ---

@@ -1,7 +1,7 @@
 ---
 targets:
   - '*'
-root: false
+root: true
 description: Cross-cutting rule overview and analytics context
 summary: High-level guidance for audits, telemetry, and rule selection
 ---
